@@ -488,6 +488,9 @@
     <Compile Include="Areas\Admin\Controllers\ColumnController.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HTMLController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -559,6 +562,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Breadcrumb\" />
+    <Folder Include="Areas\Admin\Views\HTML\" />
+    <Folder Include="Areas\Admin\Views\Model\" />
+    <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Template\Code\" />
     <Folder Include="Template\Page\" />
     <Folder Include="Template\Tag\" />
