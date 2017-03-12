@@ -1,0 +1,56 @@
+﻿/*此处是对Metronic4.7.1的修改定制*/
+
+
+/*面包屑导航设置*/
+.page-container-bg-solid{
+    .page-title{
+        small{
+            padding-left:8px;
+            color:#888;
+        }
+    }
+}
+
+.page-bar{
+    line-height:20px;
+    .page-toolbar{
+        i{
+            margin-right:10px;
+        }
+    }
+}
+
+
+
+/*From表单部分开始*/
+.portlet{
+    .portlet-title{
+        .caption{
+            small{
+                margin-left:10px;
+            }
+        }
+    }
+    .form-actions{
+        button{
+            padding-right:20px !important;
+            margin-right:7px;
+            i{
+                margin-right:5px;
+            }
+        }
+    }
+}
+.blue>.portlet-title>.caption>.caption-helper{
+    color:#FFF;
+    margin-left:10px;
+}
+/*Form表单部分结束*/
+
+
+
+.page-content-wrapper{
+    .page-content{
+        padding-bottom:30px;
+    }
+}

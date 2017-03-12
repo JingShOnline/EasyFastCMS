@@ -1,0 +1,11 @@
+﻿@import "common.scss";
+@import "metronic.scss";
+@import "easyui.custom.scss";
+
+/*操作区域*/
+.opt{
+    padding-bottom:20px;
+    button,input[type=button]{
+        margin-right:7px;
+    }
+}

@@ -1,0 +1,60 @@
+﻿@import "color.scss";
+
+/*公用设定*/
+body {
+    font: 400 14px/22px "Helvetica", "Tahoma", "Arial", "Microsoft YaHei", "微软雅黑", "STXihei", "华文细黑", "SimSun", "宋体", "Heiti", "黑体", sans-serif;
+}
+a{
+    text-decoration:none;
+    color:#0097d3; 
+    &:hover{
+        text-decoration:underline;
+        color:$color_yellow;
+        -moz-transition:color .3s linear;
+        -webkit-transition:color .3s linear;
+        -o-transition:color .3s linear;
+        transition:color .3s linear;
+    }
+}
+ul,li,h1,h2,h3,h4,h5,h6{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+
+
+
+
+/*jQuery.Validate验证样式集合*/
+.input-validation-error{
+    border-color:#a94442;
+    color:#a94442;
+}
+.validation-summary-errors{
+    margin-top:20px;
+    margin-bottom:20px;
+    padding:10px;
+    background-color: #fbe1e3;
+    border-color: #fbe1e3;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.18);
+    color: #e73d4a;
+
+    span{
+        background:url(images/icon/16/warning_triangle.png) 0 3px no-repeat;
+        padding-left:20px;
+    }
+    
+    ul{
+        padding-left:50px;
+        li{
+            list-style:disc;
+        }
+    }
+}
+.validation-summary-valid{
+    span{
+        display:none;
+    }
+}

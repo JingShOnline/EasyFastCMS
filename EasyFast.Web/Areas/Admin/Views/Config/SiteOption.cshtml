@@ -1,0 +1,114 @@
+﻿@model EasyFast.Application.Config.Dto.SiteOptionDto
+
+@{
+
+}
+
+<div class="portlet box blue ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-file-word-o"></i>网站参数配置
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse" data-original-title="" title="收缩/展开"></a>
+            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload" data-original-title="" title="刷新"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form id="SiteOption" class="form-horizontal form-bordered form-row-stripped">
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-2">生成HTML目录</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-word-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.HTMLDir, new { htmlAttributes = new { @class = "form-control", placeholder = "生成HTML目录，留空表示生成到根目录。" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.HTMLDir, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">网站模板目录</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.TemplateDir, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.TemplateDir, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">标签库目录</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.TagDir, new { htmlAttributes = new { @class = "form-control", placeholder = "标签库目录需在模板目录中" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.TagDir, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">分页标签库目录</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.PageDir, new { htmlAttributes = new { @class = "form-control", placeholder = "分页标签库目录需在模板目录中" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.PageDir, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group last">
+                    <label class="control-label col-md-2">代码片段库目录</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.CodeDir, new { htmlAttributes = new { @class = "form-control", placeholder = "断码片段库目录需在模板目录中" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.CodeDir, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-9">
+                        <button id="submit" type="button" class="btn blue">
+                            <i class="fa fa-check"></i>提交
+                        </button>
+                        <button type="button" class="btn default">
+                            <i class="fa fa-reply"></i>返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $("#submit").click(function(){
+            abp.ui.setBusy(
+                $('#SiteOption'), 
+                abp.ajax({
+                    url: '@Url.Action("SiteOption","Config")',
+                    data:$('#SiteOption').serialize(),
+                }).done(function (data) {
+                    //abp.notify.success("网站参数配置修改成功！");
+                })
+            );
+        });
+    </script>
+}

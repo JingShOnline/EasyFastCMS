@@ -1,0 +1,27 @@
+﻿/*此文件为针对easyui.bootsrap默认样式的自定义修改*/
+
+.datagrid{
+    .datagrid-header{
+        .datagrid-header-inner{
+            .datagrid-cell{
+                height:34px;
+                line-height:34px;
+                padding:0 6px;
+                span{
+                    font-size:14px;
+                    font-weight:bold;
+                }
+            }
+        }
+    }
+    .datagrid-body{
+        .datagrid-row{
+            height:32px;
+            >td>div{
+                padding:0 6px;
+                font-size:14px;
+            }
+        }
+    }
+}
+

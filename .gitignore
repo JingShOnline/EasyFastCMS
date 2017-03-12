@@ -250,3 +250,14 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/EasyFast.Web/App_Data/Logs/Logs.txt.9
+/EasyFast.Web/App_Data/Logs/Logs.txt.8
+/EasyFast.Web/App_Data/Logs/Logs.txt.7
+/EasyFast.Web/App_Data/Logs/Logs.txt.6
+/EasyFast.Web/App_Data/Logs/Logs.txt.5
+/EasyFast.Web/App_Data/Logs/Logs.txt.4
+/EasyFast.Web/App_Data/Logs/Logs.txt.3
+/EasyFast.Web/App_Data/Logs/Logs.txt.2
+/EasyFast.Web/App_Data/Logs/Logs.txt.10
+/EasyFast.Web/App_Data/Logs/Logs.txt.1
+/EasyFast.Web/App_Data/Logs/Logs.txt

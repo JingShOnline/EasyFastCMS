@@ -1,0 +1,72 @@
+﻿
+/*公用字体颜色、背景颜色集合及对应的变量集合*/
+
+//背景颜色部分
+.bg_blue_light{
+    background-color:#0097d3;
+}
+.bg_red_light{
+    background-color:#F1494E;
+}
+.bg_yellow_light{
+    background-color:#FFBC00;
+}
+.bg_green_light{
+    background-color:#45BE95;
+}
+.bg_grey_light{
+    background-color:#B2B2B2;
+}
+.bg_grey_dark{
+    background-color:#808080;
+}
+.bg_yellow{
+    background-color:#FF7937;
+}
+.bg_red{
+    background-color:#ff5b5b;
+}
+.bg_9f{
+    background-color:#9f9f9f;
+}
+
+
+//字体颜色部分
+.color_blue_light{
+    color:#0097d3;
+}
+.color_red_light{
+    color:#F1494E;
+}
+.color_yellow_light{
+    color:#FFBC00;
+}
+.color_green_light{
+    color:#45BE95;
+}
+.color_grey_light{
+    color:#B2B2B2;
+}
+.color_grey_dark{
+    color:#808080;
+}
+.color_red{
+    color:#ff5b5b;
+}
+.color_9f{
+    color:#9f9f9f;
+}
+.color_yellow{
+    color:#FF7937;
+}
+
+//字体颜色变量部分
+$color_blue_light:#0097d3;
+$color_red_light:#F1494E;
+$color_yellow_light:#FFBC00;
+$color_green_light:#45BE95;
+$color_grey_light:#B2B2B2;
+$color_grey_dark:#808080;
+$color_red:#ff5b5b;
+$color_9f:#9f9f9f;
+$color_yellow:#FF7937;
