@@ -124,6 +124,7 @@
     <Compile Include="Entities\CommonTitle.cs" />
     <Compile Include="Entities\Content_Article.cs" />
     <Compile Include="Entities\Content_Lawyer.cs" />
+    <Compile Include="Entities\Model.cs" />
     <Compile Include="Entities\SiteConfig.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />

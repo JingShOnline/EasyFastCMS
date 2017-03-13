@@ -17,10 +17,36 @@ namespace EasyFast.Application.Column
         void AddSingle(SingleColumnDto model);
 
         /// <summary>
+        /// 编辑单页栏目
+        /// </summary>
+        /// <param name="model"></param>
+        void UpdateSingle(SingleColumnDto model);
+
+        /// <summary>
+        /// 获取单页栏目
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        SingleColumnDto FindSingle(int id);
+
+        /// <summary>
         /// 添加栏目
         /// </summary>
         /// <param name="model"></param>
         void Add(ColumnDto model);
+
+        /// <summary>
+        /// 编辑栏目节点
+        /// </summary>
+        /// <param name="model"></param>
+        void Update(ColumnDto model);
+
+        /// <summary>
+        /// 获取单页栏目
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        ColumnDto Find(int id);
 
         /// <summary>
         /// 获取栏目列表

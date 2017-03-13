@@ -417,13 +417,22 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Home_Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_AddSingle.cshtml" />
+    <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_UpdateSingle.cshtml" />
+    <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Update.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Scripts\abp.extend.js" />
+    <Content Include="Scripts\easyui.extend.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -561,9 +570,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Breadcrumb\" />
     <Folder Include="Areas\Admin\Views\HTML\" />
-    <Folder Include="Areas\Admin\Views\Model\" />
     <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Template\Code\" />
     <Folder Include="Template\Page\" />

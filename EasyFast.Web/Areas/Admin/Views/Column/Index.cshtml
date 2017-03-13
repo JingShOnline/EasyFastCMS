@@ -23,7 +23,7 @@
                 <tr>
                     <th data-options="field:'ck',checkbox:true"></th>
                     <th data-options="field:'Id',width:100,sortable: true">ID</th>
-                    <th data-options="field:'Name',width:300,sortable: true">栏目名称</th>
+                    <th data-options="field:'Name',width:300,sortable: true,formatter:FormatColumnName">栏目名称</th>
                     <th data-options="field:'fullName',width:300,sortable: true">栏目类型</th>
                     <th data-options="field:'ContentCount',width:300,sortable: true">数据量</th>
                     <th data-options="field:'ContentCount',width:300,sortable: true">操作</th>
@@ -34,6 +34,10 @@
 </div>
 @section scripts {
     <script>
+        function FormatTitle(val, row) {
+            return '<a href="/Admin/Case/Manage/Update/' + row.Id + '"  target="_blank">' + val + '</a>';
+        }
+
         $(function () {
             
         })

@@ -35,6 +35,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
             return Json(list);
         }
 
+        #region 新增栏目/单页栏目
         public ActionResult AddSingle()
         {
             SingleColumnDto model = new SingleColumnDto();
@@ -51,7 +52,48 @@ namespace EasyFast.Web.Areas.Admin.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            ColumnDto model = new ColumnDto();
+            return View(model);
         }
+
+        [HttpPost]
+        public JsonResult Add(ColumnDto model)
+        {
+            _columnAppService.Add(model);
+            return Json(new AjaxResponse { TargetUrl = "Index" });
+
+        }
+        #endregion
+
+        #region 编辑栏目/单页栏目
+        public ActionResult UpdateSingle(int id)
+        {
+            SingleColumnDto model = _columnAppService.FindSingle(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateSingle(SingleColumnDto model)
+        {
+            _columnAppService.UpdateSingle(model);
+            return Json(new AjaxResponse { TargetUrl = "Index" });
+        }
+
+        public ActionResult Update(int id)
+        {
+            ColumnDto model = _columnAppService.Find(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult Update(ColumnDto model)
+        {
+            _columnAppService.Update(model);
+            return Json(new AjaxResponse { TargetUrl = "Index" });
+        }
+        #endregion
+
+
+
     }
 }

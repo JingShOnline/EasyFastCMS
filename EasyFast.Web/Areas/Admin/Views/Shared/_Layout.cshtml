@@ -626,6 +626,27 @@
                     </li>
                     <li class="nav-item">
                         <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-bar-chart"></i>
+                            <span class="title">栏目相关管理</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item">
+                                <a href="/Admin/Column/Index" class="nav-link">
+                                    <i class="fa fa-share-alt"></i>
+                                    <span class="title">栏目管理</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Admin/Model/SiteOption" class="nav-link">
+                                    <i class="fa fa-share-alt"></i>
+                                    <span class="title">内容模型管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-settings"></i>
                             <span class="title">系统设置</span>
                             <span class="arrow"></span>
@@ -652,7 +673,6 @@
                             </li>
                         </ul>
                     </li>
-
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>
@@ -1364,7 +1384,8 @@
     <script src="http://cdn.easyfast.cn/assets/sweetalert-master/dist/sweetalert.min.js" type="text/javascript"></script>
 
     <script src="~/Scripts/abp.extend.js"></script>
-    <script src="~/Scripts/site.js"></script>
+    <script src="~/Scripts/easyui.extend.js"></script>
+    <script src="~/Scripts/admin.js"></script>
     <script>
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');

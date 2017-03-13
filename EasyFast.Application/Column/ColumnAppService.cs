@@ -35,6 +35,16 @@ namespace EasyFast.Application.Column
             _columnRepository.Insert(data);
         }
 
+        public ColumnDto Find(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SingleColumnDto FindSingle(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public EasyUIGridOutput<TreeGridOutput> GetTreeGrid(TreeGridInput search)
         {
             var list = Mapper.Map<List<TreeGridOutput>>(_columnRepository.GetAll());
@@ -46,6 +56,16 @@ namespace EasyFast.Application.Column
                 ToEasyUITreeGrid(list, item);
             }
             return new EasyUIGridOutput<TreeGridOutput> { total = total, rows = rows };
+        }
+
+        public void Update(ColumnDto model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSingle(SingleColumnDto model)
+        {
+            throw new NotImplementedException();
         }
 
         private void ToEasyUITreeGrid(List<TreeGridOutput> all, TreeGridOutput parent)

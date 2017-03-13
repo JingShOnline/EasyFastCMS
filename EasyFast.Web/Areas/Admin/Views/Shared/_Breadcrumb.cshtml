@@ -6,12 +6,40 @@
         @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Home_Index.cshtml");
         return;
     }
-    //案例管理-首页
-    if (url.Contains("/Admin/Case/Home/Index".ToLower()))
+
+
+    //栏目管理-首页
+    if (url.Contains("/Admin/Column/Index".ToLower()))
     {
-        @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Case_Home_Index.cshtml");
+        @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Column_Index.cshtml");
         return;
     }
+    //栏目管理-添加单页栏目
+    if (url.Contains("/Admin/Column/AddSingle".ToLower()))
+    {
+        @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Column_AddSingle.cshtml");
+        return;
+    }
+    //栏目管理-编辑单页栏目
+    if (url.Contains("/Admin/Column/UpdateSingle".ToLower()))
+    {
+        @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Column_UpdateSingle.cshtml");
+        return;
+    }
+    //栏目管理-添加栏目
+    if (url.Contains("/Admin/Column/Add".ToLower()))
+    {
+        @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Column_Add.cshtml");
+        return;
+    }
+    //栏目管理-编辑栏目
+    if (url.Contains("/Admin/Column/Update".ToLower()))
+    {
+        @Html.Partial("~/Areas/Admin/Views/Breadcrumb/_Admin_Column_Update.cshtml");
+        return;
+    }
+
+
     //案例管理-案例列表
     if (url.Contains("/Admin/Case/Manage/List".ToLower()))
     {
