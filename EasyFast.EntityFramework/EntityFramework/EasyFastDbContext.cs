@@ -6,14 +6,12 @@ using EasyFast.Core.Users;
 using System.Data.Entity;
 using EasyFast.Core.Entities;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using EasyFast.Core.Entities.Column;
-using EasyFast.Core.Entities.ContentModel;
 
 namespace EasyFast.EntityFramework
 {
     public class EasyFastDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
-
+        
         //TODO: Define an IDbSet for your Entities...
 
         /* NOTE: 
@@ -47,10 +45,6 @@ namespace EasyFast.EntityFramework
         #region Entity
         public virtual IDbSet<SiteConfig> SiteConfig { get; set; }
         public virtual IDbSet<Column> Column { get; set; }
-        public virtual IDbSet<ModelRecord> ModelRecord { get; set; }
-        public virtual IDbSet<Common_Model> CommonModel { get; set; }
-        public virtual IDbSet<Content_Article> ContentArticle { get; set; }
-        public virtual IDbSet<Content_Lawyer> ContentLawyer { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

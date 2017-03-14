@@ -1,8 +1,5 @@
-﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
-using EasyFast.Application.Column.Dto;
+﻿using EasyFast.Application.Column.Dto;
 using EasyFast.Application.Common.Dto;
-using EasyFast.Application.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,72 +8,25 @@ using System.Threading.Tasks;
 
 namespace EasyFast.Application.Column
 {
-    /// <summary>
-    /// 栏目资源
-    /// </summary>
-    public interface IColumnAppService : IApplicationService
+    public interface IColumnAppService
     {
+        /// <summary>
+        /// 添加单页栏目
+        /// </summary>
+        /// <param name="model"></param>
+        void AddSingle(SingleColumnDto model);
 
         /// <summary>
         /// 添加栏目
         /// </summary>
         /// <param name="model"></param>
-        Task AddAsync(Core.Entities.Column.Column model);
-
-
+        void Add(ColumnDto model);
 
         /// <summary>
-        /// 分页获取栏目用于表格展示
+        /// 获取栏目列表
         /// </summary>
+        /// <param name="search">搜索条件及分页设定</param>
         /// <returns></returns>
-        Task<List<ColumnGridOutput>> GetColumnGridAsync();
-
-
-
-        /// <summary>
-        /// 修改栏目
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task UpdateAsync(Core.Entities.Column.Column model);
-
-
-        /// <summary>
-        /// 删除栏目
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task DeleteAsync(int id);
-
-
-        /// <summary>
-        /// 获取树形结构的栏目名称
-        /// </summary>
-        /// <returns></returns>
-        Task<List<ColumnNameDto>> GetTreeColumnNameAsync();
-
-        /// <summary>
-        /// 获取栏目
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        Task<T> GetColumnAsync<T>(int id);
-
-
-        /// <summary>
-        /// 添加或删除单页
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task AddOrUpdateSingleAsync(SingleColumnDto model);
-
-
-        /// <summary>
-        /// 添加或删除栏目
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task AddOrUpdateColumn(ColumnDto model);
-
+        EasyUIGridOutput<TreeGridOutput> GetTreeGrid(TreeGridInput search);
     }
 }

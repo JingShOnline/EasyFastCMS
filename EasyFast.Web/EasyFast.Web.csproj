@@ -24,7 +24,7 @@
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
-    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -46,61 +46,47 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Abp, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.1.4.3.0\lib\net452\Abp.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.1.5.0.0\lib\net452\Abp.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.AutoMapper, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.AutoMapper.1.4.3.0\lib\net452\Abp.AutoMapper.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.AutoMapper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.AutoMapper.1.5.0.0\lib\net452\Abp.AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Castle.Log4Net, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Castle.Log4Net.1.4.3.0\lib\net452\Abp.Castle.Log4Net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Castle.Log4Net, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Castle.Log4Net.1.5.0.0\lib\net452\Abp.Castle.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.EntityFramework, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.EntityFramework.1.4.3.0\lib\net452\Abp.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.EntityFramework, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.EntityFramework.1.5.0.0\lib\net452\Abp.EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.EntityFramework.Common, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.EntityFramework.Common.1.4.3.0\lib\net452\Abp.EntityFramework.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.EntityFramework.Common, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.EntityFramework.Common.1.5.0.0\lib\net452\Abp.EntityFramework.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.HangFire, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.HangFire.1.4.3.0\lib\net452\Abp.HangFire.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.HangFire, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.HangFire.1.5.0.0\lib\net452\Abp.HangFire.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Owin, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Owin.1.4.3.0\lib\net452\Abp.Owin.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Owin, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Owin.1.5.0.0\lib\net452\Abp.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.1.4.3.0\lib\net452\Abp.Web.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.1.5.0.0\lib\net452\Abp.Web.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.Api, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.Api.1.4.3.0\lib\net452\Abp.Web.Api.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.Api, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Api.1.5.0.0\lib\net452\Abp.Web.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.Common, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.Common.1.4.3.0\lib\net452\Abp.Web.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.Common, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Common.1.5.0.0\lib\net452\Abp.Web.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.Mvc, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.Mvc.1.4.3.0\lib\net452\Abp.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.Mvc, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.Mvc.1.5.0.0\lib\net452\Abp.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Web.SignalR, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Web.SignalR.1.4.3.0\lib\net452\Abp.Web.SignalR.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Web.SignalR, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Web.SignalR.1.5.0.0\lib\net452\Abp.Web.SignalR.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Zero, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Zero.1.4.3.0\lib\net452\Abp.Zero.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Zero, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.1.5.0.0\lib\net452\Abp.Zero.dll</HintPath>
     </Reference>
-    <Reference Include="Abp.Zero.EntityFramework, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Abp.Zero.EntityFramework.1.4.3.0\lib\net452\Abp.Zero.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Abp.Zero.EntityFramework, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Abp.Zero.EntityFramework.1.5.0.0\lib\net452\Abp.Zero.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -142,9 +128,11 @@
       <HintPath>..\packages\Hangfire.SqlServer.1.6.9\lib\net45\Hangfire.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -329,81 +317,18 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
-    <Content Include="Areas\Admin\Views\ContentModel\index.js" />
-    <Content Include="Areas\Admin\Views\ContentModel\_CreateOrUpdateModal.js" />
-    <Content Include="Common\Scripts\appUserNotificationHelper.js" />
-    <Content Include="Common\Scripts\Chat\chat.js" />
-    <Content Include="Common\Scripts\Chat\chat.signalr.js" />
-    <Content Include="Common\Scripts\consts.js" />
-    <Content Include="Common\Scripts\helpers.js" />
-    <Content Include="Common\Scripts\jquery-custom.js" />
-    <Content Include="Common\Scripts\jquery-validation-custom.js" />
-    <Content Include="Common\Scripts\librarySettings.js" />
-    <Content Include="Common\Scripts\LocalStorage\localStorage.js" />
-    <Content Include="Common\Scripts\LocalStorage\localStorage.localForage.js" />
-    <Content Include="Common\Scripts\ModalManager.js" />
-    <Content Include="Common\Scripts\passwordComplexityHelper.js" />
-    <Content Include="Common\Scripts\utils.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\common_home.css">
-      <DependentUpon>common_home.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\common_home.min.css">
-      <DependentUpon>common_home.css</DependentUpon>
-    </Content>
-    <Content Include="Content\css.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\font.css" />
-    <Content Include="Content\Images\bg-image-2.jpg" />
-    <Content Include="Content\Images\font-awesome.min.css" />
-    <Content Include="Content\Images\home-1-268x182.jpg" />
-    <Content Include="Content\Images\home-2-268x182.jpg" />
-    <Content Include="Content\Images\home-3-268x182.jpg" />
-    <Content Include="Content\Images\home-4-268x182.jpg" />
-    <Content Include="Content\Images\logo-default-199x36.png" />
-    <Content Include="Content\Images\logo-md-white-136x160.png" />
-    <Content Include="Content\Images\logo-white-200x36.png" />
-    <Content Include="Content\Images\services-1-461x514.jpg" />
-    <Content Include="Content\Images\team-10-246x300.jpg" />
-    <Content Include="Content\Images\team-11-246x300.jpg" />
-    <Content Include="Content\Images\team-12-246x300.jpg" />
-    <Content Include="Content\Images\team-9-246x300.jpg" />
-    <Content Include="Content\index.css">
-      <DependentUpon>index.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\index.min.css">
-      <DependentUpon>index.css</DependentUpon>
-    </Content>
-    <Content Include="Content\lawyer.css">
-      <DependentUpon>lawyer.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\lawyer.min.css">
-      <DependentUpon>lawyer.css</DependentUpon>
-    </Content>
-    <Content Include="Content\livedemo.css" />
-    <Content Include="Content\news.css">
-      <DependentUpon>news.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\news.min.css">
-      <DependentUpon>news.css</DependentUpon>
-    </Content>
-    <Content Include="Content\practice.css">
-      <DependentUpon>practice.scss</DependentUpon>
-    </Content>
-    <Content Include="Content\practice.min.css">
-      <DependentUpon>practice.css</DependentUpon>
-    </Content>
     <Content Include="Content\site.css">
       <DependentUpon>site.scss</DependentUpon>
     </Content>
     <Content Include="Content\site.min.css">
       <DependentUpon>site.css</DependentUpon>
     </Content>
-    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -487,36 +412,20 @@
     <Content Include="Content\easyui.custom.scss" />
     <Content Include="Content\metronic.scss" />
     <Content Include="Areas\Admin\Views\Column\AddSingle.cshtml" />
+    <Content Include="Areas\Admin\Views\Column\Add.cshtml" />
     <Content Include="Abp\Framework\styles\abp.mixings.less" />
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
-    <Content Include="Areas\Admin\Views\Column\AddColumn.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_navigation.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentModel\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentModel\CreateOrUpdateModal.cshtml" />
-    <Content Include="Areas\Admin\Views\Common\_ModalFooterWithSaveAndCance.cshtml" />
-    <Content Include="Areas\Admin\Views\Common\_ModalHeader.cshtml" />
-    <Content Include="Areas\Admin\Views\ContentManager\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Scripts\abp.extend.js" />
-    <Content Include="Content\index.scss" />
-    <Content Include="Content\news.scss" />
-    <Content Include="Content\practice.scss" />
-    <Content Include="Content\lawyer.scss" />
-    <Content Include="Content\font\fontawesome-webfont.woff2" />
-    <Content Include="Content\font\Jaapokki-Regular.woff" />
-    <Content Include="Content\font\MaterialIcons-Regular.woff2" />
-    <Content Include="Content\common_home.scss" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\core.min.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -531,116 +440,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jtable\extensions\jquery.jtable.aspnetpagemethods.js" />
-    <Content Include="Scripts\jtable\extensions\jquery.jtable.aspnetpagemethods.min.js" />
-    <Content Include="Scripts\jtable\external\json2.js" />
-    <Content Include="Scripts\jtable\external\json2.min.js" />
-    <Content Include="Scripts\jtable\jquery.jtable.js" />
-    <Content Include="Scripts\jtable\jquery.jtable.min.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.bd.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.ca.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.cz.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.de.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.es.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.fa.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.fr.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.hr.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.hu.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.id.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.it.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.lt.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.nl-NL.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.no.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.pl.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.pt-BR.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.pt-PT.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.ro.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.tr.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.vi.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.zh-CN.js" />
-    <Content Include="Scripts\jtable\themes\basic\close.png" />
-    <Content Include="Scripts\jtable\themes\basic\column-asc.png" />
-    <Content Include="Scripts\jtable\themes\basic\column-desc.png" />
-    <Content Include="Scripts\jtable\themes\basic\column-sortable.png" />
-    <Content Include="Scripts\jtable\themes\basic\delete.png" />
-    <Content Include="Scripts\jtable\themes\basic\edit.png" />
-    <Content Include="Scripts\jtable\themes\basic\jtable_basic.css" />
-    <Content Include="Scripts\jtable\themes\basic\jtable_basic.min.css" />
-    <Content Include="Scripts\jtable\themes\jqueryui\add.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\bg-thead.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\close.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\column-asc.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\column-desc.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\column-sortable.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\delete.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\edit.png" />
-    <Content Include="Scripts\jtable\themes\jqueryui\jtable_jqueryui.css" />
-    <Content Include="Scripts\jtable\themes\jqueryui\jtable_jqueryui.min.css" />
-    <Content Include="Scripts\jtable\themes\jqueryui\loading.gif" />
-    <Content Include="Scripts\jtable\themes\lightcolor\add.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\bg-thead.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\blue\jtable.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\blue\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\blue\loading.gif" />
-    <Content Include="Scripts\jtable\themes\lightcolor\close.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\column-asc.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\column-desc.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\column-sortable.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\delete.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\edit.png" />
-    <Content Include="Scripts\jtable\themes\lightcolor\gray\jtable.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\gray\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\gray\loading.gif" />
-    <Content Include="Scripts\jtable\themes\lightcolor\green\jtable.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\green\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\green\loading.gif" />
-    <Content Include="Scripts\jtable\themes\lightcolor\orange\jtable.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\orange\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\orange\loading.gif" />
-    <Content Include="Scripts\jtable\themes\lightcolor\red\jtable.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\red\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\lightcolor\red\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\add.png" />
-    <Content Include="Scripts\jtable\themes\metro\blue\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\blue\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\blue\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\brown\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\brown\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\brown\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\close.png" />
-    <Content Include="Scripts\jtable\themes\metro\column-asc.png" />
-    <Content Include="Scripts\jtable\themes\metro\column-desc.png" />
-    <Content Include="Scripts\jtable\themes\metro\column-sortable.png" />
-    <Content Include="Scripts\jtable\themes\metro\crimson\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\crimson\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\crimson\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\darkgray\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\darkgray\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\darkgray\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\darkorange\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\darkorange\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\darkorange\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\delete.png" />
-    <Content Include="Scripts\jtable\themes\metro\edit.png" />
-    <Content Include="Scripts\jtable\themes\metro\green\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\green\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\green\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\jtable_metro_base.css" />
-    <Content Include="Scripts\jtable\themes\metro\jtable_metro_base.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\lightgray\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\lightgray\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\lightgray\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\pink\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\pink\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\pink\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\purple\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\purple\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\purple\loading.gif" />
-    <Content Include="Scripts\jtable\themes\metro\red\jtable.css" />
-    <Content Include="Scripts\jtable\themes\metro\red\jtable.min.css" />
-    <Content Include="Scripts\jtable\themes\metro\red\loading.gif" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -653,7 +452,6 @@
     <Content Include="Scripts\others\spinjs\spin.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
-    <Content Include="Scripts\script.js" />
     <Content Include="Scripts\site.js" />
     <Content Include="Scripts\sweetalert\ie9.css" />
     <Content Include="Scripts\sweetalert\sweet-alert.css" />
@@ -662,7 +460,6 @@
     <Content Include="Scripts\sweetalert\sweet-alert.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Template\Index.html" />
     <Content Include="Views\Account\Login.css">
       <DependentUpon>Login.less</DependentUpon>
@@ -682,26 +479,21 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AdminNavigationProvider.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EasyFastNavigationProvider.cs" />
     <Compile Include="App_Start\EasyFastWebModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="App_Start\UserMenuItemExtensions.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ColumnController.cs" />
     <Compile Include="Areas\Admin\Controllers\ConfigController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ContentManagerController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ContentModelController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LayoutController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HTMLController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LawyerController.cs" />
-    <Compile Include="Controllers\NewsController.cs" />
-    <Compile Include="Controllers\PracticeController.cs" />
     <Compile Include="Controllers\Results\ChallengeResult.cs" />
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -741,34 +533,6 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <Content Include="Views\News\List.cshtml" />
-    <Content Include="Views\News\_News_menu.cshtml" />
-    <Content Include="Views\News\Info.cshtml" />
-    <Content Include="Views\Practice\list.cshtml" />
-    <Content Include="Views\Lawyer\Info.cshtml" />
-    <Content Include="Views\Lawyer\List.cshtml" />
-    <Content Include="Views\Shared\_Practice_menu.cshtml" />
-    <Content Include="Scripts\jtable\themes\basic\jtable_basic.less" />
-    <Content Include="Scripts\jtable\themes\jqueryui\jtable_jqueryui.less" />
-    <Content Include="Scripts\jtable\themes\jtable_theme_base.less" />
-    <Content Include="Scripts\jtable\themes\lightcolor\blue\jtable.less" />
-    <Content Include="Scripts\jtable\themes\lightcolor\gray\jtable.less" />
-    <Content Include="Scripts\jtable\themes\lightcolor\green\jtable.less" />
-    <Content Include="Scripts\jtable\themes\lightcolor\jtable_lightcolor_base.less" />
-    <Content Include="Scripts\jtable\themes\lightcolor\orange\jtable.less" />
-    <Content Include="Scripts\jtable\themes\lightcolor\red\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\blue\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\brown\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\crimson\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\darkgray\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\darkorange\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\green\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\jtable_metro_base.less" />
-    <Content Include="Scripts\jtable\themes\metro\lightgray\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\pink\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
-    <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
-    <Content Include="Views\Practice\Info.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -798,6 +562,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Breadcrumb\" />
+    <Folder Include="Areas\Admin\Views\HTML\" />
+    <Folder Include="Areas\Admin\Views\Model\" />
+    <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Template\Code\" />
     <Folder Include="Template\Page\" />
     <Folder Include="Template\Tag\" />
@@ -826,7 +593,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:6783/</IISUrl>
+          <IISUrl>http://localhost:6666/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
