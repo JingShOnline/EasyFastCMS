@@ -1,5 +1,4 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.AutoMapper;
+﻿using Abp.AutoMapper;
 using EasyFast.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,8 @@ namespace EasyFast.Application.Column.Dto
     /// <summary>
     /// 用于栏目表格显示Dto 仅有基本属性
     /// </summary>
-    [AutoMapFrom(typeof(Core.Entities.Column.Column))]
-    public class ColumnGridOutput : EntityDto
+    [AutoMapFrom(typeof(Core.Entities.Column))]
+    public class ColumnGridOutput
     {
         /// <summary>
         /// 父栏目Id
@@ -23,11 +22,7 @@ namespace EasyFast.Application.Column.Dto
         /// 栏目名称
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// 栏目类型
-        /// </summary>
-        public ColumnTypeEnum ColumnTypeEnum { get; set; }
-
+     
         /// <summary>
         /// 栏目类型String
         /// </summary>

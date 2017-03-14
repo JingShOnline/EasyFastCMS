@@ -10,7 +10,10 @@ using EasyFast.Core.Entities;
 
 namespace EasyFast.Application.Column.Dto
 {
-    [AutoMap(typeof(Core.Entities.Column.Column))]
+    /// <summary>
+    /// 单页栏目
+    /// </summary>
+    [AutoMap(typeof(Core.Entities.Column))]
     public class SingleColumnDto : ColumnDtoBase
     {
         /// <summary>
@@ -18,8 +21,8 @@ namespace EasyFast.Application.Column.Dto
         /// </summary>
         public SingleColumnDto() : base()
         {
-            ColumnTypeEnum = Core.Entities.ColumnTypeEnum.Single;
-           
+            ColumnTypeEnum = ColumnTypeEnum.Single;
+
         }
 
         /// <summary>
@@ -32,6 +35,5 @@ namespace EasyFast.Application.Column.Dto
         /// 单页节点生成规则
         /// </summary>
         public string SingleHtmlRule { get; set; }
-
     }
 }

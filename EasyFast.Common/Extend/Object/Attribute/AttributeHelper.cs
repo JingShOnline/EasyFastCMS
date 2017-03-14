@@ -23,7 +23,7 @@ namespace EasyFast.Common.Extend.Object.Attribute
             var type = o.GetType();
 
             var attributes = type.GetField(o.ToString()).GetCustomAttributes(typeof(T), false);
-           
+
             var attribute = attributes[0] as T;
 
             return attribute.GetType().GetProperty(fieldName).GetValue(attribute);

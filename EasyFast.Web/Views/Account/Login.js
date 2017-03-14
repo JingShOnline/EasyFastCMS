@@ -1,10 +1,6 @@
 ﻿(function () {
 
-
     $(function () {
-
-        console.log(abp.localization.localize("Register"))
-
         $('#LoginButton').click(function (e) {
             e.preventDefault();
             abp.ui.setBusy(
@@ -21,18 +17,18 @@
                     })
                 })
             );
-        });
-
-        $('a.social-login-link').click(function () {
-            var $a = $(this);
-            var $form = $a.closest('form');
-            $form.find('input[name=provider]').val($a.attr('data-provider'));
-            $form.submit();
-        });
-
-        $('#ReturnUrlHash').val(location.hash);
-
-        $('#LoginForm input:first-child').focus();
     });
+
+    $('a.social-login-link').click(function () {
+        var $a = $(this);
+        var $form = $a.closest('form');
+        $form.find('input[name=provider]').val($a.attr('data-provider'));
+        $form.submit();
+    });
+
+    $('#ReturnUrlHash').val(location.hash);
+
+    $('#LoginForm input:first-child').focus();
+});
 
 })();

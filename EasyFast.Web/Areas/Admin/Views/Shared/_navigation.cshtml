@@ -1,11 +1,12 @@
 ﻿@using Abp.Application.Navigation
 @using Abp.Collections.Extensions
+@using EasyFast.Web.App_Start
 @model Abp.Application.Navigation.UserMenu
 
 @{
     @helper RenderUserMenuItem(UserMenuItem menuItem, int menuItemIndex, bool rootLevel)
     {
-        <li class="nav-item @(menuItemIndex == 0 && rootLevel ? "start" : "") @(menuItem.IsMenuActive("Frontend.Home") ? "active" : "")">
+        <li class="nav-item @(menuItemIndex == 0 && rootLevel ? "start" : "") @(menuItem.IsMenuActive("AdminHome") ? "active" : "")">
             @if (menuItem.Items.IsNullOrEmpty())
             {
                 <a href="@menuItem.Url">
@@ -32,8 +33,8 @@
 }
 }
 
-    @for (var i = 0; i < Model.Items.Count; i++)
-    {
-        var menuItem = Model.Items[i];
-        @RenderUserMenuItem(menuItem, i, true);
-    }
+@for (var i = 0; i < Model.Items.Count; i++)
+{
+    var menuItem = Model.Items[i];
+    @RenderUserMenuItem(menuItem, i, true);
+}

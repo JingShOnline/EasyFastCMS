@@ -10,8 +10,11 @@ namespace EasyFast.Core.Authorization
         public override void SetPermissions(IPermissionDefinitionContext context)
         {
             //Common permissions
-            var pages = context.GetPermissionOrNull(PermissionNames.Pages) ??
-                        context.CreatePermission(PermissionNames.Pages, L("Pages"));
+            var pages = context.GetPermissionOrNull(PermissionNames.Pages);
+            if (pages == null)
+            {
+                pages = context.CreatePermission(PermissionNames.Pages, L("Pages"));
+            }
 
             var users = pages.CreateChildPermission(PermissionNames.Pages_Users, L("Users"));
 

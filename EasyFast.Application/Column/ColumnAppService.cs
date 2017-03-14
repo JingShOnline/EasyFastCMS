@@ -10,6 +10,12 @@ using AutoMapper;
 using EasyFast.Application.Common.Dto;
 using System.Linq.Dynamic;
 using AutoMapper.QueryableExtensions;
+using System.Data.Entity;
+using Abp.AutoMapper;
+using Abp.UI;
+using EasyFast.Application.Dto;
+using Abp.Linq.Extensions;
+using Abp.Application.Services.Dto;
 
 namespace EasyFast.Application.Column
 {
@@ -28,38 +34,140 @@ namespace EasyFast.Application.Column
         }
         #endregion
 
-        public void AddSingle(SingleColumnDto model)
+        /// <summary>
+        /// 添加栏目
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task AddAsync(Core.Entities.Column model)
         {
-            var data = Mapper.Map<Core.Entities.Column>(model);
-            data.ColumnTypeEnum = ColumnTypeEnum.Single;
-            _columnRepository.Insert(data);
+            await _columnRepository.InsertAsync(model);
         }
 
-        public EasyUIGridOutput<TreeGridOutput> GetTreeGrid(TreeGridInput search)
+
+        /// <summary>
+        /// 删除栏目
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task DeleteAsync(int id)
         {
-            var list = Mapper.Map<List<TreeGridOutput>>(_columnRepository.GetAll());
-            int total = list.Count();
-            var rows = list.OrderBy(String.Format("{0} {1}", search.Sort, search.Order))
-                .Skip((search.Page - 1) * search.Rows).Take(search.Rows);
-            foreach (var item in rows)
-            {
-                ToEasyUITreeGrid(list, item);
-            }
-            return new EasyUIGridOutput<TreeGridOutput> { total = total, rows = rows };
+            var column = await _columnRepository.GetAll().Where(o => o.Id == id).Include(o => o.Children).SingleOrDefaultAsync();
+            if (column == null)
+                throw new UserFriendlyException("该栏目不存在或已被删除");
+            if (column.Children.Count > 0)
+                throw new UserFriendlyException("该栏目下还具有子栏目,请删除所有子栏目后再删除此栏目");
+
+            await _columnRepository.DeleteAsync(column);
+
         }
 
-        private void ToEasyUITreeGrid(List<TreeGridOutput> all, TreeGridOutput parent)
+
+        /// <summary>
+        /// 获取栏目用于表格展示
+        /// </summary>
+        /// <returns></returns>
+        public async Task<PagedResultDto<ColumnGridOutput>> GetColumnGridAsync(PagedSortedAndFilteredInputDto input)
         {
-            var children = all.Where(o => o.ParentId == parent.Id).ToList();
-            if (children != null)
+            if (string.IsNullOrEmpty(input.Sorting))
+                input.Sorting = "OrderId";
+            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children).WhereIf(!string.IsNullOrEmpty(input.Filter), o => o.Name.Contains(input.Filter));
+            var count = await query.CountAsync();
+            var list = await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
+            return new PagedResultDto<ColumnGridOutput>(count, list.MapTo<List<ColumnGridOutput>>());
+        }
+
+
+        /// <summary>
+        /// 修改栏目 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task UpdateAsync(Core.Entities.Column model)
+        {
+            var column = await _columnRepository.GetAsync(model.Id);
+            model.MapTo(column);
+            await _columnRepository.UpdateAsync(column);
+        }
+
+
+        /// <summary>
+        /// 获取树形结构的栏目名称
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ColumnNameOutput>> GetTreeColumnNameAsync()
+        {
+            var query = await _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children).OrderBy(o => o.OrderId).ToListAsync();
+
+            var list = query.MapTo<List<ColumnNameOutput>>();
+
+            foreach (var temp in list)
             {
-                parent.Children = new List<TreeGridOutput>();
-                parent.Children.AddRange(children);
-                foreach (var item in children)
-                {
-                    ToEasyUITreeGrid(all, item);
-                }
+                TreeColumnNameSorting(temp.Children, "...├-");
             }
+
+            return list;
+        }
+
+        /// <summary>
+        /// 对栏目名称进行顺序处理
+        /// </summary>
+        /// <param name="list"></param>
+        private void TreeColumnNameSorting(List<ColumnNameOutput> list, string prefix)
+        {
+            foreach (var temp in list)
+            {
+                temp.Name = $"{prefix}{temp.Name}";
+                TreeColumnNameSorting(temp.Children, $"...{prefix}");
+            }
+        }
+
+        /// <summary>
+        /// 获取栏目 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public async Task<T> GetColumnAsync<T>(int id)
+        {
+            var column = await _columnRepository.GetAll().Where(o => o.Id == id).SingleOrDefaultAsync();
+
+            return column.MapTo<T>();
+        }
+
+        /// <summary>
+        /// 添加或删除单页
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task AddOrUpdateSingleAsync(SingleColumnDto model)
+        {
+            var column = model.MapTo<Core.Entities.Column>();
+           // _columnManger.InitSignleColumn(column);
+            if (model.Id == 0)
+            {
+                await AddAsync(column);
+            }
+            else
+            {
+                await UpdateAsync(column);
+            }
+        }
+
+        /// <summary>
+        /// 添加或删除栏目
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task AddOrUpdateColumn(ColumnDto model)
+        {
+            var column = model.MapTo<Core.Entities.Column>();
+            //_columnManger.InitColumn(column);
+            if (model.Id == 0)
+            {
+                await AddAsync(column);
+            }
+            else
+                await UpdateAsync(column);
         }
     }
 }

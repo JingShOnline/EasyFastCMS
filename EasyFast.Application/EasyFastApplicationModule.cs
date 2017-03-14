@@ -11,17 +11,12 @@ namespace EasyFast.Application
     {
         public override void PreInitialize()
         {
-            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
-            {
-                //Add your custom AutoMapper mappings here...
-                //mapper.CreateMap<,>()
-            });
+          
         }
 
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
-
 
             //配置AutpMapper
             Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>

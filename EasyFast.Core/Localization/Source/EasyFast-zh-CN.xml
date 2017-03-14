@@ -4,7 +4,7 @@
     <text name="HomePage" value="主页" />
     <text name="About" value="关于我们" />
     <text name="WellcomeMessage" value="欢迎使用 EasyFast!" />
-
+    
     <text name="FormIsNotValidMessage" value="部分输入信息不符合要求，请检查并改正.." />
     <text name="TenantNameCanNotBeEmpty" value="租户名不能为空" />
 
@@ -20,14 +20,7 @@
     <text name="LogIn" value="登录" />
 
     <text name="LoginFailed" value="登录失败!" />
-
-
-    <!--后台管理菜单-->
-    <text name="EasyFastCmsAdminManager" value="易迅CMS后台管理"/>
-    <text name="Column" value="栏目管理" />
-    <text name="AddClumn" value="添加栏目"/>
-    <text name="AddSignleColumn" value="添加单页节点"/>
-    <text name="ContentModel" value="内容模型管理"/>
-
+    <text name="Admin" value="后台管理" />
+    
   </texts>
 </localizationDictionary>

@@ -47,8 +47,14 @@ namespace EasyFast.Web
                         url: "About",
                         icon: "fa fa-info"
                         )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        "Admin",
+                        L("Admin"),
+                        url: "/Admin/Home/Index",
+                        icon: "fa fa-home"
+                        )
                 );
-            
         }
 
         private static ILocalizableString L(string name)

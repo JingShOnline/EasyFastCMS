@@ -4,7 +4,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Abp.Hangfire;
 using Abp.Hangfire.Configuration;
-using Abp.Localization;
 using Abp.Zero.Configuration;
 using Abp.Modules;
 using Abp.Web.Mvc;
@@ -12,6 +11,7 @@ using Abp.Web.SignalR;
 using EasyFast.Api;
 using Hangfire;
 using EasyFast.Application;
+using EasyFast.Web.App_Start;
 
 namespace EasyFast.Web
 {
@@ -26,9 +26,6 @@ namespace EasyFast.Web
     {
         public override void PreInitialize()
         {
-
-            Configuration.Localization.Languages.Add(new LanguageInfo("zh-CN", "简体中文", "famfamfam-flag-england", true));
-
             //Enable database based localization
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
 

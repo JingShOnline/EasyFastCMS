@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Abp.Domain.Entities.Auditing;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyFast.Core.Entities
@@ -12,7 +12,7 @@ namespace EasyFast.Core.Entities
     /// <summary>
     /// 内容模型公用Model
     /// </summary>
-    public class Common_Model : FullAuditedEntity
+    public class Common_Model : Entity
     {
         /// <summary>
         /// 栏目Id
@@ -23,7 +23,7 @@ namespace EasyFast.Core.Entities
         /// 所属栏目
         /// </summary>
         [ForeignKey("ColumnId")]
-        public virtual Column.Column Column { get; set; }
+        public virtual Column Column { get; set; }
 
         /// <summary>
         /// 模型Id
@@ -34,7 +34,7 @@ namespace EasyFast.Core.Entities
         /// 模型记录表
         /// </summary>
         [ForeignKey("ModelId")]
-        public ModelRecord ModelRecord { get; set; }
+        public Model ModelRecord { get; set; }
 
         /// <summary>
         /// 关键字
@@ -76,6 +76,12 @@ namespace EasyFast.Core.Entities
         /// 默认图片地址
         /// </summary>
         public string DefaultPicUrl { get; set; }
+
+        /// <summary>
+        /// 搜素引擎描述
+        /// </summary>
+        [StringLength(200)]
+        public string Description { get; set; }
 
     }
 }

@@ -28,6 +28,8 @@ namespace EasyFast.Migrations
                 //Default tenant seed (in host database).
                 new DefaultTenantCreator(context).Create();
                 new TenantRoleAndUserBuilder(context, 1).Create();
+                //初始化系统数据
+                new DefaultSiteConfig(context).Create();
             }
             else
             {

@@ -1,7 +1,10 @@
 ﻿using Abp.Application.Navigation;
-using EasyFast.Web.Views;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace EasyFast.Web
+namespace EasyFast.Web.App_Start
 {
     public static class UserMenuItemExtensions
     {
@@ -25,6 +28,5 @@ namespace EasyFast.Web
 
             return false;
         }
-
     }
 }

@@ -53,7 +53,5 @@
     <text name="Yes" value="Yes" />
     <text name="No" value="No" />
     <text name="Optional" value="Optional" />
-
-    <text name="column" value="哈哈全哈促使" />
   </texts>
 </localizationDictionary>

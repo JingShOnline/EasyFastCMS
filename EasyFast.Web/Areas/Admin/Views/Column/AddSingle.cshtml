@@ -205,7 +205,7 @@
                 url: '@Url.Action("AddOrUpdateSingle", "Column")',
                 data: $form.serializeFormToJson(),
             }).always(function () {
-                abp.ui.clearBusy($form.parent());
+                abp.ui.clearBusy($div);
             });
         });
 
@@ -224,7 +224,6 @@
                         str += "<option value=" + list[i].id + " >" + list[i].name + "</option>"
                     }
                 }
-
 
                 str = setTreeColumnSelect(list[i].children, str);
             }

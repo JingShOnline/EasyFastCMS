@@ -15,7 +15,7 @@ namespace EasyFast.Application.Column
     {
         public void CreateMapping(IMapperConfigurationExpression mapperConfig)
         {
-            mapperConfig.CreateMap<Core.Entities.Column.Column, ColumnGridOutput>().ForMember("ColumnType", o => o.MapFrom(c => c.ColumnTypeEnum.GetAttributeValue<DescriptionAttribute>("Description")));
+            mapperConfig.CreateMap<Core.Entities.Column, ColumnGridOutput>().ForMember("ColumnType", o => o.MapFrom(c => c.ColumnTypeEnum.GetAttributeValue<DescriptionAttribute>("Description")));
         }
     }
 }

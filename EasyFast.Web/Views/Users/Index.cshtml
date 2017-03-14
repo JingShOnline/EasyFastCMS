@@ -1,6 +1,6 @@
 ﻿@using Abp.Authorization.Users
 @using Abp.Web.Mvc.Extensions
-@model Abp.Application.Services.Dto.ListResultDto<EasyFast.Users.Dto.UserListDto>
+@model Abp.Application.Services.Dto.ListResultDto<EasyFast.Application.Users.Dto.UserListDto>
 @{
     ViewBag.ActiveMenu = "Users"; //The menu item will be active for this page.
 }
@@ -9,7 +9,7 @@
     @Html.IncludeScript("~/Views/Users/Index.js")
 }
 <div>
-    <h1>@L("Users")</h1>
+    <h1 style="margin-top:80px">@L("Users")</h1>
     <div class="row">
         <div class="col-md-12">
             <button data-toggle="modal" data-target="#UserCreateModal" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> @L("CreateNewUser")</button>
@@ -56,12 +56,14 @@
 
                     <div class="form-group">
                         <label>@L("Name")</label>
-                        <input type="text" name="Name" class="form-control" required maxlength="@EasyFast.Users.User.MaxNameLength">
+                        <input type="text" name="Name" class="form-control" required maxlength="@EasyFast.Core.Users.User.MaxNameLength">
+    >
                     </div>
 
                     <div class="form-group">
                         <label>@L("Surname")</label>
-                        <input type="text" name="Surname" class="form-control" required maxlength="@EasyFast.Users.User.MaxSurnameLength">
+                        <input type="text" name="Surname" class="form-control" required maxlength="@EasyFast.Core.Users.User.MaxSurnameLength">
+    >
                     </div>
 
                     <div class="form-group">
@@ -71,7 +73,8 @@
 
                     <div class="form-group">
                         <label>@L("Password")</label>
-                        <input type="password" name="Password" class="form-control" required maxlength="@EasyFast.Users.User.MaxPlainPasswordLength">
+                        <input type="password" name="Password" class="form-control" required maxlength="@EasyFast.Core.Users.User.MaxPlainPasswordLength">
+    >
                     </div>
 
                     <div class="checkbox">

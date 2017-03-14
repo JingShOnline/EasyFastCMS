@@ -1,18 +1,16 @@
 ﻿using Abp.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EasyFast.Core.Entities.Column
+namespace EasyFast.Core.Entities
 {
-
     public class Column : Entity
     {
-
-        #region 字段
-        private int _orderId;
-        #endregion
-
         /// <summary>
         /// 栏目类别
         /// </summary>
@@ -25,22 +23,14 @@ namespace EasyFast.Core.Entities.Column
         public virtual ICollection<Column> Children { get; set; }
 
 
-
         /// <summary>
-        /// 栏目名称
-        /// </summary>
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
-
-
-        /// <summary>
-        /// 栏目标识
+        /// 栏目名称 不可以重复
         /// </summary>
         [Index(IsUnique = true)]
         [Required]
         [StringLength(50)]
-        public string ColumnIdentify { get; set; }
+        public string Name { get; set; }
+
 
         /// <summary>
         /// 栏目目录
@@ -70,7 +60,7 @@ namespace EasyFast.Core.Entities.Column
         /// 搜索引擎关键词
         /// </summary>
         [StringLength(50)]
-        public string Keyword { get; set; }
+        public string Keywords { get; set; }
 
         /// <summary>
         /// 搜索引擎描述
@@ -97,15 +87,20 @@ namespace EasyFast.Core.Entities.Column
         public string ContentTemplate { get; set; }
 
         /// <summary>
+        /// 是否生成首页
+        /// </summary>
+        public bool IsIndexHtml { get; set; }
+
+        /// <summary>
         /// 首页生成规则
         /// </summary>
         [StringLength(100)]
         public string IndexHtmlRule { get; set; }
 
         /// <summary>
-        /// 是否生成首页
+        /// 是否生成列表页
         /// </summary>
-        public bool IsIndexHtml { get; set; }
+        public bool IsListHtml { get; set; }
 
         /// <summary>
         /// 列表页生成规则
@@ -114,10 +109,9 @@ namespace EasyFast.Core.Entities.Column
         public string ListHtmlRule { get; set; }
 
         /// <summary>
-        /// 是否生成列表页
+        /// 是否生成内容页
         /// </summary>
-        public bool IsListHtml { get; set; }
-
+        public bool IsContentHtml { get; set; }
 
         /// <summary>
         /// 内容页生成规则
@@ -126,15 +120,9 @@ namespace EasyFast.Core.Entities.Column
         public string ContentHtmlRule { get; set; }
 
         /// <summary>
-        /// 是否生成内容页
+        /// 是否生成单页节点
         /// </summary>
-        public bool IsContentHtml { get; set; }
-
-
-        /// <summary>
-        /// 是否生成静态Html
-        /// </summary>
-        public bool IsStaticHtml { get; set; }
+        public bool IsCreateSingle { get; set; }
 
         /// <summary>
         /// 单页节点模板
@@ -147,7 +135,7 @@ namespace EasyFast.Core.Entities.Column
         [StringLength(100)]
         public string SingleHtmlRule { get; set; }
 
-        public int OrderId { get { return _orderId; } set { _orderId = value == 0 ? 99 : value; } }
+        public int OrderId { get; set; }
 
     }
 }

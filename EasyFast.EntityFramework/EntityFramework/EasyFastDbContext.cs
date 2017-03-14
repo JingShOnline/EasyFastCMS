@@ -43,8 +43,12 @@ namespace EasyFast.EntityFramework
         }
 
         #region Entity
-        public virtual IDbSet<SiteConfig> SiteConfig { get; set; }
         public virtual IDbSet<Column> Column { get; set; }
+        public virtual IDbSet<Common_Model> CommonTitle { get; set; }
+        public virtual IDbSet<Content_Article> Content_Article { get; set; }
+        public virtual IDbSet<Content_Lawyer> Content_Lawyer { get; set; }
+        public virtual IDbSet<Model> Model { get; set; }
+        public virtual IDbSet<SiteConfig> SiteConfig { get; set; }
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -103,11 +103,5 @@ namespace EasyFast.Core.Entities
         [Required]
         [StringLength(50)]
         public string CodeDir { get; set; }
-
-
-        /// <summary>
-        /// 租户Id
-        /// </summary>
-        public int TenantId { get; set; }
     }
 }

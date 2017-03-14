@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EasyFast.Application.Config.Dto
 {
-    [AutoMap(typeof(Core.Entities.SiteConfig))]
+    [AutoMap(typeof(SiteConfig))]
     public class SiteOptionDto : EntityDto
     {
         /// <summary>
@@ -22,28 +22,28 @@ namespace EasyFast.Application.Config.Dto
         /// <summary>
         /// 模板目录
         /// </summary>
-        [Required(ErrorMessage = "请输入模板目录")]
+        [Required]
         [StringLength(50)]
         public string TemplateDir { get; set; }
 
         /// <summary>
         /// 标签库目录，必须在模板目录中。
         /// </summary>
-        [Required(ErrorMessage = "请输入标签库目录")]
+        [Required]
         [StringLength(50)]
         public string TagDir { get; set; }
 
         /// <summary>
         /// 分页标签库目录，必须在模板目录中。
         /// </summary>
-        [Required(ErrorMessage = "请输入分页标签库目录")]
+        [Required]
         [StringLength(50)]
         public string PageDir { get; set; }
 
         /// <summary>
         /// 代码段库目录，必须在模板目录中。
         /// </summary>
-        [Required(ErrorMessage = "请输入代码段库目录")]
+        [Required]
         [StringLength(50)]
         public string CodeDir { get; set; }
     }

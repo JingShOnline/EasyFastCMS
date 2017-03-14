@@ -9,9 +9,13 @@ using System.Threading.Tasks;
 
 namespace EasyFast.Application.Column.Dto
 {
-    [AutoMap(typeof(Core.Entities.Column.Column))]
+    /// <summary>
+    /// 栏目Dto
+    /// </summary>
+    [AutoMap(typeof(Core.Entities.Column))]
     public class ColumnDto : ColumnDtoBase
     {
+
         /// <summary>
         /// 
         /// </summary>

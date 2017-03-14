@@ -9,7 +9,7 @@ using EasyFast.Core.Entities;
 
 namespace EasyFast.Application.Column.Dto
 {
-    [AutoMapFrom(typeof(Core.Entities.Column.Column))]
+    [AutoMapFrom(typeof(Core.Entities.Column))]
     public class TreeGridOutput: EntityDto
     {
         public int? ParentId { get; set; }

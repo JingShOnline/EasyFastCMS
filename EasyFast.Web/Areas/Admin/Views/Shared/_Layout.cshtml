@@ -1,5 +1,5 @@
 ﻿@using System.Threading
-@inherits EasyFast.Web.Views.EasyFastWebViewPageBase
+@using Abp.Web.Mvc.Extensions
 @{
     SetAntiForgeryCookie();
 }
@@ -47,9 +47,20 @@
     <link href="http://cdn.easyfast.cn/assets/jquery-easyui-1.5/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.easyfast.cn/assets/layer-v2.4/layer/skin/layer.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.easyfast.cn/assets/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" />
+
+    <!--JqueryUI-->
+    <link href="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.structure.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.theme.min.css" rel="stylesheet">
+
+    <!--Jtable-->
+    <link href="~/Scripts/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+   
+    <link href="~/Content/jquery.treegrid.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.ico" />
     <!--自定义样式-->
     <link href="~/Content/site.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="favicon.ico" />
+    
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
@@ -518,141 +529,7 @@
                 <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                 <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                    <li class="nav-item start active open">
-                        <a href="/Admin/Home/Index" class="nav-link nav-toggle">
-                            <i class="icon-home"></i>
-                            <span class="title">后台首页</span>
-                            <span class="selected"></span>
-                            <span class="arrow open"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item start active open">
-                                <a href="index.html" class="nav-link">
-                                    <i class="icon-bar-chart"></i>
-                                    <span class="title">Dashboard 1</span>
-                                    <span class="selected"></span>
-                                </a>
-                            </li>
-                            <li class="nav-item start ">
-                                <a href="dashboard_2.html" class="nav-link">
-                                    <i class="icon-bulb"></i>
-                                    <span class="title">Dashboard 2</span>
-                                    <span class="badge badge-success">1</span>
-                                </a>
-                            </li>
-                            <li class="nav-item start ">
-                                <a href="dashboard_3.html" class="nav-link">
-                                    <i class="icon-graph"></i>
-                                    <span class="title">Dashboard 3</span>
-                                    <span class="badge badge-danger">5</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/Admin/Client/Home/Index" class="nav-link nav-toggle">
-                            <i class="icon-users"></i>
-                            <span class="title">用户管理</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item">
-                                <a href="/Admin/User/AdminList" class="nav-link">
-                                    <i class="fa fa-address-card-o"></i>
-                                    <span class="title">管理员管理</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/User/UserList" class="nav-link">
-                                    <i class="icon-users"></i>
-                                    <span class="title">会员管理</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/User/RoleList" class="nav-link">
-                                    <i class="fa fa-share"></i>
-                                    <span class="title">角色管理</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="fa fa-file-word-o"></i>
-                            <span class="title">内容管理</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item">
-                                <a href="/Admin/Content/Index" class="nav-link">
-                                    <i class="fa fa-file-text-o"></i>
-                                    <span class="title">信息管理</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="fa fa-file-code-o"></i>
-                            <span class="title">HTML生成管理</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item">
-                                <a href="/Admin/HTML/Index" class="nav-link">
-                                    <i class="fa fa-file-code-o"></i>
-                                    <span class="title">生成首页</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/HTML/Content" class="nav-link">
-                                    <i class="fa fa-file-code-o"></i>
-                                    <span class="title">生成内容页</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/HTML/Single" class="nav-link">
-                                    <i class="fa fa-file-code-o"></i>
-                                    <span class="title">生成单页栏目</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/HTML/List" class="nav-link">
-                                    <i class="fa fa-file-code-o"></i>
-                                    <span class="title">生成栏目页</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="icon-settings"></i>
-                            <span class="title">系统设置</span>
-                            <span class="arrow"></span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item">
-                                <a href="/Admin/Config/SiteInfo" class="nav-link">
-                                    <i class="fa fa-share-alt"></i>
-                                    <span class="title">网站信息配置</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/Config/SiteOption" class="nav-link">
-                                    <i class="fa fa-share-alt"></i>
-                                    <span class="title">网站参数配置</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/Admin/Model/Home/Index" class="nav-link">
-                                    <i class="fa fa-share-alt"></i>
-                                    <span class="title">内容模型管理
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
+                    @{ Html.RenderAction("Navigation", "Home");}
                 </ul>
                 <!-- END SIDEBAR MENU -->
             </div>
@@ -1323,10 +1200,10 @@
     <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/ie8.fix.min.js"></script>
     <![endif]-->
     <!-- BEGIN CORE PLUGINS -->
-
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
     <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/jquery.min.js" type="text/javascript"></script>
     <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    @Scripts.Render("~/Bundles/vendor/js/bottom")
+   
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/js.cookie.min.js" type="text/javascript"></script>
@@ -1357,21 +1234,31 @@
     <!-- END THEME LAYOUT SCRIPTS -->
     <!--插件-->
     <script src="http://cdn.easyfast.cn/assets/toastr-master/build/toastr.min.js" type="text/javascript"></script>
-    <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/jquery.easyui.min.js" type="text/javascript"></script>
-    <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
-    <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/jquery.easyui.mobile.js" type="text/javascript"></script>
+    @*<script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/jquery.easyui.min.js" type="text/javascript"></script>
+        <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+        <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/jquery.easyui.mobile.js" type="text/javascript"></script>*@
+    <script src="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="http://cdn.easyfast.cn/assets/layer-v2.4/layer/layer.js" type="text/javascript"></script>
     <script src="http://cdn.easyfast.cn/assets/sweetalert-master/dist/sweetalert.min.js" type="text/javascript"></script>
 
     <script src="~/Scripts/abp.extend.js"></script>
-    <script src="~/Scripts/site.js"></script>
+    <script src="~/Scripts/easyui.extend.js"></script>
+    <script src="~/Scripts/admin.js"></script>
+    <script src="~/Scripts/jquery.treegrid.min.js"></script>
+    <script src="~/Scripts/jquery.treegrid.bootstrap3.js"></script>
     <script>
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
     </script>
 
-    <script src="~/api/AbpServiceProxies/GetAll"></script>
+    <!--Jtable-->
+    <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
+    <script src="~/Abp/Framework/scripts/libs/abp.jtable.js" type="text/javascript"></script>
 
+    <script src="~/api/AbpServiceProxies/GetAll"></script>
+    <script src="~/AbpScripts/GetScripts" type="text/javascript"></script>
+    @Html.IncludeScript("/Common/Scripts/ModalManager.js")
+    @Html.IncludeScript("/Scripts/underscore.min.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
