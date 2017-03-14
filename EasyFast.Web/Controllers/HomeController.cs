@@ -8,7 +8,10 @@ namespace EasyFast.Web.Controllers
     {
         public ActionResult Index()
         {
+            var aaa = LocalizationManager.GetAllSources();
+
+            var bbb = L("Column");
             return View();
         }
-	}
+    }
 }

@@ -48,6 +48,7 @@ namespace EasyFast.Web
                         icon: "fa fa-info"
                         )
                 );
+            
         }
 
         private static ILocalizableString L(string name)

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Abp.Localization;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Modules;
@@ -24,7 +25,7 @@ namespace EasyFast.Core
             Configuration.Modules.Zero().EntityTypes.User = typeof(User);
 
             //Remove the following line to disable multi-tenancy.
-            Configuration.MultiTenancy.IsEnabled = false;
+            Configuration.MultiTenancy.IsEnabled = true;
 
             //Add/remove localization sources here
             Configuration.Localization.Sources.Add(
@@ -32,7 +33,7 @@ namespace EasyFast.Core
                     EasyFastConsts.LocalizationSourceName,
                     new XmlEmbeddedFileLocalizationDictionaryProvider(
                         Assembly.GetExecutingAssembly(),
-                        "EasyFast.Localization.Source"
+                        "EasyFast.Core.Localization.Source"
                         )
                     )
                 );

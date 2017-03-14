@@ -1,0 +1,29 @@
+﻿/***专业领域相关css样式文件***/
+.practice_title{
+    margin-top:60px;
+    padding:0;
+    background:url(/content/Images/practice/practice_title_line.png) center bottom no-repeat;
+    margin-bottom:45px;
+    p{
+        padding-bottom:20px;
+    }
+}
+.arbitration,.finance,.colligate{
+    ul{
+        li{
+            text-align:center;
+            margin-bottom:80px;
+            p{
+                margin:0;
+                margin-top:20px;
+                font-size:24px;
+            }
+            &:hover{
+                cursor:pointer;
+            }
+        }
+    }
+}
+.colligate{
+    padding-bottom:60px;
+}

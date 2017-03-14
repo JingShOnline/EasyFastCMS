@@ -10,18 +10,33 @@ using System.Threading.Tasks;
 
 namespace EasyFast.Application.Config.Dto
 {
-    [AutoMap(typeof(SiteConfig))]
+    [AutoMap(typeof(Core.Entities.SiteConfig))]
     public class SiteInfoDto : EntityDto
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public SiteInfoDto()
+        {
+            if (string.IsNullOrWhiteSpace(CopyRitht))
+                CopyRitht = "Power By EasyFastCMS";
+            if (string.IsNullOrWhiteSpace(SiteTitle))
+                SiteTitle = "易迅CMS基于Asp.Net Boilerplate Boilerplate 开发";
+            if (string.IsNullOrWhiteSpace(SiteName))
+                SiteName = "易讯CMS";
+        }
+
+        /// <summary>
         /// 网站名称
         /// </summary>
+        [Required(ErrorMessage = "请输入网站名称")]
         [StringLength(50)]
         public string SiteName { get; set; }
 
         /// <summary>
         /// 网站标题
         /// </summary>
+        [Required(ErrorMessage = "请输入网站标题")]
         [StringLength(50)]
         public string SiteTitle { get; set; }
 

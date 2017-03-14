@@ -99,53 +99,567 @@ ul, li, h1, h2, h3, h4, h5, h6 {
 .validation-summary-valid span {
   display: none; }
 
-/*此处是对Metronic4.7.1的修改定制*/
-/*面包屑导航设置*/
-.page-container-bg-solid .page-title small {
-  padding-left: 8px;
-  color: #888; }
+/*自定义内容：当浏览器宽度大于1400px时*/
+/*自定义内容：重置container的最小宽度*/
+@media (min-width: 1320px) {
+  .container {
+    width: 1320px; } }
 
-.page-bar {
-  line-height: 20px; }
-  .page-bar .page-toolbar i {
-    margin-right: 10px; }
+@media (min-width: 1400px) {
+  .container {
+    width: 1380px; } }
 
-/*From表单部分开始*/
-.portlet .portlet-title .caption small {
-  margin-left: 10px; }
+body {
+  font-family: 'Microsoft YaHei';
+  background-color: #fafafa; }
 
-.portlet .form-actions button {
-  padding-right: 20px !important;
-  margin-right: 7px; }
-  .portlet .form-actions button i {
-    margin-right: 5px; }
+/****可复用样式 开始****/
+/***白色背景***/
+.white_bj {
+  background-color: #fff !important; }
 
-.blue > .portlet-title > .caption > .caption-helper {
-  color: #FFF;
-  margin-left: 10px; }
-
-/*Form表单部分结束*/
-.page-content-wrapper .page-content {
-  padding-bottom: 30px; }
-
-/*此文件为针对easyui.bootsrap默认样式的自定义修改*/
-.datagrid .datagrid-header .datagrid-header-inner .datagrid-cell {
-  height: 34px;
-  line-height: 34px;
-  padding: 0 6px; }
-  .datagrid .datagrid-header .datagrid-header-inner .datagrid-cell span {
-    font-size: 14px;
+/***title***/
+.title {
+  text-align: center;
+  margin: 64px 0;
+  padding: 34.5px 0; }
+  .title span {
+    display: inline-block;
+    line-height: 30px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #da3031;
+    margin-bottom: 10px; }
+  .title p {
+    margin: 0;
     font-weight: bold; }
 
-.datagrid .datagrid-body .datagrid-row {
-  height: 32px; }
-  .datagrid .datagrid-body .datagrid-row > td > div {
-    padding: 0 6px;
-    font-size: 14px; }
+/***当前位置条***/
+.toolbar {
+  font-size: 12px;
+  margin: 10px 0; }
 
-/*操作区域*/
-.opt {
+/***最新动态、招贤纳士 左侧导航***/
+.menu {
+  margin-bottom: 20px; }
+  .menu p {
+    color: #fff;
+    background-color: #dd3131;
+    text-align: center;
+    font-size: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin: 0;
+    padding: 25px 0; }
+    .menu p span {
+      font-weight: bold; }
+  .menu ul {
+    background-color: #fff;
+    border: 1px solid #eee; }
+    .menu ul li {
+      padding: 20px 30px;
+      border-bottom: 1px solid #eee;
+      font-size: 16px; }
+      .menu ul li.active {
+        background-color: #f1f1f1; }
+
+/****可复用样式 结束****/
+/****left menu 开始****/
+.left_menu p {
+  margin-bottom: 0;
+  padding: 10px 15px;
+  background-color: #dd3131;
+  font-size: 16px;
+  color: #fff; }
+
+.left_menu .Practice_menu ul {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc; }
+  .left_menu .Practice_menu ul li {
+    padding: 15px 20px;
+    background-color: #fff;
+    border-top: 1px solid #ededed; }
+
+.left_menu .Surname_menu {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc; }
+  .left_menu .Surname_menu span {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 28px;
+    display: inline-block;
+    border: 1px solid #f1f1f1;
+    margin: 10px; }
+    .left_menu .Surname_menu span.active {
+      background-color: #fafafa; }
+
+/****Practice menu 结束****/
+/***各个部分css样式文件引入 开始***/
+/****首页相关样式文件****/
+/*****网站首页*****/
+/***优秀案例***/
+.index_title_case {
+  background: url(/content/Images/Index/index_Case.png) center no-repeat; }
+
+.index_case {
+  text-align: center;
+  margin-bottom: 100px; }
+  .index_case > div {
+    max-width: 330px;
+    display: inline-block;
+    padding: 20px 15px;
+    background-color: #fff; }
+    .index_case > div img {
+      max-width: 300px;
+      margin-bottom: 10px; }
+    .index_case > div p {
+      font-size: 12px;
+      text-align: left;
+      margin-bottom: 10px; }
+    .index_case > div div span {
+      width: 50%;
+      display: block;
+      margin-bottom: 10px; }
+      .index_case > div div span.pull-left {
+        text-align: left; }
+      .index_case > div div span.pull-right {
+        text-align: right; }
+    .index_case > div:hover {
+      box-shadow: 0px 0px 30px #888888; }
+
+/***聊城分所简介***/
+.index_title_branch {
+  background: url(/Content/Images/Index/index_line.png) center bottom no-repeat;
+  margin: 70px 0;
+  padding-top: 75px;
   padding-bottom: 20px; }
-  .opt button, .opt input[type=button] {
-    margin-right: 7px; }
+
+.index_branch {
+  background: url(/Content/Images/Index/index_Branch_bj.jpg) no-repeat; }
+  .index_branch .row {
+    padding-bottom: 160px; }
+  .index_branch .branch_corner {
+    padding: 0; }
+    .index_branch .branch_corner div {
+      background: url(/Content/Images/Index/index_branch_corner_bj.jpg) right no-repeat;
+      display: inline-block; }
+  .index_branch .branch_introduction {
+    padding: 0; }
+    .index_branch .branch_introduction div {
+      max-width: 600px;
+      padding: 35px 30px 0 30px;
+      background-color: #fff; }
+      .index_branch .branch_introduction div p {
+        font-size: 16px;
+        color: #dd3131;
+        margin-bottom: 20px; }
+        .index_branch .branch_introduction div p i {
+          color: #333;
+          margin-right: 3px; }
+        .index_branch .branch_introduction div p span {
+          color: #999; }
+      .index_branch .branch_introduction div > span {
+        font-size: 12px;
+        margin-bottom: 20px;
+        display: inline-block; }
+      .index_branch .branch_introduction div > img {
+        margin-bottom: 16px; }
+
+/***专家队伍***/
+.index_title_team {
+  background: url(/content/Images/Index/index_Team.png) center no-repeat; }
+  .index_title_team span {
+    margin-bottom: 20px; }
+  .index_title_team p {
+    letter-spacing: 5px; }
+
+.index_team {
+  text-align: center;
+  margin-bottom: 90px; }
+  .index_team div {
+    max-width: 370px;
+    display: inline-block; }
+    .index_team div img {
+      border: 5px solid #f25752;
+      border-radius: 50%;
+      width: 200px;
+      max-width: 200px;
+      height: 200px;
+      max-height: 200px;
+      margin-bottom: 15px; }
+    .index_team div h3 {
+      margin-bottom: 15px; }
+    .index_team div p {
+      color: #ccc; }
+
+/***专业领域***/
+.index_title_domain {
+  background: url(/Content/Images/Index/index_line.png) center bottom no-repeat;
+  margin: 0 0 60px 0;
+  padding-top: 75px;
+  padding-bottom: 20px; }
+
+.index_domain {
+  min-height: 220px;
+  margin-bottom: 125px; }
+  .index_domain li {
+    text-align: center; }
+    .index_domain li > div {
+      padding: 25px;
+      background-color: #f1f1f1;
+      display: inline-block;
+      margin-top: 20px;
+      cursor: pointer; }
+      .index_domain li > div img {
+        width: 110px;
+        height: 110px;
+        display: inline-block;
+        margin-right: 10px; }
+      .index_domain li > div div {
+        display: inline-block;
+        width: 220px;
+        text-align: left; }
+        .index_domain li > div div h5 {
+          font-size: 16px;
+          margin-bottom: 10px; }
+        .index_domain li > div div p {
+          font-size: 14px;
+          margin: 0; }
+      .index_domain li > div:hover {
+        margin-top: 5px;
+        background-color: #ff6565;
+        box-shadow: 0px 0px 15px #888888;
+        color: #fff; }
+        .index_domain li > div:hover img {
+          width: 145px;
+          height: 145px; }
+
+/***动态、客服、媒体报道***/
+.index_bottom {
+  background-color: #fafafa;
+  padding: 65px 0; }
+  .index_bottom .col-md-4 {
+    border-right: 1px solid #fff;
+    border-left: 1px solid #d2d2d2;
+    padding: 0 25px 0 45px; }
+    .index_bottom .col-md-4:first-child {
+      border-left: none; }
+    .index_bottom .col-md-4:last-child {
+      border-right: none; }
+  .index_bottom h5 {
+    line-height: 24px;
+    margin-bottom: 15px; }
+    .index_bottom h5 img {
+      margin-right: 10px; }
+  .index_bottom ul li {
+    font-size: 12px;
+    margin-bottom: 25px; }
+    .index_bottom ul li a:hover {
+      text-decoration: none; }
+
+/****新闻动态相关样css式文件****/
+/***新闻动态列表***/
+.news_list li {
+  border: 1px solid;
+  border-right-width: 4px;
+  border-color: #ccc;
+  padding: 25px 40px;
+  margin-bottom: 20px; }
+  .news_list li:hover {
+    border-color: #ff6565;
+    background-color: #fff; }
+  .news_list li .count {
+    border-right: 1px solid #eee; }
+    .news_list li .count div {
+      min-width: 117px;
+      display: inline-block;
+      padding: 10px;
+      background-color: #ff6565;
+      color: #fff;
+      border-radius: 4px;
+      text-align: center; }
+      .news_list li .count div span {
+        display: block;
+        margin: 10px 0;
+        font-size: 26px; }
+      .news_list li .count div p {
+        border-top: 1px dashed #ffd6d6;
+        padding: 8px 10px 0 10px;
+        margin: 0; }
+  .news_list li .content {
+    padding: 20px 15px; }
+    .news_list li .content h4 {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 20px; }
+
+/***详情***/
+.news {
+  margin-bottom: 45px; }
+  .news .news_info {
+    padding: 0 60px; }
+    .news .news_info h4 {
+      margin-top: 35px;
+      margin-bottom: 5px;
+      padding-bottom: 25px;
+      font-size: 20px;
+      background: url(/Content/Images/News/news_title_line.png) left bottom no-repeat; }
+    .news .news_info span {
+      color: #999;
+      margin-bottom: 30px;
+      display: block;
+      text-align: right; }
+    .news .news_info div {
+      text-align: center; }
+      .news .news_info div p {
+        text-align: left; }
+      .news .news_info div img {
+        max-width: 100%; }
+    .news .news_info p {
+      margin-top: 45px;
+      margin-bottom: 35px; }
+
+/***专业领域相关css样式文件***/
+.practice_title {
+  margin-top: 60px;
+  padding: 0;
+  background: url(/content/Images/practice/practice_title_line.png) center bottom no-repeat;
+  margin-bottom: 45px; }
+  .practice_title p {
+    padding-bottom: 20px; }
+
+.arbitration ul li, .finance ul li, .colligate ul li {
+  text-align: center;
+  margin-bottom: 80px; }
+  .arbitration ul li p, .finance ul li p, .colligate ul li p {
+    margin: 0;
+    margin-top: 20px;
+    font-size: 24px; }
+  .arbitration ul li:hover, .finance ul li:hover, .colligate ul li:hover {
+    cursor: pointer; }
+
+.colligate {
+  padding-bottom: 60px; }
+
+/***律师相关css样式文件***/
+/****律师详情部分样式(Lawyer -- Info) 开始****/
+.lawyer_info {
+  border-left: 2px solid #ff6565;
+  min-height: 150px;
+  padding: 40px;
+  padding-bottom: 130px;
+  background: url(/Content/Images/Lawyer/logo_bj.png) 97% 98% no-repeat;
+  margin-bottom: 250px;
+  box-shadow: 2px 2px 5px #a6a6a6; }
+  .lawyer_info > p {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 30px;
+    background: url(/Content/Images/Lawyer/lawyer_title_shu.png) left center no-repeat;
+    padding-left: 15px; }
+  .lawyer_info .lawyer_resume {
+    margin-top: 80px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 35px; }
+    .lawyer_info .lawyer_resume .lawyer_Avatar {
+      text-align: center; }
+      .lawyer_info .lawyer_resume .lawyer_Avatar img {
+        max-width: 164px;
+        max-height: 160px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0px 0px 5px #a6a6a6; }
+    .lawyer_info .lawyer_resume .lawyer_Introduction {
+      border-left: 1px dashed #cbcbcb;
+      padding: 20px 65px; }
+      .lawyer_info .lawyer_resume .lawyer_Introduction li {
+        font-size: 20px;
+        color: #666;
+        margin-bottom: 20px; }
+        .lawyer_info .lawyer_resume .lawyer_Introduction li span {
+          padding: 0; }
+  .lawyer_info .lawyer_description {
+    margin-top: 25px; }
+    .lawyer_info .lawyer_description h4 {
+      font-weight: bold;
+      margin-bottom: 30px; }
+    .lawyer_info .lawyer_description p {
+      margin-bottom: 30px;
+      font-size: 16px;
+      line-height: 22px;
+      text-indent: 30px; }
+
+/****律师详情部分样式(Lawyer -- Info) 结束****/
+/****律师列表部分样式(Lawyer -- List) 开始****/
+.lawyer_list_search {
+  margin: 25px 0; }
+  .lawyer_list_search p {
+    font-size: 12px;
+    color: #666;
+    padding: 8px 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px; }
+  .lawyer_list_search h3 {
+    padding-left: 15px;
+    margin-bottom: 30px; }
+    .lawyer_list_search h3 img {
+      margin-right: 10px; }
+  .lawyer_list_search .lawyer_list_surname {
+    padding: 0 30px; }
+    .lawyer_list_search .lawyer_list_surname span {
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      text-align: center;
+      line-height: 28px;
+      display: inline-block;
+      border: 1px solid #f1f1f1;
+      margin: 10px; }
+      .lawyer_list_search .lawyer_list_surname span:hover {
+        cursor: pointer;
+        background-color: #fafafa; }
+      .lawyer_list_search .lawyer_list_surname span.active {
+        background-color: #fafafa; }
+    .lawyer_list_search .lawyer_list_surname input[type="text"] {
+      height: 40px;
+      border: none;
+      border: 1px solid #f1f1f1;
+      margin-right: 25px; }
+      .lawyer_list_search .lawyer_list_surname input[type="text"]:focus {
+        outline: none; }
+    .lawyer_list_search .lawyer_list_surname input[type="button"] {
+      height: 40px;
+      border: none;
+      background-color: #ff6565;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff; }
+      .lawyer_list_search .lawyer_list_surname input[type="button"]:hover {
+        box-shadow: 0px 2px 5px #fb9898; }
+      .lawyer_list_search .lawyer_list_surname input[type="button"]:focus {
+        outline: none; }
+
+/****律师列表部分样式(Lawyer -- List) 结束****/
+/***各个部分css样式文件引入 结束***/
+/***顶部、导航 开始***/
+a:link, a:visited {
+  color: #333;
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline;
+  color: #C90000;
+  -moz-transition: color .3s linear;
+  -webkit-transition: color .3s linear;
+  -o-transition: color .3s linear;
+  transition: color .3s linear; }
+
+.header {
+  padding-top: 10px; }
+  .header div p {
+    text-align: right; }
+    .header div p:first-child {
+      background: url(/Content/Images/tel_red.png) center left no-repeat;
+      display: inline-block;
+      padding-left: 40px;
+      font-size: 12px; }
+      .header div p:first-child span {
+        font-size: 16px;
+        color: #df342e; }
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0; }
+  .navbar .navbar-header .navbar-toggle {
+    color: #FFF !important; }
+
+.navbar-inverse {
+  background-color: #dd3131;
+  border: none;
+  box-shadow: 0px 2px 3px #e66565; }
+  .navbar-inverse .navbar-collapse .navbar-nav {
+    width: 100%; }
+    .navbar-inverse .navbar-collapse .navbar-nav li {
+      text-align: center; }
+      .navbar-inverse .navbar-collapse .navbar-nav li a {
+        color: #FFF;
+        font-size: 20px;
+        -moz-transition: background-color .2s linear;
+        -webkit-transition: background-color .2s linear;
+        -o-transition: background-color .2s linear;
+        transition: background-color .2s linear; }
+        .navbar-inverse .navbar-collapse .navbar-nav li a:hover {
+          background-color: #C90000;
+          color: #FFF; }
+      .navbar-inverse .navbar-collapse .navbar-nav li.active {
+        background-color: #ce2b2b;
+        border-bottom: 3px solid #fff; }
+        .navbar-inverse .navbar-collapse .navbar-nav li.active a {
+          background: none; }
+
+/***顶部、导航 结束***/
+/***底部、脚注 开始***/
+footer {
+  background-color: #e2e1e1;
+  border: 1px solid #FCEEEE;
+  padding: 50px 0 0 0; }
+  footer .footer_top {
+    padding-bottom: 50px;
+    border-bottom: 1px dashed #cacaca; }
+    footer .footer_top h4 {
+      margin-bottom: 20px; }
+      footer .footer_top h4 img {
+        margin-right: 5px; }
+    footer .footer_top ul {
+      overflow: hidden;
+      padding-left: 40px;
+      padding-bottom: 10px; }
+      footer .footer_top ul li {
+        float: left;
+        font-size: 16px;
+        margin-right: 15px;
+        padding-bottom: 10px; }
+    footer .footer_top .hotline div {
+      background: url(/Content/Images/tel_hotline.png) left 5px no-repeat;
+      padding-left: 55px; }
+      footer .footer_top .hotline div p {
+        font-size: 22px;
+        margin: 0; }
+      footer .footer_top .hotline div span {
+        font-size: 28px;
+        line-height: 44px;
+        color: #f6c164; }
+    footer .footer_top .barcode {
+      padding: 0; }
+      footer .footer_top .barcode h3 {
+        text-align: center;
+        margin-bottom: 15px; }
+      footer .footer_top .barcode img {
+        margin-bottom: 15px; }
+      footer .footer_top .barcode p {
+        font-size: 26px;
+        text-align: left; }
+  footer .footer_bottom {
+    padding: 45px 0;
+    text-align: center;
+    border-top: 1px solid #cacaca; }
+    footer .footer_bottom ul li {
+      display: inline-block; }
+      footer .footer_bottom ul li a {
+        text-decoration: none; }
+        footer .footer_bottom ul li a:hover {
+          text-decoration: none; }
+
+.copyright {
+  background: #a7a7a7;
+  padding: 15px 0;
+  color: #fff; }
+  .copyright .pull-right {
+    margin: 10px 0; }
+
+/***底部、脚注 结束***/
 

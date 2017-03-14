@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EasyFast.Application.Column.Dto;
 using Abp.Domain.Repositories;
@@ -9,77 +8,164 @@ using EasyFast.Core.Entities;
 using AutoMapper;
 using EasyFast.Application.Common.Dto;
 using System.Linq.Dynamic;
-using AutoMapper.QueryableExtensions;
+using Abp.UI;
+using Abp.AutoMapper;
+using System.Data.Entity;
 
 namespace EasyFast.Application.Column
 {
+    /// <summary>
+    /// 栏目资源
+    /// </summary>
     public class ColumnAppService : EasyFastAppServiceBase, IColumnAppService
     {
         #region 依赖注入
-        private readonly IRepository<Core.Entities.Column> _columnRepository;
-        public ColumnAppService(IRepository<Core.Entities.Column> columnRepository)
+        private readonly IRepository<Core.Entities.Column.Column> _columnRepository;
+
+        private readonly IColumnManager _columnManger;
+
+        public ColumnAppService(IRepository<Core.Entities.Column.Column> columnRepository, IColumnManager columnManager)
         {
             _columnRepository = columnRepository;
+            _columnManger = columnManager;
         }
 
-        public void Add(ColumnDto model)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
-        public void AddSingle(SingleColumnDto model)
+
+        /// <summary>
+        /// 添加栏目
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task AddAsync(Core.Entities.Column.Column model)
         {
-            var data = Mapper.Map<Core.Entities.Column>(model);
-            data.ColumnTypeEnum = ColumnTypeEnum.Single;
-            _columnRepository.Insert(data);
+            await _columnRepository.InsertAsync(model);
         }
 
-        public ColumnDto Find(int id)
+
+        /// <summary>
+        /// 删除栏目
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var column = await _columnRepository.GetAll().Where(o => o.Id == id).Include(o => o.Children).SingleOrDefaultAsync();
+            if (column == null)
+                throw new UserFriendlyException("该栏目不存在或已被删除");
+            if (column.Children.Count > 0)
+                throw new UserFriendlyException("该栏目下还具有子栏目,请删除所有子栏目后再删除此栏目");
+
+            await _columnRepository.DeleteAsync(column);
+
         }
 
-        public SingleColumnDto FindSingle(int id)
+
+        /// <summary>
+        /// 获取栏目用于表格展示
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ColumnGridOutput>> GetColumnGridAsync()
         {
-            throw new NotImplementedException();
+            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children).OrderBy(o => o.OrderId);
+
+            var list = await query.ToListAsync();
+
+            return list.MapTo<List<ColumnGridOutput>>();
         }
 
-        public EasyUIGridOutput<TreeGridOutput> GetTreeGrid(TreeGridInput search)
+
+        /// <summary>
+        /// 修改栏目 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task UpdateAsync(Core.Entities.Column.Column model)
         {
-            var list = Mapper.Map<List<TreeGridOutput>>(_columnRepository.GetAll());
-            int total = list.Count();
-            var rows = list.OrderBy(String.Format("{0} {1}", search.Sort, search.Order))
-                .Skip((search.Page - 1) * search.Rows).Take(search.Rows);
-            foreach (var item in rows)
+            var column = await _columnRepository.GetAsync(model.Id);
+            model.MapTo(column);
+            await _columnRepository.UpdateAsync(column);
+        }
+
+
+        /// <summary>
+        /// 获取树形结构的栏目名称
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ColumnNameDto>> GetTreeColumnNameAsync()
+        {
+            var query = await _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children).OrderBy(o => o.OrderId).ToListAsync();
+
+            var list = query.MapTo<List<ColumnNameDto>>();
+
+            foreach (var temp in list)
             {
-                ToEasyUITreeGrid(list, item);
+                TreeColumnNameSorting(temp.Children, "...├-");
             }
-            return new EasyUIGridOutput<TreeGridOutput> { total = total, rows = rows };
+
+            return list;
         }
 
-        public void Update(ColumnDto model)
+        /// <summary>
+        /// 对栏目名称进行顺序处理
+        /// </summary>
+        /// <param name="list"></param>
+        private void TreeColumnNameSorting(List<ColumnNameDto> list, string prefix)
         {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateSingle(SingleColumnDto model)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ToEasyUITreeGrid(List<TreeGridOutput> all, TreeGridOutput parent)
-        {
-            var children = all.Where(o => o.ParentId == parent.Id).ToList();
-            if (children != null)
+            foreach (var temp in list)
             {
-                parent.Children = new List<TreeGridOutput>();
-                parent.Children.AddRange(children);
-                foreach (var item in children)
-                {
-                    ToEasyUITreeGrid(all, item);
-                }
+                temp.Name = $"{prefix}{temp.Name}";
+                TreeColumnNameSorting(temp.Children, $"...{prefix}");
             }
+        }
+
+        /// <summary>
+        /// 获取栏目 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public async Task<T> GetColumnAsync<T>(int id)
+        {
+            var column = await _columnRepository.GetAll().Where(o => o.Id == id).SingleOrDefaultAsync();
+
+            return column.MapTo<T>();
+        }
+
+        /// <summary>
+        /// 添加或删除单页
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task AddOrUpdateSingleAsync(SingleColumnDto model)
+        {
+            var column = model.MapTo<Core.Entities.Column.Column>();
+            _columnManger.InitSignleColumn(column);
+            if (model.Id == 0)
+            {
+                await AddAsync(column);
+            }
+            else
+            {
+                await UpdateAsync(column);
+            }
+        }
+
+        /// <summary>
+        /// 添加或删除栏目
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task AddOrUpdateColumn(ColumnDto model)
+        {
+            var column = model.MapTo<Core.Entities.Column.Column>();
+            _columnManger.InitColumn(column);
+            if (model.Id == 0)
+            {
+                await AddAsync(column);
+            }
+            else
+                await UpdateAsync(column);
         }
     }
 }

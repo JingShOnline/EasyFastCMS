@@ -13,55 +13,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <link rel="shortcut icon" href="~/favicon.ico">
-
-    <title>EasyFast</title>
-
+    <title>北京市京师律师事务所</title>
     @Styles.Render("~/Bundles/vendor/css")
-    @Styles.Render("~/Bundles/css")
-
+    <link href="//cdn.jingshonline.com/scripts/common/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- View specific styles -->
     @RenderSection("styles", required: false)
-
+    <link href="~/Content/site.min.css" rel="stylesheet" />
     <script type="text/javascript">
         //This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
         var abp = abp || {}; abp.appPath = '@ApplicationPath';
     </script>
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="@Url.Content("~/Scripts/others/html5shiv.js")"></script>
         <script src="@Url.Content("~/Scripts/others/respond.min.js")"></script>
     <![endif]-->
-
     @Scripts.Render("~/Bundles/vendor/js/top")
-
+    <link href="https://cdn.jingshonline.com/scripts/common/font-awesome/4.7/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/livedemo.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/font.css">
+    <link href="~/Content/common_home.css" rel="stylesheet" />
 </head>
 <body>
-    @Html.Partial("_TopBar")
-
-    <div class="container">
-        @RenderBody()
-    </div>
-
+    @RenderBody()
+    <script src="//cdn.jingshonline.com/scripts/common/jquery/3.1.1/jquery-3.1.1.min.js"></script>
+    <script src="//cdn.jingshonline.com/scripts/common/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/site.js"></script>
+    <script src="~/Scripts/core.min.js"></script>
+    <script src="~/Scripts/script.js"></script>
     @Scripts.Render("~/Bundles/vendor/js/bottom")
-    @Scripts.Render("~/Bundles/js")
-
     <script>
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
     </script>
-
     <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
     <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
     <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
-
     <!-- SignalR scripts -->
     <script src="~/signalr/hubs"></script>
     @Html.IncludeScript("~/Abp/Framework/scripts/libs/abp.signalr.js")
-
-<!-- View specific scripts -->
+    <!-- View specific scripts -->
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,30 @@
+/* font-family: "PTSansRegular"; */
+@font-face {
+    font-family: "PT Sans";
+    src: url("../fonts/PTSansRegular/PTSansRegular-ext.woff") format("woff");
+}
+/* font-family: "PTSansItalic"; */
+@font-face {
+    font-family: "PT Sans";
+    src: url("../fonts/PTSansItalic/PTSansItalic.woff") format("woff");
+    font-style: italic;
+}
+/* font-family: "PTSansBold"; */
+@font-face {
+    font-family: "PT Sans";
+    src: url("../fonts/PTSansBold/PTSansBold-ext.woff") format("woff");
+    font-weight: bold;
+}
+
+/* font-family: "PTSansBold"; */
+@font-face {
+    font-family: "BadScript";
+    src: url("../fonts/BadScriptRegular/BadScriptRegular.eot");
+    src: url("../fonts/BadScriptRegular/BadScriptRegular.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/BadScriptRegular/BadScriptRegular.woff") format("woff"),
+    url("../fonts/BadScriptRegular/BadScriptRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* В -ext версии шрифтов отрисовал и добавил значок турецкой лиры */

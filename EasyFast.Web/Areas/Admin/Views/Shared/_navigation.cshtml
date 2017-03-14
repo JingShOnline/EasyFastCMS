@@ -1,0 +1,39 @@
+﻿@using Abp.Application.Navigation
+@using Abp.Collections.Extensions
+@model Abp.Application.Navigation.UserMenu
+
+@{
+    @helper RenderUserMenuItem(UserMenuItem menuItem, int menuItemIndex, bool rootLevel)
+    {
+        <li class="nav-item @(menuItemIndex == 0 && rootLevel ? "start" : "") @(menuItem.IsMenuActive("Frontend.Home") ? "active" : "")">
+            @if (menuItem.Items.IsNullOrEmpty())
+            {
+                <a href="@menuItem.Url">
+                    <i class="@menuItem.Icon"></i>
+                    <span class="title">@menuItem.DisplayName</span>
+                </a>
+            }
+            else
+            {
+                <a href="@menuItem.Url">
+                    <i class="@menuItem.Icon"></i>
+                    <span class="title">@menuItem.DisplayName</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    @for (var i = 0; i < menuItem.Items.Count; i++)
+                    {
+                        var childMenuItem = menuItem.Items[i];
+                        @RenderUserMenuItem(childMenuItem, i, false)
+                    }
+                </ul>
+            }
+        </li>
+}
+}
+
+    @for (var i = 0; i < Model.Items.Count; i++)
+    {
+        var menuItem = Model.Items[i];
+        @RenderUserMenuItem(menuItem, i, true);
+    }

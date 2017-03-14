@@ -1,0 +1,300 @@
+﻿@model EasyFast.Application.Column.Dto.ColumnDto
+@using EasyFast.Application.Column.Dto
+
+
+<div class="portlet box blue ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-share-alt"></i>@ViewBag.SingleTitle
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse" data-original-title="" title="收缩/展开"></a>
+            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload" data-original-title="" title="刷新"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form id="AddColumn" class="form-horizontal form-bordered form-row-stripped">
+            @Html.HiddenFor(model => model.Id)
+            <input type="hidden" id="Dir" name="Dir" value="/" />
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-2">所属栏目</label>
+                    <div class="col-md-10" id="treeDiv">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目名称</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-share-alt"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入栏目名称", onblur = "nameBlur()" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目标识</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-share-alt"></i>
+                            </span>
+                            @Html.EditorFor(model => model.ColumnIdentify, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入栏目标识" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ColumnIdentify, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目的目录名</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-share-alt"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Dir, new { htmlAttributes = new { @class = "form-control", placeholder = "注意，目录名只能是字母、数字、下划线组成" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Dir, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">顺序Id</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-share-alt"></i>
+                            </span>
+                            @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control", placeholder = "值越小越靠前,默认99" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.OrderId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">是否生成静态HTML</label>
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(model => model.IsStaticHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">是否生成静态首页</label>
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(model => model.IsStaticHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">是否生成静态列表页</label>
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(model => model.IsStaticHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">是否生成静态内容页</label>
+                    <div class="col-md-10">
+                        @Html.CheckBoxFor(model => model.IsStaticHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目首页模板</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-text-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.IndexTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入或选择模板", style = "width:200px;" } })
+                            <span class="btn green fileinput-button">
+                                <i class="fa fa-plus"></i>
+                                <span><font><font> 添加文件... </font></font></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.IndexTemplate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目列表页模板</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-code-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.ListTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入或选择模板", style = "width:200px;" } })
+                            <span class="btn green fileinput-button">
+                                <i class="fa fa-plus"></i>
+                                <span><font><font> 添加文件... </font></font></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ListTemplate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目内容页模板</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-code-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.ContentTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入或选择模板", style = "width:200px;" } })
+                            <span class="btn green fileinput-button">
+                                <i class="fa fa-plus"></i>
+                                <span><font><font> 添加文件... </font></font></span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ContentTemplate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">内容页生成规则</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-code-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.ContentHtmlRule, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入要生成的Html文件名 默认在{ColumnDir}/Conent/{Year}/{Month}/{Day}{Id}.html,可自定义路径还有标签{Title}可用", style = "width:800px;" } }) <strong style="margin-left:5px; line-height:34px;">.html</strong>
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ContentHtmlRule, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目图片地址</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-image-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control", placeholder = "用于在栏目显示指定的图片" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">栏目提示信息</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Tooltip, new { htmlAttributes = new { @class = "form-control", placeholder = "鼠标移至栏目名称上时将显示设定的提示文字" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Tooltip, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">搜索引擎关键字</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control", placeholder = "搜索引擎关键字" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">搜索引擎描述</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "5", placeholder = "搜索引擎描述" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group last">
+                    <label class="control-label col-md-2">栏目简介</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.TextAreaFor(model => model.Info, new { @class = "form-control", rows = "20", placeholder = "栏目简介，支持Html。" })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-9">
+                        <button id="submit" type="button" class="btn blue">
+                            <i class="fa fa-check"></i>提交
+                        </button>
+                        <button type="button" onclick="location.href='Index'" class="btn default">
+                            <i class="fa fa-reply"></i>返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
+@section Scripts {
+    <script>
+        var selectedColumn = '@Model.ParentId'
+        var curentId = '@Model.Id';
+        console.log(selectedColumn);
+        (function () {
+            $(function () {
+
+                abp.ajax({
+                    url: "@Url.Action("GetTreeColumnName","Column")"
+                }).done(function (data) {
+                    var html = setTreeColumnSelect(data, "<select Name='ParentId' class='form-control col-md-1' required:true'><option value='0'>无</option>");
+                    html += "</select>";
+                    var select = $("#treeDiv").html(html);
+                });
+
+
+
+            })
+        })();
+
+        $("#submit").click(function () {
+
+            var $form = $("#AddColumn");
+
+            if (!$form.valid()) {
+                return;
+            }
+            var $div = $form.parent();
+            abp.ui.setBusy($div);
+            abp.ajax({
+                url: '@Url.Action("AddOrUpdateColumn", "Column")',
+                data: $form.serializeFormToJson(),
+            }).always(function () {
+                abp.ui.clearBusy($form.parent());
+            });
+        });
+
+        function nameBlur() {
+            $("input[name=ColumnIdentify]").val($("input[name=Name]").val());
+            $("input[name=Dir]").val($("input[name=Name]").val());
+        }
+
+        //设置tree下拉框
+        function setTreeColumnSelect(list, str) {
+            for (var i = 0; i < list.length; i++) {
+
+                if (list[i].id != curentId) {
+                    if (list[i].id == selectedColumn) {
+                        str += "<option value=" + list[i].id + " selected>" + list[i].name + "</option>"
+                    } else {
+                        str += "<option value=" + list[i].id + " >" + list[i].name + "</option>"
+                    }
+                }
+
+
+                str = setTreeColumnSelect(list[i].children, str);
+            }
+            return str;
+
+        }
+    </script>
+}

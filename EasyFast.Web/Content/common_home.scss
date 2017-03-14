@@ -1,0 +1,57 @@
+﻿.shell{
+    .team_left{
+        display:inline-block;
+        width:50%;
+        padding:10px;
+        img{
+            width:98%;
+        }
+    }
+    .team_right{
+        display:inline-block;
+        width:50%;
+        .team-title{
+            #teaminfo_nav{       
+                border:1px solid #ddd;
+                margin-top:40px;
+                div{
+                    .teaminfo-nav-tab{
+                        background:#fff;
+                        .nav {
+                            padding-left: 15px;
+                            border-bottom-width: 1px;
+                            border-color: #EB1B1B;
+                            background:url(/Content/images/list_logo_text.png) 95% no-repeat;
+                            margin-bottom:0px;
+                            li {
+                                padding:0;
+                                margin-bottom:-2px;
+                                a {
+                                    padding:10px 40px;
+                                    font-size: 18px;
+                                    text-align: center;
+                                    color: #333;
+                                    margin-right:0px;
+                                    border-left:1px solid #ddd;
+                                    i {
+                                        margin-right: 5px;
+                                    }
+                                }
+                                &.active a {
+                                    border-top: 3px solid #EB1B1B;
+                                    color: #333;
+                                    background:#FEF2F2;
+                                    border-left:1px solid #EB1B1B;
+                                    border-right:1px solid #EB1B1B;
+                                    color:#EB1B1B;
+                                }
+                            }
+                        }    
+                    }
+                }
+            }
+        }
+    }
+}
+
+

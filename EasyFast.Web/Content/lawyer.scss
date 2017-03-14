@@ -1,0 +1,125 @@
+﻿/***律师相关css样式文件***/
+/****律师详情部分样式(Lawyer -- Info) 开始****/
+.lawyer_info{
+    border-left:2px solid #ff6565;
+    min-height:150px;
+    padding:40px;
+    padding-bottom:130px;
+    background:url(/Content/Images/Lawyer/logo_bj.png) 97% 98% no-repeat;
+    margin-bottom:250px;
+    box-shadow:2px 2px 5px #a6a6a6;
+    >p{
+        font-size:26px;
+        font-weight:bold;
+        margin:0;
+        line-height:30px;
+        background:url(/Content/Images/Lawyer/lawyer_title_shu.png) left center no-repeat;
+        padding-left:15px;
+    }
+    .lawyer_resume{
+        margin-top:80px;
+        border-bottom:1px solid #eee;
+        margin-bottom:35px;
+        .lawyer_Avatar{
+            text-align:center;
+            img{
+                max-width:164px;
+                max-height:160px;
+                border:2px solid #fff;
+                border-radius:50%;
+                box-shadow:0px 0px 5px #a6a6a6;
+            }
+        }
+        .lawyer_Introduction{
+            border-left:1px dashed #cbcbcb;
+            padding:20px 65px;
+            li{
+                font-size:20px;
+                color:#666;
+                margin-bottom:20px;
+                span{
+                    padding:0;
+                }
+            }
+        }
+    }
+    .lawyer_description{
+        margin-top:25px;
+        h4{
+            font-weight:bold;
+            margin-bottom:30px;
+        }
+        p{
+            margin-bottom:30px;
+            font-size:16px;
+            line-height:22px;
+            text-indent:30px;
+        }
+    }
+}
+/****律师详情部分样式(Lawyer -- Info) 结束****/
+
+/****律师列表部分样式(Lawyer -- List) 开始****/
+.lawyer_list_search{
+    margin:25px 0;
+    p{
+        font-size:12px;
+        color:#666;
+        padding:8px 15px;
+        border-bottom:1px solid #eee;
+        margin-bottom:20px;
+    }
+    h3{
+        padding-left:15px;
+        margin-bottom:30px;
+        img{
+            margin-right:10px;
+        }
+    }
+    .lawyer_list_surname{
+        padding:0 30px;
+        span{
+            width:30px;
+            height:30px;
+            font-size:16px;
+            text-align:center;
+            line-height:28px;
+            display:inline-block;
+            border:1px solid #f1f1f1;
+            margin:10px;
+            &:hover{
+                cursor:pointer;
+                background-color:#fafafa;
+            }
+            &.active{
+                background-color:#fafafa;
+            }
+        }
+        input[type="text"]{
+            height:40px;
+            border:none;
+            border:1px solid #f1f1f1;
+            margin-right:25px;
+            &:focus{
+                outline:none;
+            }
+        }
+        input[type="button"]{
+            height:40px;
+            border:none;
+            background-color:#ff6565;
+            font-size:16px; font-weight:bold;
+            color:#fff;
+            &:hover{
+                box-shadow:0px 2px 5px #fb9898;
+            }
+            &:focus{
+                outline:none;
+            }
+        }
+    }
+}
+
+
+
+/****律师列表部分样式(Lawyer -- List) 结束****/

@@ -1,0 +1,78 @@
+﻿/****新闻动态相关样css式文件****/
+/***新闻动态列表***/
+.news_list{
+    li{
+        border:1px solid;
+        border-right-width:4px;
+        border-color:#ccc;
+        padding:25px 40px;
+        margin-bottom:20px;
+        &:hover{
+            border-color:#ff6565;
+            background-color:#fff;
+        }
+        .count{
+            border-right:1px solid #eee;
+            div{
+                min-width:117px;
+                display:inline-block;
+                padding:10px;
+                background-color:#ff6565;
+                color:#fff;
+                border-radius:4px;
+                text-align:center;
+                span{
+                    display:block;
+                    margin:10px 0;
+                    font-size:26px; 
+                }
+                p{
+                    border-top:1px dashed #ffd6d6;
+                    padding:8px 10px 0 10px;
+                    margin:0;
+                }
+            }
+        }
+        .content{
+            padding:20px 15px;
+            h4{
+                margin-bottom:10px;
+                font-weight:bold;
+                font-size:20px;
+            }
+        }
+    }
+}
+/***详情***/
+.news{
+    margin-bottom:45px;
+    .news_info{
+        padding:0 60px;
+        h4{
+            margin-top:35px;
+            margin-bottom:5px;
+            padding-bottom:25px;
+            font-size:20px;
+            background:url(/Content/Images/News/news_title_line.png) left bottom no-repeat;
+        }
+        span{
+            color:#999;
+            margin-bottom:30px;
+            display:block;
+            text-align:right;
+        }
+        div{
+            text-align:center;
+            p{
+                text-align:left;
+            }
+            img{
+                max-width:100%;
+            }
+        }
+        p{
+            margin-top:45px;
+            margin-bottom:35px;
+        }
+    }
+}

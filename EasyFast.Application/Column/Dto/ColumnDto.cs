@@ -9,57 +9,17 @@ using System.Threading.Tasks;
 
 namespace EasyFast.Application.Column.Dto
 {
-    [AutoMap(typeof(Core.Entities.Column))]
-    public class ColumnDto : EntityDto
+    [AutoMap(typeof(Core.Entities.Column.Column))]
+    public class ColumnDto : ColumnDtoBase
     {
-        public long? ParentId { get; set; }
-
         /// <summary>
-        /// 栏目名称
+        /// 
         /// </summary>
-        [Required]
-        [StringLength(50)]
-        public string Name { get; set; }
+        public ColumnDto() : base()
+        {
+            ColumnTypeEnum = Core.Entities.ColumnTypeEnum.Normal;
 
-        /// <summary>
-        /// 栏目生成目录
-        /// </summary>
-        public string Dir { get; set; }
-
-        /// <summary>
-        /// 排序Id
-        /// </summary>
-        public int OrderId { get; set; }
-
-        /// <summary>
-        /// 栏目图片地址
-        /// </summary>
-        [StringLength(200)]
-        public string ImageUrl { get; set; }
-
-        /// <summary>
-        /// 栏目提示信息
-        /// </summary>
-        [StringLength(500)]
-        public string Tooltip { get; set; }
-
-        /// <summary>
-        /// 栏目简介
-        /// </summary>
-        [StringLength(500)]
-        public string Info { get; set; }
-
-        /// <summary>
-        /// 搜索引擎关键词
-        /// </summary>
-        [StringLength(50)]
-        public string Keywords { get; set; }
-
-        /// <summary>
-        /// 搜索引擎描述
-        /// </summary>
-        [StringLength(200)]
-        public string Description { get; set; }
+        }
 
         #region 模板及生成选项
         /// <summary>

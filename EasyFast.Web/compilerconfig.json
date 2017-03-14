@@ -2,5 +2,25 @@
   {
     "outputFile": "Content/site.css",
     "inputFile": "Content/site.scss"
+  },
+  {
+    "outputFile": "Content/index.css",
+    "inputFile": "Content/index.scss"
+  },
+  {
+    "outputFile": "Content/news.css",
+    "inputFile": "Content/news.scss"
+  },
+  {
+    "outputFile": "Content/practice.css",
+    "inputFile": "Content/practice.scss"
+  },
+  {
+    "outputFile": "Content/lawyer.css",
+    "inputFile": "Content/lawyer.scss"
+  },
+  {
+    "outputFile": "Content/common_home.css",
+    "inputFile": "Content/common_home.scss"
   }
 ]

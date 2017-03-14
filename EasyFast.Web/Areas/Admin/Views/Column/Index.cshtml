@@ -1,46 +1,32 @@
-﻿
-@{
-    
-}
+﻿@using Abp.Web.Mvc.Extensions
+@using EasyFast.Application.Column.Dto
+@model List<ColumnGridOutput>
+
+
+
 <div class="row">
     <div class="col-md-12 opt">
         <a href="@Url.Action("AddSingle")" class="btn green opt"><i class="fa fa-plus-square"></i>添加单页栏目</a>
-        <a href="@Url.Action("Add")" class="btn blue opt"><i class="fa fa-plus-square"></i>添加栏目节点</a>
+        <a href="@Url.Action("AddColumn")" class="btn blue opt"><i class="fa fa-plus-square"></i>添加栏目节点</a>
     </div>
     <div class="col-md-12">
-        <table id="easyui-treegrid" class="easyui-treegrid" data-options="
-               method: 'post',
-               url: '@Url.Action("GetTreeGrid")',
-               ownumbers: true,
-               pagination: true,
-               pageSize: 20,
-               sortName:'OrderId',
-               sortOrder:'desc',
-               treeField: 'Name',
-               idField: 'Id'
-               ">
+        <table class="table tree">
             <thead>
                 <tr>
-                    <th data-options="field:'ck',checkbox:true"></th>
-                    <th data-options="field:'Id',width:100,sortable: true">ID</th>
-                    <th data-options="field:'Name',width:300,sortable: true,formatter:FormatColumnName">栏目名称</th>
-                    <th data-options="field:'fullName',width:300,sortable: true">栏目类型</th>
-                    <th data-options="field:'ContentCount',width:300,sortable: true">数据量</th>
-                    <th data-options="field:'ContentCount',width:300,sortable: true">操作</th>
+                    <th>栏目名称</th>
+                    <th>栏目类型</th>
+                    <th>数据量</th>
+                    <th>优先级</th>
+                    <th>操作</th>
                 </tr>
             </thead>
+            <tbody id="treeBody"></tbody>
         </table>
     </div>
 </div>
-@section scripts {
-    <script>
-        function FormatTitle(val, row) {
-            return '<a href="/Admin/Case/Manage/Update/' + row.Id + '"  target="_blank">' + val + '</a>';
-        }
 
-        $(function () {
-            
-        })
-    </script>
+@section Scripts{
+    @Html.IncludeScript("/Areas/Admin/Views/Column/index.js")
 }
+
 

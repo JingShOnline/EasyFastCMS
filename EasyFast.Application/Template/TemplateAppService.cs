@@ -13,8 +13,8 @@ namespace EasyFast.Application.Template
     public class TemplateAppService : EasyFastAppServiceBase, ITemplateAppService
     {
         #region 依赖注入
-        private readonly IRepository<Core.Entities.Column> _columnRepository;
-        public TemplateAppService(IRepository<Core.Entities.Column> columnRepository)
+        private readonly IRepository<Core.Entities.Column.Column> _columnRepository;
+        public TemplateAppService(IRepository<Core.Entities.Column.Column> columnRepository)
         {
             _columnRepository = columnRepository;
         }

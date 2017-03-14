@@ -2,6 +2,7 @@
 using Abp.AutoMapper;
 using Abp.Modules;
 using EasyFast.Core;
+using EasyFastCMS.Application.AutoMapper;
 
 namespace EasyFast.Application
 {
@@ -20,6 +21,17 @@ namespace EasyFast.Application
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+
+
+            //配置AutpMapper
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(mapper =>
+            {
+                var mappers = IocManager.IocContainer.ResolveAll<IDtoMapping>();
+                foreach (var map in mappers)
+                {
+                    map.CreateMapping(mapper);
+                }
+            });
         }
     }
 }

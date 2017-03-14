@@ -1,6 +1,10 @@
 ﻿(function () {
 
+
     $(function () {
+
+        console.log(abp.localization.localize("Register"))
+
         $('#LoginButton').click(function (e) {
             e.preventDefault();
             abp.ui.setBusy(

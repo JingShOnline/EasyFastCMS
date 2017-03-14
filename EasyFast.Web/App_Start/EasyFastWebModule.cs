@@ -4,6 +4,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Abp.Hangfire;
 using Abp.Hangfire.Configuration;
+using Abp.Localization;
 using Abp.Zero.Configuration;
 using Abp.Modules;
 using Abp.Web.Mvc;
@@ -25,11 +26,15 @@ namespace EasyFast.Web
     {
         public override void PreInitialize()
         {
+
+            Configuration.Localization.Languages.Add(new LanguageInfo("zh-CN", "简体中文", "famfamfam-flag-england", true));
+
             //Enable database based localization
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
 
             //Configure navigation/menu
             Configuration.Navigation.Providers.Add<EasyFastNavigationProvider>();
+            Configuration.Navigation.Providers.Add<AdminNavigationProvider>();
 
             //Configure Hangfire - ENABLE TO USE HANGFIRE INSTEAD OF DEFAULT JOB MANAGER
             //Configuration.BackgroundJobs.UseHangfire(configuration =>

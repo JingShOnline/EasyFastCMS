@@ -1,0 +1,206 @@
+﻿/****首页相关样式文件****/
+/*****网站首页*****/
+/***优秀案例***/
+.index_title_case{
+    background:url(/content/Images/Index/index_Case.png) center no-repeat;
+}
+.index_case{
+    text-align:center;
+    margin-bottom:100px;
+    >div{
+        max-width:330px;
+        display:inline-block;
+        padding:20px 15px;
+        background-color:#fff;
+        img{
+            max-width:300px;
+            margin-bottom:10px;
+        }
+        p{
+            font-size:12px;
+            text-align:left;
+            margin-bottom:10px;
+        }
+        div{
+            span{
+                width:50%;
+                display:block;
+                margin-bottom:10px;
+                &.pull-left{
+                    text-align:left;
+                }
+                &.pull-right{
+                    text-align:right;
+                }
+            }
+        }
+        &:hover{
+            box-shadow: 0px 0px 30px #888888;
+        }
+    }
+}
+/***聊城分所简介***/
+.index_title_branch{
+    background:url(/Content/Images/Index/index_line.png) center bottom no-repeat;
+    margin:70px 0;
+    padding-top:75px;
+    padding-bottom:20px;
+}
+.index_branch{
+    background:url(/Content/Images/Index/index_Branch_bj.jpg) no-repeat;
+    .row{
+        padding-bottom:160px;
+    }
+    .branch_corner{
+        padding:0;
+        div{
+            background:url(/Content/Images/Index/index_branch_corner_bj.jpg) right no-repeat;
+            display:inline-block;
+        }
+    }
+    .branch_introduction{
+        padding:0;
+        div{
+            max-width:600px;
+            padding:35px 30px 0 30px;
+            background-color:#fff;
+            p{
+                font-size:16px;
+                color:#dd3131;
+                margin-bottom:20px;
+                i{
+                    color:#333;
+                    margin-right:3px;
+                }
+                span{
+                    color:#999;
+                }
+            }
+            >span{
+                font-size:12px;
+                margin-bottom:20px;
+                display:inline-block;
+            }
+            >img{
+                margin-bottom:16px;
+            }
+        }
+    }
+}
+/***专家队伍***/
+.index_title_team{
+    background:url(/content/Images/Index/index_Team.png) center no-repeat;
+    span{
+        margin-bottom:20px;
+    }
+    p{
+        letter-spacing:5px;
+    }
+}
+.index_team{
+    text-align:center;
+    margin-bottom:90px;
+    div{
+        max-width:370px;
+        display:inline-block;
+        img{
+            border:5px solid #f25752;
+            border-radius:50%;
+            width:200px;
+            max-width:200px;
+            height:200px;
+            max-height:200px;
+            margin-bottom:15px;
+        }
+        h3{
+            margin-bottom:15px;
+        }
+        p{
+            color:#ccc;
+        }
+    }
+}
+/***专业领域***/
+.index_title_domain{
+    background:url(/Content/Images/Index/index_line.png) center bottom no-repeat;
+    margin:0 0 60px 0;
+    padding-top:75px;
+    padding-bottom:20px;
+}
+.index_domain{
+    min-height:220px;
+    margin-bottom:125px;
+    li{
+        text-align:center;
+        >div{
+            padding:25px;
+            background-color:#f1f1f1;
+            display:inline-block;
+            margin-top:20px;
+            cursor:pointer;
+            img{
+                width:110px;
+                height:110px;
+                display:inline-block;
+                margin-right:10px;
+            }
+            div{
+                display:inline-block;
+                width:220px;
+                text-align:left;
+                h5{
+                    font-size:16px;
+                    margin-bottom:10px;
+                }
+                p{
+                    font-size:14px;
+                    margin:0;
+                }
+            }
+            &:hover{
+                margin-top:5px;
+                background-color:#ff6565;
+                box-shadow: 0px 0px 15px #888888;
+                color:#fff;
+                img{
+                    width:145px;
+                    height:145px;
+                }
+            }
+        }
+    }
+}
+/***动态、客服、媒体报道***/
+.index_bottom{
+    background-color:#fafafa;
+    padding:65px 0;
+    .col-md-4{
+        border-right:1px solid #fff;
+        border-left:1px solid #d2d2d2;
+        padding:0 25px 0 45px;
+        &:first-child{
+            border-left:none;
+        }
+        &:last-child{
+            border-right:none;
+        }
+    }
+    h5{
+        line-height:24px;
+        margin-bottom:15px;
+        img{
+            margin-right:10px;
+        }
+    }
+    ul{
+        li{
+            font-size:12px;
+            margin-bottom:25px;
+            a{
+                &:hover{
+                    text-decoration:none;
+                }
+            }
+        }
+    }
+}
