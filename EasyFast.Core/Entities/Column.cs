@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EasyFast.Core.Entities
 {
     public class Column : Entity
-    {
+    {     
         /// <summary>
         /// 栏目类别
         /// </summary>
