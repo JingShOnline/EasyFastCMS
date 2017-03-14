@@ -1,2 +1,2 @@
 # EasyFastCMS
-基于ABP、.NET Core的一个简易CMS实现
+基于ABP的一个简易CMS实现
