@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyFast.Core.Entities
 {
     public class Column : Entity
-    {     
+    {
         /// <summary>
         /// 栏目类别
         /// </summary>
@@ -17,11 +18,15 @@ namespace EasyFast.Core.Entities
 
 
         public int? ParentId { get; set; }
-        public ICollection<Column> Children { get; set; }
+
+        [ForeignKey("ParentId")]
+        public virtual ICollection<Column> Children { get; set; }
+
 
         /// <summary>
-        /// 栏目名称
+        /// 栏目名称 不可以重复
         /// </summary>
+        [Index(IsUnique = true)]
         [Required]
         [StringLength(50)]
         public string Name { get; set; }

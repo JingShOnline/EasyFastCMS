@@ -125,11 +125,11 @@
     <Compile Include="Authorization\Roles\AppRoleConfig.cs" />
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
     <Compile Include="Editions\EditionManager.cs" />
-    <Compile Include="Entities\Column\Column.cs" />
-    <Compile Include="Entities\Column\ColumnTypeEnum.cs" />
+    <Compile Include="Entities\Column.cs" />
+    <Compile Include="Entities\ColumnTypeEnum.cs" />
     <Compile Include="Entities\Common_Model.cs" />
-    <Compile Include="Entities\ContentModel\Content_Article.cs" />
-    <Compile Include="Entities\ContentModel\Content_Lawyer.cs" />
+    <Compile Include="Entities\Content_Article.cs" />
+    <Compile Include="Entities\Content_Lawyer.cs" />
     <Compile Include="Entities\Model.cs" />
     <Compile Include="Entities\SiteConfig.cs" />
     <Compile Include="Features\FeatureValueStore.cs" />

@@ -431,7 +431,6 @@
     <Content Include="Content\easyui.custom.scss" />
     <Content Include="Content\metronic.scss" />
     <Content Include="Areas\Admin\Views\Column\AddSingle.cshtml" />
-    <Content Include="Areas\Admin\Views\Column\Add.cshtml" />
     <Content Include="Abp\Framework\styles\abp.mixings.less" />
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
@@ -444,6 +443,7 @@
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Add.cshtml" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Update.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_navigation.cshtml" />
+    <Content Include="Areas\Admin\Views\Column\AddColumn.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

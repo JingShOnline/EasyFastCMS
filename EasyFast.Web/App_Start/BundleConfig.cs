@@ -36,6 +36,8 @@ namespace EasyFast.Web
                     .Include(
                         "~/Scripts/jquery-2.2.0.min.js",
                         "~/Scripts/json2.min.js",
+                        "~/Scripts/jquery-ui-1.11.4.min.js",
+                        "~/Scripts/bootstrap.min.js",
                         "~/Scripts/moment-with-locales.min.js",
                         "~/Scripts/jquery.validate.min.js",
                         "~/Scripts/jquery.blockUI.js",

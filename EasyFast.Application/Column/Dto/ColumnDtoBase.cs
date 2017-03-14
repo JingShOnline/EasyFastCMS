@@ -16,7 +16,6 @@ namespace EasyFast.Application.Column.Dto
     public class ColumnDtoBase : EntityDto
     {
 
-        private int? parentId;
 
         public int orderId;
 
@@ -25,8 +24,7 @@ namespace EasyFast.Application.Column.Dto
         /// </summary>
         public virtual int? ParentId
         {
-            get { return parentId; }
-            set { if (value == 0) { parentId = null; } else { parentId = value; } }
+            get; set;
         }
 
 
