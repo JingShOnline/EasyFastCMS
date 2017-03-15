@@ -317,6 +317,9 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="Areas\Admin\Views\Content\index.js" />
+    <Content Include="Areas\Admin\Views\Model\index.js" />
+    <Content Include="Areas\Admin\Views\Model\_CreateOrUpdateModel.js" />
     <Content Include="Common\Scripts\appUserNotificationHelper.js" />
     <Content Include="Common\Scripts\Chat\chat.js" />
     <Content Include="Common\Scripts\Chat\chat.signalr.js" />
@@ -437,13 +440,17 @@
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Home_Index.cshtml" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_AddSingle.cshtml" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_UpdateSingle.cshtml" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Add.cshtml" />
     <Content Include="Areas\Admin\Views\Breadcrumb\_Admin_Column_Update.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_navigation.cshtml" />
     <Content Include="Areas\Admin\Views\Column\AddColumn.cshtml" />
+    <Content Include="Areas\Admin\Views\Model\CreateOrUpdateModel.cshtml" />
+    <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Common\_ModalFooterWithSaveAndCance.cshtml" />
+    <Content Include="Areas\Admin\Views\Common\_ModalHeader.cshtml" />
+    <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -626,7 +633,9 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\UserMenuItemExtensions.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColumnController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HTMLGenerateController.cs" />
@@ -722,6 +731,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Article\" />
+    <Folder Include="Areas\Admin\Views\ContentInfo\" />
     <Folder Include="Areas\Admin\Views\HTML\" />
     <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Template\Code\" />

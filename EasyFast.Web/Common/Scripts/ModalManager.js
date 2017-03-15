@@ -30,10 +30,10 @@
             return $('<div id="' + _containerId + '"></div>')
                 .append(
                 '<div id="' + modalId + '" class="modal fade" tabindex="-1" role="modal" aria-hidden="true" style="display: block; padding-right: 17px;">' +
-                    '  <div class="modal-dialog">' +
-                    '    <div class="modal-content"></div>' +
-                    '  </div>' +
-                    '</div>'
+                '  <div class="modal-dialog">' +
+                '    <div class="modal-content"></div>' +
+                '  </div>' +
+                '</div>'
                 ).appendTo('body');
         }
 
@@ -128,7 +128,7 @@
                     });
             };
 
-            var _close = function() {
+            var _close = function () {
                 if (!_$modal) {
                     return;
                 }
@@ -144,7 +144,7 @@
                 if (!_$modal) {
                     return;
                 }
-
+              
                 _$modal.find('.modal-footer button').buttonBusy(isBusy);
             }
 
@@ -152,7 +152,7 @@
 
                 open: _open,
 
-                reopen: function() {
+                reopen: function () {
                     _open(_args);
                 },
 
@@ -170,13 +170,13 @@
                     return _args;
                 },
 
-                getOptions: function() {
+                getOptions: function () {
                     return _options;
                 },
 
                 setBusy: _setBusy,
 
-                setResult: function() {
+                setResult: function () {
                     _getResultCallback && _getResultCallback.apply(_publicApi, arguments);
                 },
 

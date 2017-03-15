@@ -26,6 +26,11 @@ namespace EasyFast.Application.Column.Dto
         }
 
         /// <summary>
+        /// 是否生成单页节点
+        /// </summary>
+        public bool IsCreateSingle { get; set; }
+
+        /// <summary>
         /// 单页节点模板
         /// </summary>
         [StringLength(100)]

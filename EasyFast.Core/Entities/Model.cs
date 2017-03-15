@@ -1,18 +1,11 @@
-﻿using Abp.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Abp.Domain.Entities.Auditing;
 
 namespace EasyFast.Core.Entities
 {
     /// <summary>
     /// 模型表
     /// </summary>
-    public class Model : Entity
+    public class Model : FullAuditedEntity
     {
         /// <summary>
         /// 模型名称

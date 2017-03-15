@@ -71,7 +71,7 @@ namespace EasyFast.Application.Column
         {
             if (string.IsNullOrEmpty(input.Sorting))
                 input.Sorting = "OrderId";
-            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children).WhereIf(!string.IsNullOrEmpty(input.Filter), o => o.Name.Contains(input.Filter));
+            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children).WhereIf(!string.IsNullOrEmpty(input.Filter), o => o.Name.Contains(input.Filter));
             var count = await query.CountAsync();
             var list = await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
             return new PagedResultDto<ColumnGridOutput>(count, list.MapTo<List<ColumnGridOutput>>());
@@ -142,7 +142,7 @@ namespace EasyFast.Application.Column
         public async Task AddOrUpdateSingleAsync(SingleColumnDto model)
         {
             var column = model.MapTo<Core.Entities.Column>();
-           // _columnManger.InitSignleColumn(column);
+            // _columnManger.InitSignleColumn(column);
             if (model.Id == 0)
             {
                 await AddAsync(column);
@@ -168,6 +168,20 @@ namespace EasyFast.Application.Column
             }
             else
                 await UpdateAsync(column);
+        }
+
+
+        /// <summary>
+        /// 获取EasyTree格式的菜单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<List<EasyUITree>> GetColumnEasyTree(int? id = null)
+        {
+            var query = _columnRepository.GetAll().Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal);
+            query = id.HasValue ? query.Where(o => o.Id == (int)id).Include(o => o.Children) : query.Where(o => o.ParentId == null || o.ParentId == 0);
+            var result = await query.ToListAsync();
+            return result.MapTo<List<EasyUITree>>();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿(function ($) {
-    app.modals.CreateContentModal = function () {
-
-        var contentModelService = abp.services.app.modelRecord;
+    app.modals.CreateModel = function () {
+       
+        var modelService = abp.services.app.model;
         var _$modelForm = null;
 
         var _modalManager;
@@ -20,7 +20,8 @@
             //序列化参数
             var model = _$modelForm.serializeFormToObject();
             _modalManager.setBusy(true);
-            contentModelService.CreateOrUpdate(model).done(function () {
+          
+            modelService.createOrUpdate(model).done(function () {
                 abp.notify.info("添加成功");
                 _modalManager.close();
                 abp.event.trigger('app.createModelSaved');
@@ -31,10 +32,10 @@
     };
 
 
-    app.modals.EditContentModal = function () {
+    app.modals.EditModel = function () {
 
         var _modalManager;
-        var contentModelService = abp.services.app.modelRecord;
+        var modelService = abp.services.app.model;
 
         var _$modelForm = null;
 
@@ -56,7 +57,7 @@
             var model = _$modelForm.serializeFormToObject();
 
             _modalManager.setBusy(true);
-            contentModelService.CreateOrUpdate(
+            modelService.createOrUpdate(
                 model
             ).done(function () {
                 abp.notify.info("修改成功");

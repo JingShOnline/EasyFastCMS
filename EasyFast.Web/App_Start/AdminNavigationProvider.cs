@@ -83,9 +83,9 @@ namespace EasyFast.Web.App_Start
                         L("ColumnManager"),
                         url: "/Admin/Column/Index"
                     )).AddItem(new MenuItemDefinition(
-                        "ConentModelManager",
-                        L("ConentModelManager"),
-                        url: "/Admin/ContentModel/Index"
+                        "ModelManager",
+                        L("ModelManager"),
+                        url: "/Admin/Model/Index"
                     )))
                 .AddItem(new MenuItemDefinition(
                    "SiteManager",

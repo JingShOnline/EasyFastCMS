@@ -7,13 +7,13 @@ namespace EasyFast.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class _20170314_AddEntities : IMigrationMetadata
+    public sealed partial class _20170315_Add_Entities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(_20170314_AddEntities));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_20170315_Add_Entities));
         
         string IMigrationMetadata.Id
         {
-            get { return "201703140720296_20170314_AddEntities"; }
+            get { return "201703150613340_20170315_Add_Entities"; }
         }
         
         string IMigrationMetadata.Source

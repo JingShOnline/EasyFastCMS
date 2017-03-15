@@ -1,0 +1,28 @@
+﻿@model EasyFast.Application.Model.Dto.ModelDto
+
+@Html.Partial("/Areas/Admin/Views/Common/_ModalHeader.cshtml")
+<div class="modal-body">
+    <form name="ContentModelForm" novalidate>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <input class="form-control" type="text" name="ModelName" required oninvalid="setCustomValidity('请输入模型名称')" oninput="setCustomValidity('')" />
+            <label>模型名称</label>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <input class="form-control" type="text" name="Name" required />
+            <label>关联表名</label>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <input class="form-control" type="text" name="Name" required />
+            <label>模型描述</label>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <input class="form-control" type="text" name="Name" required />
+            <label>单位</label>
+        </div>
+        <div class="form-group form-md-line-input form-md-floating-label">
+            <input class="form-control" type="text" name="Name" required />
+            <label>是否几录点击次数</label>
+        </div>
+    </form>
+</div>
+@Html.Partial("/Areas/Admin/Views/Common/_ModalFooterWithSaveAndCance.cshtml")

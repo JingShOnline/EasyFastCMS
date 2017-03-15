@@ -2,19 +2,19 @@
     $(function () {
         var $modelTable = $("#ContentModelTable");
 
-        var contentModelService = abp.services.app.modelRecord;
+        var modelService = abp.services.app.model;
 
-        var createModal = new app.ModalManager({
-            viewUrl: abp.appPath + "Admin/ContentModel/CreateModal",
-            scriptUrl: abp.appPath + "Areas/Admin/Views/ContentModel/_CreateOrUpdateModal.js",
-            modalClass: "CreateContentModal"
+        var createModel = new app.ModalManager({
+            viewUrl: abp.appPath + "Admin/Model/CreateModel",
+            scriptUrl: abp.appPath + "Areas/Admin/Views/Model/_CreateOrUpdateModel.js",
+            modalClass: "CreateModel"
         });
 
 
-        var editModal = new app.ModalManager({
-            viewUrl: abp.appPath + "Admin/ContentModel/EditModal",
-            scriptUrl: abp.appPath + "Areas/Admin/Views/ContentModel/_CreateOrUpdateModal.js",
-            modalClass: "EditContentModal"
+        var editModel = new app.ModalManager({
+            viewUrl: abp.appPath + "Admin/Model/EditModel",
+            scriptUrl: abp.appPath + "Areas/Admin/Views/Model/_CreateOrUpdateModel.js",
+            modalClass: "EditModel"
         });
         $modelTable.jtable({
             title: "内容模型管理",
@@ -23,7 +23,7 @@
             multiSorting: true,//多级排序
             actions: {
                 listAction: {
-                    method: contentModelService.getContentModels
+                    method: modelService.getModels
                 }
             },
             fields: {
@@ -77,7 +77,7 @@
         });
 
 
-        function getContentModels(reload) {
+        function getModels(reload) {
             if (reload) {
                 $modelTable.jtable("reload");
             } else {
@@ -94,8 +94,8 @@
                 "删除",
                 function (isConfirmed) {
                     if (isConfirmed) {
-                        contentModelService.deleteModel({ id: model.id }).done(function () {
-                            getContentModels();
+                        modelService.deleteModel({ id: model.id }).done(function () {
+                            getModels();
                             abp.notify.success("删除成功!");
                         });
                     }
@@ -103,26 +103,26 @@
                 });
         }
 
-        getContentModels();
+        getModels();
 
 
         $("#CreateNewModelButton").click(function () {
-            createModal.open();
+            createModel.open();
         });
 
         $("#GetModelButton").click(function (e) {
             e.preventDefault();
-            getContentModels();
+            getModels();
         });
 
 
         abp.event.on("abp.createModelSaved",
             function () {
-                getContentModels(true);
+                getModels(true);
             });
         abp.event.on("app.editModelSaved",
             function () {
-                getContentModels(true);
+                getModels(true);
             });
     });
 })();

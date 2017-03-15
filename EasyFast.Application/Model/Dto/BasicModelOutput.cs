@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 
-namespace EasyFast.Application.ContentModel.ModelRecord.Dto
+namespace EasyFast.Application.Model.Dto
 {
     /// <summary>
     /// 基本信息的Dto
     /// </summary>
-    [AutoMapFrom(typeof(Core.Entities.ModelRecord))]
-    public class BasicModelRecordOutput : EntityDto
+    [AutoMapFrom(typeof(Core.Entities.Model))]
+    public class BasicModelOutput : EntityDto
     {
         /// <summary>
         /// 模型名称

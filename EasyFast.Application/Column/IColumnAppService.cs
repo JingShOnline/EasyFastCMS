@@ -74,5 +74,12 @@ namespace EasyFast.Application.Column
         /// <param name="model"></param>
         /// <returns></returns>
         Task AddOrUpdateColumn(ColumnDto model);
+
+        /// <summary>
+        /// 获取EasyTree格式的菜单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<List<EasyUITree>> GetColumnEasyTree(int? id = null);
     }
 }

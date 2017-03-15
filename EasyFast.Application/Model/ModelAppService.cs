@@ -10,21 +10,21 @@ using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
-using EasyFast.Application.ContentModel.ModelRecord.Dto;
+using EasyFast.Application.Model.Dto;
 
-namespace EasyFast.Application.ContentModel.ModelRecord
+namespace EasyFast.Application.Model
 {
     /// <summary>
     /// 内容模型记录资源
     /// </summary>
-    public class ModelRecordAppService : ApplicationService, IModelRecordAppService
+    public class ModelAppService : ApplicationService, IModelAppService
     {
 
-        private readonly IRepository<Core.Entities.ModelRecord> _modelRecordRepository;
+        private readonly IRepository<Core.Entities.Model> _modelRepository;
 
-        public ModelRecordAppService(IRepository<Core.Entities.ModelRecord> modelrRepository)
+        public ModelAppService(IRepository<Core.Entities.Model> modelrRepository)
         {
-            this._modelRecordRepository = modelrRepository;
+            this._modelRepository = modelrRepository;
         }
 
 
@@ -34,9 +34,9 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<PagedResultDto<BasicModelRecordOutput>> GetContentModels(GetModelsInput input)
+        public async Task<PagedResultDto<BasicModelOutput>> GetModels(GetModelsInput input)
         {
-            var result = _modelRecordRepository.GetAll();
+            var result = _modelRepository.GetAll();
             if (!string.IsNullOrWhiteSpace(input.Filter))
             {
                 result = result.Where(o => o.ModelName.Contains(input.Filter));
@@ -44,9 +44,9 @@ namespace EasyFast.Application.ContentModel.ModelRecord
             int totalCount = await result.CountAsync();
 
             var list = await result.OrderBy(input.Sorting).PageBy(input).ToListAsync();
-            return new PagedResultDto<BasicModelRecordOutput>(
+            return new PagedResultDto<BasicModelOutput>(
                    totalCount,
-                   list.MapTo<List<BasicModelRecordOutput>>()
+                   list.MapTo<List<BasicModelOutput>>()
                    );
         }
 
@@ -58,7 +58,7 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         public async Task DeleteModel(int id)
         {
             //这里应该把相应的表删除
-            await _modelRecordRepository.DeleteAsync(id);
+            await _modelRepository.DeleteAsync(id);
         }
 
 
@@ -68,9 +68,9 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task CreateModel(ModelRecordDto model)
+        public async Task CreateModel(ModelDto model)
         {
-            await _modelRecordRepository.InsertAsync(model.MapTo<Core.Entities.ModelRecord>());
+            await _modelRepository.InsertAsync(model.MapTo<Core.Entities.Model>());
         }
 
         /// <summary>
@@ -78,11 +78,11 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task UpdateModel(ModelRecordDto model)
+        public async Task UpdateModel(ModelDto model)
         {
-            var cModel = await _modelRecordRepository.GetAsync(model.Id);
+            var cModel = await _modelRepository.GetAsync(model.Id);
             model.MapTo(cModel);
-            await _modelRecordRepository.UpdateAsync(cModel);
+            await _modelRepository.UpdateAsync(cModel);
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task CreateOrUpdate(ModelRecordDto model)
+        public async Task CreateOrUpdate(ModelDto model)
         {
             if (model.Id == 0)
             {
@@ -108,10 +108,10 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<ModelRecordDto> GetAsync(int id)
+        public async Task<ModelDto> GetAsync(int id)
         {
-            var model = await _modelRecordRepository.GetAsync(id);
-            return model.MapTo<ModelRecordDto>();
+            var model = await _modelRepository.GetAsync(id);
+            return model.MapTo<ModelDto>();
         }
     }
 }

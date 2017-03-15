@@ -7,14 +7,15 @@ using System.Web.Mvc;
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
     /// <summary>
-    /// 内容管理
+    /// 信息管理
     /// </summary>
-    public class ContentManagerController : Controller
+    public class ContentController : Controller
     {
-        // GET: Admin/ContentManager
         public ActionResult Index()
         {
             return View();
         }
+
+
     }
 }

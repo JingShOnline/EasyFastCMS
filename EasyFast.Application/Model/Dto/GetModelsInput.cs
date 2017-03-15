@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Abp.Runtime.Validation;
 using EasyFast.Application.Dto;
 
-namespace EasyFast.Application.ContentModel.ModelRecord.Dto
+namespace EasyFast.Application.Model.Dto
 {
     /// <summary>
     /// 获取模型输入Dto

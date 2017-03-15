@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using EasyFast.Application.ContentModel.ModelRecord.Dto;
+using EasyFast.Application.Model.Dto;
 using EasyFastCMS.Application.AutoMapper;
 
 namespace EasyFast.Application.ContentModel.ModelRecord
@@ -16,7 +16,7 @@ namespace EasyFast.Application.ContentModel.ModelRecord
     {
         public void CreateMapping(IMapperConfigurationExpression mapperConfig)
         {
-            mapperConfig.CreateMap<Core.Entities.ModelRecord, BasicModelRecordOutput>().ForMember("IsCountHits", o => o.MapFrom(c => c.IsCountHits ? "是" : "否"));
+            mapperConfig.CreateMap<Core.Entities.Model, BasicModelOutput>().ForMember("IsCountHits", o => o.MapFrom(c => c.IsCountHits ? "是" : "否"));
         }
     }
 }

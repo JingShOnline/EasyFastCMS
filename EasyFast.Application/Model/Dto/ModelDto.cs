@@ -5,19 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.AutoMapper;
+using System.ComponentModel.DataAnnotations;
 
-namespace EasyFast.Application.ContentModel.ModelRecord.Dto
+namespace EasyFast.Application.Model.Dto
 {
     /// <summary>
     /// 内容模型记录Dto
     /// </summary>
-    [AutoMap(typeof(Core.Entities.ModelRecord))]
-    public class ModelRecordDto : EntityDto
+    [AutoMap(typeof(Core.Entities.Model))]
+    public class ModelDto : EntityDto
     {
-
         /// <summary>
         /// 模型名称
         /// </summary>
+        [Required(ErrorMessage = "请输入模型名称")]
         public string ModelName { get; set; }
 
         /// <summary>
@@ -38,6 +39,7 @@ namespace EasyFast.Application.ContentModel.ModelRecord.Dto
         /// <summary>
         /// 关联表名
         /// </summary>
+        [Required(ErrorMessage = "请输入关于表名")]
         public string TableName { get; set; }
 
         /// <summary>

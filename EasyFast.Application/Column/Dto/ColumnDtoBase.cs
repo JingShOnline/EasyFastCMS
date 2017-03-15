@@ -16,9 +16,6 @@ namespace EasyFast.Application.Column.Dto
     public class ColumnDtoBase : EntityDto
     {
 
-
-        public int orderId;
-
         /// <summary>
         /// 父栏目Id
         /// </summary>
@@ -40,18 +37,6 @@ namespace EasyFast.Application.Column.Dto
         [StringLength(50)]
         public virtual string Name { get; set; }
 
-
-        /// <summary>
-        /// 栏目标识
-        /// </summary>
-        public virtual string ColumnIdentify { get; set; }
-
-        /// <summary>
-        /// 是否生成静态Html
-        /// </summary>
-        public virtual bool IsStaticHtml { get; set; }
-
-
         /// <summary>
         /// 栏目生成目录
         /// </summary>
@@ -61,7 +46,7 @@ namespace EasyFast.Application.Column.Dto
         /// <summary>
         /// 排序Id
         /// </summary>
-        public virtual int OrderId { get { if (orderId == 0) { return 99; } else { return orderId; }; } set { orderId = value; } }
+        public virtual int OrderId { get; set; }
 
         /// <summary>
         /// 栏目图片地址

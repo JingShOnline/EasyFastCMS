@@ -123,8 +123,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Article\ArticleAppService.cs" />
+    <Compile Include="Article\Dto\ArticleDto.cs" />
+    <Compile Include="Article\IArticleAppService.cs" />
     <Compile Include="AutoMapper\IDtoMapping.cs" />
-    <Compile Include="Column\ColumnGridDtoMapping.cs" />
+    <Compile Include="Column\ColumnDtoMapping.cs" />
     <Compile Include="Column\Dto\ColumnDto.cs" />
     <Compile Include="Column\Dto\ColumnDtoBase.cs" />
     <Compile Include="Column\Dto\ColumnGridOutput.cs" />
@@ -141,12 +144,22 @@
     <Compile Include="Config\Dto\SiteInfoDto.cs" />
     <Compile Include="Config\ISiteConfigAppService.cs" />
     <Compile Include="Config\Dto\SiteOptionDto.cs" />
+    <Compile Include="Content\ContentAppService.cs" />
+    <Compile Include="Content\Dto\GridContentOutput.cs" />
+    <Compile Include="Content\Dto\PagedGridContentInput.cs" />
+    <Compile Include="Content\IContentAppService.cs" />
     <Compile Include="Dto\PagedAndFilteredInputDto.cs" />
     <Compile Include="Dto\PagedAndSortedInputDto.cs" />
     <Compile Include="Dto\PagedInputDto.cs" />
     <Compile Include="Dto\PagedSortedAndFilteredInputDto.cs" />
     <Compile Include="EasyFastApplicationModule.cs" />
     <Compile Include="EasyFastAppServiceBase.cs" />
+    <Compile Include="Model\Dto\BasicModelOutput.cs" />
+    <Compile Include="Model\Dto\GetModelsInput.cs" />
+    <Compile Include="Model\Dto\ModelDto.cs" />
+    <Compile Include="Model\IModelAppService.cs" />
+    <Compile Include="Model\ModelAppService.cs" />
+    <Compile Include="Model\ModelDtoMapping.cs" />
     <Compile Include="MultiTenancy\Dto\CreateTenantInput.cs" />
     <Compile Include="MultiTenancy\ITenantAppService.cs" />
     <Compile Include="MultiTenancy\Dto\TenantListDto.cs" />

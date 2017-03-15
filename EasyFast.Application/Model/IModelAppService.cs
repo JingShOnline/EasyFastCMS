@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
-using EasyFast.Application.ContentModel.ModelRecord.Dto;
+using EasyFast.Application.Model.Dto;
 
-namespace EasyFast.Application.ContentModel.ModelRecord
+namespace EasyFast.Application.Model
 {
     /// <summary>
     /// 模型记录资源 
     /// </summary>
-    public interface IModelRecordAppService : IApplicationService
+    public interface IModelAppService : IApplicationService
     {
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PagedResultDto<BasicModelRecordOutput>> GetContentModels(GetModelsInput input);
+        Task<PagedResultDto<BasicModelOutput>> GetModels(GetModelsInput input);
 
         /// <summary>
         /// 删除模型
@@ -34,7 +34,7 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<ModelRecordDto> GetAsync(int id);
+        Task<ModelDto> GetAsync(int id);
 
 
         /// <summary>
@@ -42,20 +42,20 @@ namespace EasyFast.Application.ContentModel.ModelRecord
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task CreateModel(ModelRecordDto model);
+        Task CreateModel(ModelDto model);
 
         /// <summary>
         /// 修改模型
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task UpdateModel(ModelRecordDto model);
+        Task UpdateModel(ModelDto model);
 
         /// <summary>
         /// 删除或修改
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task CreateOrUpdate(ModelRecordDto model);
+        Task CreateOrUpdate(ModelDto model);
     }
 }

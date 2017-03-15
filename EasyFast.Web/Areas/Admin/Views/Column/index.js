@@ -10,15 +10,17 @@ var _columnnService = abp.services.app.column;
 function PagedList(pageNum) {
     $("#pageBar").empty();
     $("#treeBody").empty();
-    var skipCount = ((pageNum - 1) * 10) + 1;
-    var input = { SkipCount : skipCount, Filter: $("#searchName").val() };
+    var skipCount = ((pageNum - 1) * 10);
+    var input = { SkipCount: skipCount, Filter: $("#searchName").val() };
     _columnnService.getColumnGridAsync(input).done(function (data) {
         var html = setTreeBody(data.items, "", 1);
         var pagehtml = setPage(data.totalCount, 10);
         $("pageBar").html(pagehtml);
         $("#treeBody").append(html);
         $('.tree').treegrid({
-            initialState: "initialState"
+            initialState: "initialState",
+            expanderExpandedClass: 'glyphicon glyphicon-minus',
+            expanderCollapsedClass: 'glyphicon glyphicon-plus'
         });
     });
 }
@@ -49,7 +51,7 @@ function setTreeBody(list, str, flag) {
 function deleteColumn(id) {
 
     abp.message.confirm(
-        '这将会删除此栏目',
+        '这将会删除此栏目', 
         '确定吗',
         function (isConfirmed) {
             if (isConfirmed) {
