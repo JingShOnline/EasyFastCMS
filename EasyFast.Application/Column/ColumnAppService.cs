@@ -184,5 +184,21 @@ namespace EasyFast.Application.Column
             var result = await query.ToListAsync();
             return result.MapTo<List<EasyUITree>>();
         }
+        /// <summary>
+        /// 分页获取栏目用于表格展示
+        /// </summary>
+        /// <returns></returns>
+        public async Task<EasyUIGridOutput<TreeGridOutput>> GetTreeGrid(TreeGridInput search)
+        {
+            var query =
+                _columnRepository.GetAll()
+                    .Where(o => o.ParentId == null || o.ParentId == 0)
+                    .Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children);
+            var totalCount = await query.CountAsync();
+            var list = await query.OrderBy($"{search.Sort} {search.Order}").Skip((search.Page - 1) * search.Rows).Take(search.Rows).ToListAsync();
+
+
+            return new EasyUIGridOutput<TreeGridOutput> { total = totalCount, rows = list.MapTo<List<TreeGridOutput>>() };
+        }
     }
 }

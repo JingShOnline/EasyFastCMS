@@ -43,6 +43,14 @@ namespace EasyFast.Web.Areas.Admin.Controllers
 
         }
 
+        [HttpPost]
+        [DontWrapResult]
+        public async Task<JsonResult> GetTreeGrid(TreeGridInput search)
+        {
+            var list = await _columnAppService.GetTreeGrid(search);
+            return Json(list);
+        }
+
 
         /// <summary>
         /// 转到新建栏目页面

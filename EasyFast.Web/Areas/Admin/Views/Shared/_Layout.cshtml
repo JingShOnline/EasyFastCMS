@@ -27,6 +27,9 @@
     <meta name="description" content="易迅律师事务所OA系统是国内知名的律所管理系统，主要使用用户包括盈科、京师、尚公等各类大中型律所。" />
     <meta name="author" content="北京京师律政科技有限公司" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
+    <script src="~/api/AbpServiceProxies/GetAll"></script>
+    <script src="~/AbpScripts/GetScripts" type="text/javascript"></script>
     <link href="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -47,24 +50,12 @@
     <link href="http://cdn.easyfast.cn/assets/jquery-easyui-1.5/themes/bootstrap/easyui.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.easyfast.cn/assets/layer-v2.4/layer/skin/layer.css" rel="stylesheet" type="text/css" />
     <link href="http://cdn.easyfast.cn/assets/sweetalert-master/dist/sweetalert.css" rel="stylesheet" type="text/css" />
-
-    <!--JqueryUI-->
-    <link href="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.structure.min.css" rel="stylesheet">
-    <link href="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.theme.min.css" rel="stylesheet">
-
-    <!--Jtable-->
-    <link href="~/Scripts/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
-
-    <link href="~/Content/jquery.treegrid.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="favicon.ico" />
     <!--自定义样式-->
     <link href="~/Content/site.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.ico" />
 
+   
 
-    <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/jquery.min.js" type="text/javascript"></script>
-
-    @Scripts.Render("~/Bundles/vendor/js/bottom")
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
@@ -1205,7 +1196,9 @@
     <![endif]-->
     <!-- BEGIN CORE PLUGINS -->
 
-
+    <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    @Scripts.Render("~/Bundles/vendor/js/bottom")
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/js.cookie.min.js" type="text/javascript"></script>
@@ -1239,30 +1232,18 @@
     <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/jquery.easyui.min.js" type="text/javascript"></script>
     <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
     <script src="http://cdn.easyfast.cn/assets/jquery-easyui-1.5.1/jquery.easyui.mobile.js" type="text/javascript"></script>
-    <script src="http://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="http://cdn.easyfast.cn/assets/layer-v2.4/layer/layer.js" type="text/javascript"></script>
     <script src="http://cdn.easyfast.cn/assets/sweetalert-master/dist/sweetalert.min.js" type="text/javascript"></script>
-    <script src="http://cdn.easyfast.cn/assets/metronic4.7.1/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
     <script src="~/Scripts/abp.extend.js"></script>
     <script src="~/Scripts/easyui.extend.js"></script>
     <script src="~/Scripts/admin.js"></script>
-    <script src="~/Scripts/jquery.treegrid.min.js"></script>
-    <script src="~/Scripts/jquery.treegrid.bootstrap3.js"></script>
     <script>
         //Localizing momentjs
         moment.locale('@Thread.CurrentThread.CurrentUICulture.Name');
     </script>
 
-    <!--Jtable-->
-    <script src="~/Scripts/jtable/jquery.jtable.js" type="text/javascript"></script>
-    <script src="~/Abp/Framework/scripts/libs/abp.jtable.js" type="text/javascript"></script>
-
-    <script src="~/api/AbpServiceProxies/GetAll"></script>
-    <script src="~/AbpScripts/GetScripts" type="text/javascript"></script>
-    @Html.IncludeScript("/Common/Scripts/ModalManager.js")
-    @Html.IncludeScript("/Scripts/underscore.min.js")
-    @Html.IncludeScript("/Common/Scripts/jquery-custom.js")
     @RenderSection("scripts", required: false)
+
 </body>
 </html> 

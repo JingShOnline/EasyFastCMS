@@ -1,7 +1,9 @@
 ﻿(function () {
 
     $(function () {
-
+        $(".panel window").remove();
+        $(".panel-header panel-header-noborder window-header").remove();
+        $(".dialog-button").remove();
         var columnSerivce = abp.services.app.column;
         var contentService = abp.services.app.content;
 

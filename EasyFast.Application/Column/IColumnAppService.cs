@@ -29,6 +29,13 @@ namespace EasyFast.Application.Column
         Task<PagedResultDto<ColumnGridOutput>> GetColumnGridAsync(PagedSortedAndFilteredInputDto input);
 
 
+        /// <summary>
+        /// 获取栏目列表
+        /// </summary>
+        /// <param name="search">搜索条件及分页设定</param>
+        /// <returns></returns>
+        Task<EasyUIGridOutput<TreeGridOutput>> GetTreeGrid(TreeGridInput search);
+
 
         /// <summary>
         /// 修改栏目
