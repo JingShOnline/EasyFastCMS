@@ -65,6 +65,9 @@
                 method: "post",
                 checkbox: true,
                 lines: true,
+                loadFilter: function (data) {
+                    return data.result.expand();
+                },
                 onClick: function (node) {  //点击事件
                     GetContent(true, node.id)
                 },
@@ -96,8 +99,6 @@
         }
 
 
-        initTreeData();
-        initTreeData();
         initTreeData();
     });
 

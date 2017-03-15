@@ -2,8 +2,37 @@
 @Html.IncludeScript("~/Scripts/jquery-2.2.0.min.js")
 @Html.IncludeScript("/Areas/Admin/Views/Content/index.js")
 
+<div class="row">
+    <div class="col-md-2">
+        <ul id="tree"></ul>
+    </div>
+    <div class="col-md-10">
+        <div class="protlet light">
+            <div class="portlet-title portle-title-filter">
+                <div class="inputs inputs-full-width">
+                    <div class="portlet-input">
+                        <form>
+                            <div class="input-group">
+                                <input id="contentFilter" class="form-control" placeholder="请输入搜索关键词"
+                                       type="text" />
+                                <span class="input-group-btn">
+                                    <button id="GetContentButton" class="btn default" type="submit"><i class="icon-magnifier"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="portlet-body">
+                <div>
+                    <div id="contentTable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<ul id="tree"></ul>
 <div id="mm" class="easyui-menu" style="width: 120px;">
     <div onclick="append()" iconcls="icon-add">
         添加内容
@@ -22,26 +51,11 @@
     </div>
 </div>
 
-<div class="protlet light">
-    <div class="portlet-title portle-title-filter">
-        <div class="inputs inputs-full-width">
-            <div class="portlet-input">
-                <form>
-                    <div class="input-group">
-                        <input id="contentFilter" class="form-control" placeholder="请输入搜索关键词"
-                               type="text" />
-                        <span class="input-group-btn">
-                            <button id="GetContentButton" class="btn default" type="submit"><i class="icon-magnifier"></i></button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <br />
-    <div class="portlet-body">
-        <div>
-            <div id="contentTable"></div>
-        </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+
     </div>
 </div>

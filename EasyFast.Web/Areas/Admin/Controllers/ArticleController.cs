@@ -8,6 +8,6 @@ namespace EasyFast.Web.Areas.Admin.Controllers
 {
     public class ArticleController : Controller
     {
-       public ActionResult 
+       //public ActionResult 
     }
 }
