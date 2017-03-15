@@ -16,6 +16,8 @@ using Abp.UI;
 using EasyFast.Application.Dto;
 using Abp.Linq.Extensions;
 using Abp.Application.Services.Dto;
+using System.Web;
+using System.Web.Http;
 
 namespace EasyFast.Application.Column
 {
@@ -176,10 +178,9 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<List<EasyUITree>> GetColumnEasyTree(int? id = null)
+        public async Task<List<EasyUITree>> GetColumnEasyTree()
         {
-            var query = _columnRepository.GetAll().Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal);
-            query = id.HasValue ? query.Where(o => o.Id == (int)id).Include(o => o.Children) : query.Where(o => o.ParentId == null || o.ParentId == 0);
+            var query = _columnRepository.GetAll().Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children);
             var result = await query.ToListAsync();
             return result.MapTo<List<EasyUITree>>();
         }

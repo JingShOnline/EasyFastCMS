@@ -11,7 +11,7 @@ namespace EasyFast.EntityFramework
 {
     public class EasyFastDbContext : AbpZeroDbContext<Tenant, Role, User>
     {
-        
+
         //TODO: Define an IDbSet for your Entities...
 
         /* NOTE: 
@@ -55,7 +55,8 @@ namespace EasyFast.EntityFramework
         {
             //将表名固定为单数形式
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-
+            //关闭延迟加载
+            this.Configuration.LazyLoadingEnabled = false;
             //关闭级联删除
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();

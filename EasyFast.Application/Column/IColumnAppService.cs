@@ -80,6 +80,6 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<List<EasyUITree>> GetColumnEasyTree(int? id = null);
+        Task<List<EasyUITree>> GetColumnEasyTree();
     }
 }

@@ -14,7 +14,6 @@ namespace EasyFast.Application.Article
     public interface IArticleAppService : IApplicationService
     {
 
-      
         /// <summary>
         /// 添加文章
         /// </summary>

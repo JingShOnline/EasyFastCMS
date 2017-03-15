@@ -21,7 +21,7 @@ namespace EasyFast.Application.Common.Dto
         /// <summary>
         /// 节点展开状态
         /// </summary>
-        public string State { get { return "closed"; } }
+        public string State { get { return "open"; } }
 
         /// <summary>
         /// 子节点

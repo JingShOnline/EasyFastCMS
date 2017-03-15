@@ -63,10 +63,17 @@
             $("#tree").tree({
                 url: "/api/services/app/column/GetColumnEasyTree",
                 method: "post",
-                checkbox: true,
+                onBeforeLoad: function (node, param) {
+                    if (!param.id) {
+                        param.id = null;
+                    }
+
+                },
+                checkbox: false,
+                animate:true,
                 lines: true,
                 loadFilter: function (data) {
-                    return data.result.expand();
+                    return data.result;
                 },
                 onClick: function (node) {  //点击事件
                     GetContent(true, node.id)
@@ -74,7 +81,7 @@
                 onContextMenu: function (e, node) { //右击事件
                     e.preventDefault();
                     $('#tree').tree('select', node.target);
-                    $('#mm').menu('show', {
+                    $('#menuBlur').menu('show', {
                         left: e.pageX,
                         top: e.pageY
                     });
