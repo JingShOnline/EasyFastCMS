@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using EasyFast.Application.Content.Dto;
 using EasyFast.Application.Model.Dto;
 using EasyFast.Core.Entities;
 using System;
@@ -14,7 +15,7 @@ namespace EasyFast.Application.Article.Dto
     /// 文章Dto
     /// </summary>
     [AutoMap(typeof(Content_Article))]
-    public class ArticleDto : ModelDto
+    public class ArticleDto : AddContentDto
     {
         /// <summary>
         /// 标题全称
@@ -31,6 +32,7 @@ namespace EasyFast.Application.Article.Dto
         /// <summary>
         /// 文章内容
         /// </summary>
+        [Required(ErrorMessage = "请输入文章内容")]
         public string Content { get; set; }
     }
 }

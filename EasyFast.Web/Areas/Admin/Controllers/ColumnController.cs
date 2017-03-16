@@ -69,7 +69,8 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public async Task<JsonResult> GetTreeColumnName()
         {
-            return Json(await _columnAppService.GetTreeColumnNameAsync());
+            var data=await _columnAppService.GetTreeColumnNameAsync();
+            return Json(data);
         }
 
 

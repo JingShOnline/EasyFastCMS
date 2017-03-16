@@ -1,4 +1,10 @@
-﻿
+﻿(function () {
+    $(function () {
+        $("#easyui-treegrid").treegrid({
+            url:"/Admin/Column/GetTreeGrid"
+        });
+    });
+})();
 var _columnnService = abp.services.app.column;
 function deleteColumn(id) {
 

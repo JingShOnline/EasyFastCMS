@@ -25,6 +25,11 @@ namespace EasyFast.Application.Model.Dto
         public string Description { get; set; }
 
         /// <summary>
+        /// 关联表名
+        /// </summary>
+        public string TableName { get; set; }
+
+        /// <summary>
         /// 单位
         /// </summary>
         public string Unit { get; set; }
@@ -34,10 +39,11 @@ namespace EasyFast.Application.Model.Dto
         /// </summary>
         public string IsCountHits { get; set; }
 
+
         /// <summary>
-        /// 关联表名
+        /// 最后修改时间
         /// </summary>
-        public string TableName { get; set; }
+        public DateTime? LastModificationTime { get; set; }
 
     }
 }

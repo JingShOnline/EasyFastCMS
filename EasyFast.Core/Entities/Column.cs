@@ -23,6 +23,12 @@ namespace EasyFast.Core.Entities
         public virtual ICollection<Column> Children { get; set; }
 
 
+        public int? ModelId { get; set; }
+
+        [ForeignKey("ModelId")]
+        public virtual Model Model { get; set; }
+
+
         /// <summary>
         /// 栏目名称 不可以重复
         /// </summary>

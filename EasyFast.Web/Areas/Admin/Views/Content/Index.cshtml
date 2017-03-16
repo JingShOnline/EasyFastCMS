@@ -17,36 +17,41 @@
 <div class="row">
     <div class="col-md-2">
         <ul id="tree"></ul>
-        <div id="menuBlur" class="easyui-menu" style="width: 120px; display:none" >
-            <div onclick="append()" iconcls="icon-add">
+        <div id="menuBlur" class="easyui-menu" style="width: 120px; display:none">
+            <div onclick="addContent()" iconcls="icon-add">
                 添加内容
             </div>
         </div>
     </div>
     <div class="col-md-10">
-        <div class="protlet light">
-            <div class="portlet-title portle-title-filter">
-                <div class="inputs inputs-full-width">
-                    <div class="portlet-input">
-                        <form>
-                            <div class="input-group">
-                                <input id="contentFilter" class="form-control" placeholder="请输入搜索关键词"
-                                       type="text" />
-                                <span class="input-group-btn">
-                                    <button id="GetContentButton" class="btn default" type="submit"><i class="icon-magnifier"></i></button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <br />
-            <div class="portlet-body">
-                <div>
-                    <div id="contentTable"></div>
-                </div>
-            </div>
+        <div class="input-group">
+            <input id="filter" class="form-control" placeholder="请输入搜索关键词"
+                   type="text" />
+            <span class="input-group-btn">
+                <button class="btn default" onclick="doSearch()"><i class="icon-magnifier"></i></button>
+            </span>
         </div>
+        <table id="easyui-datagrid" class="easyui-datagrid" data-options="
+               method: 'post',
+               pagination: true,
+               rownumbers:true,
+               pageSize: 20,
+               sortName:'LastModificationTime',
+               sortOrder:'desc',
+               singleSelect:true
+               ">
+            <thead>
+                <tr>
+                    <th data-options="field:'id',width:100,sortable: true">ID</th>
+                    <th data-options="field:'title',width:300,sortable: true">标题</th>
+                    <th data-options="field:'columnName',width:150">所属栏目</th>
+                    <th data-options="field:'modelRecordModelName',width:200">所属模型</th>
+                    <th data-options="field:'hits',width:200,sortable: true">总点击量</th>
+                    <th data-options="field:'lastModificationTime',width:300,sortable: true">最后修改时间</th>
+                    <th data-options="field:'action',width:300,align:'center',formatter:formatOper"></th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 

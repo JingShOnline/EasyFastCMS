@@ -109,6 +109,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
       <Private>True</Private>
@@ -120,6 +121,7 @@
     </Reference>
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -142,6 +144,7 @@
     <Compile Include="Column\Dto\ColumnDtoBase.cs" />
     <Compile Include="Column\Dto\ColumnGridOutput.cs" />
     <Compile Include="Column\Dto\ColumnNameOutput.cs" />
+    <Compile Include="Column\Dto\ColumnTreeMenuOutput.cs" />
     <Compile Include="Column\Dto\SingleColumnDto.cs" />
     <Compile Include="Column\Dto\TreeGridInput.cs" />
     <Compile Include="Column\Dto\TreeGridOutput.cs" />
@@ -155,6 +158,8 @@
     <Compile Include="Config\ISiteConfigAppService.cs" />
     <Compile Include="Config\Dto\SiteOptionDto.cs" />
     <Compile Include="Content\ContentAppService.cs" />
+    <Compile Include="Content\Dto\AddContentDto.cs" />
+    <Compile Include="Content\Dto\DataGridInput.cs" />
     <Compile Include="Content\Dto\GridContentOutput.cs" />
     <Compile Include="Content\Dto\PagedGridContentInput.cs" />
     <Compile Include="Content\IContentAppService.cs" />
@@ -167,6 +172,7 @@
     <Compile Include="Model\Dto\BasicModelOutput.cs" />
     <Compile Include="Model\Dto\GetModelsInput.cs" />
     <Compile Include="Model\Dto\ModelDto.cs" />
+    <Compile Include="Model\Dto\TreeGridInput.cs" />
     <Compile Include="Model\IModelAppService.cs" />
     <Compile Include="Model\ModelAppService.cs" />
     <Compile Include="Model\ModelDtoMapping.cs" />
@@ -180,6 +186,8 @@
     <Compile Include="Template\Dto\GetTreeOutput.cs" />
     <Compile Include="Template\TemplateAppService.cs" />
     <Compile Include="Template\ITemplateAppService.cs" />
+    <Compile Include="Upload\IUploadFileAppService.cs" />
+    <Compile Include="Upload\UploadFileAppService.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />
     <Compile Include="Users\IUserAppService.cs" />
     <Compile Include="Roles\RoleAppService.cs" />

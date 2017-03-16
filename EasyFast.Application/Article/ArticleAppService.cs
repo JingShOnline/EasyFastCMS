@@ -18,9 +18,11 @@ namespace EasyFast.Application.Article
     {
         private readonly IRepository<Content_Article> _articleRepository;
 
-        public ArticleAppService(IRepository<Content_Article> articleRepository)
+        private readonly IRepository<Common_Model> _commonModelRepository;
+        public ArticleAppService(IRepository<Content_Article> articleRepository, IRepository<Common_Model> commonModelRepository)
         {
-            this._articleRepository = articleRepository;
+            _articleRepository = articleRepository;
+            _commonModelRepository = commonModelRepository;
         }
 
 
@@ -37,8 +39,9 @@ namespace EasyFast.Application.Article
                 await UpdateArticle(dto);
         }
 
-        public async Task DeleteArticle(int id)
+        public async Task DeleteAsync(int id)
         {
+            await _commonModelRepository.DeleteAsync(id);
             await _articleRepository.DeleteAsync(id);
         }
 

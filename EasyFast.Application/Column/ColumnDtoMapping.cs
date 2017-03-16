@@ -19,7 +19,8 @@ namespace EasyFast.Application.Column
             //表格Dto转换
             mapperConfig.CreateMap<Core.Entities.Column, ColumnGridOutput>().ForMember("ColumnType", o => o.MapFrom(c => c.ColumnTypeEnum.GetAttributeValue<DescriptionAttribute>("Description")));
             //easyUi tree转换
-            mapperConfig.CreateMap<Core.Entities.Column, EasyUITree>().ForMember(o => o.Text, o => o.MapFrom(c => c.Name));
+            //
+            mapperConfig.CreateMap<Core.Entities.Column, ColumnTreeMenuOutput>().ForMember(o => o.Text, o => o.MapFrom(c => c.Name));
         }
     }
 }

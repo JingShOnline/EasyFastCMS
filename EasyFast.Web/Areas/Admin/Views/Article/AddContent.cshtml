@@ -1,0 +1,72 @@
+﻿@model EasyFast.Application.Article.Dto.ArticleDto
+<script type="text/javascript">
+    $(function () {
+        var content = UM.getEditor("articlecontent");
+    })
+
+
+    function submitConent() {
+        var $form = $("#addContent");
+
+        if (!$form.valid()) {
+            abp.notify.error("您有未填写的必填项,请向上翻动页面查看");
+            return;
+        }
+        var $div = $form.parent();
+        var data = $form.serializeFormToJson();
+        abp.ui.setBusy($div);
+        abp.ajax({
+            url: '/api/services/app/article/AddOrUpdateArticle',
+            data: $form.serializeFormToJson(),
+        }).done(function () {
+            abp.message.success("添加文章成功!", "操作成功");
+            window.location.href = "Index";
+
+        }).always(function () {
+            abp.ui.clearBusy($div);
+        });
+    }
+
+
+</script>
+
+
+
+<script type="text/javascript" src="~/Ueditor/umeditor.config.js"></script>
+<script type="text/javascript" src="~/Ueditor/umeditor.min.js"></script>
+<link rel="stylesheet" href="~/Ueditor/themes/default/css/umeditor.min.css" />
+<div class="form-group">
+    <label class="control-label col-md-2">二级标题</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-folder-o"></i>
+            </span>
+            @Html.TextAreaFor(model => model.ShortTitle, new { @class = "form-control", rows = "5", placeholder = "请输入二级标题" })
+        </div>
+        @Html.ValidationMessageFor(model => model.ShortTitle, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">完整标题</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-folder-o"></i>
+            </span>
+            @Html.TextAreaFor(model => model.FullTitle, new { @class = "form-control", rows = "5", placeholder = "请输入完整标题" })
+        </div>
+        @Html.ValidationMessageFor(model => model.FullTitle, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">请输入文章内容</label>
+    <div class="col-md-10">
+        <script id="articlecontent" name="content" type="text/plain" style="width:80%">
+            <p>@Html.Raw(Model.Content)</p>
+        </script>
+    </div>
+</div>
+
+
+

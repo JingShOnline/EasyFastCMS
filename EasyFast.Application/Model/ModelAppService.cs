@@ -11,6 +11,7 @@ using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using EasyFast.Application.Model.Dto;
+using EasyFast.Application.Common.Dto;
 
 namespace EasyFast.Application.Model
 {
@@ -30,24 +31,18 @@ namespace EasyFast.Application.Model
 
 
         /// <summary>
-        /// 分页获取内容模型记录基本信息带有搜索
+        /// 分页获取内容模型记录基本信息
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<PagedResultDto<BasicModelOutput>> GetModels(GetModelsInput input)
+        public async Task<EasyUIGridOutput<BasicModelOutput>> GetModels(TreeGridInput input)
         {
             var result = _modelRepository.GetAll();
-            if (!string.IsNullOrWhiteSpace(input.Filter))
-            {
-                result = result.Where(o => o.ModelName.Contains(input.Filter));
-            }
-            int totalCount = await result.CountAsync();
 
-            var list = await result.OrderBy(input.Sorting).PageBy(input).ToListAsync();
-            return new PagedResultDto<BasicModelOutput>(
-                   totalCount,
-                   list.MapTo<List<BasicModelOutput>>()
-                   );
+            int totalCount = await result.CountAsync();
+            var list = await result.OrderBy($"{input.Sort} {input.Order}").Skip((input.Page - 1) * input.Rows).ToListAsync();
+
+            return new EasyUIGridOutput<BasicModelOutput> { total = totalCount, rows = list.MapTo<List<BasicModelOutput>>() };
         }
 
         /// <summary>

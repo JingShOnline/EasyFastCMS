@@ -178,12 +178,25 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<List<EasyUITree>> GetColumnEasyTree()
+        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree()
         {
             var query = _columnRepository.GetAll().Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children);
             var result = await query.ToListAsync();
-            return result.MapTo<List<EasyUITree>>();
+            var list = result.MapTo<List<ColumnTreeMenuOutput>>();
+            ToEasyUiTree(list);
+            return list;
         }
+
+
+        private void ToEasyUiTree(List<ColumnTreeMenuOutput> list)
+        {
+            foreach (var temp in list)
+            {
+                temp.Attributes = new { ModelId = temp.ModelId, Controller = temp.ModelManagerControlerPath, ModelName = temp.ModelModelName };
+                ToEasyUiTree(temp.Children);
+            }
+        }
+
         /// <summary>
         /// 分页获取栏目用于表格展示
         /// </summary>

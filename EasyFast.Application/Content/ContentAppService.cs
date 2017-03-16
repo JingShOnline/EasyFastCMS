@@ -1,10 +1,6 @@
 ﻿using Abp.Application.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Abp.Application.Services.Dto;
 using EasyFast.Application.Content.Dto;
 using Abp.Domain.Repositories;
 using EasyFast.Core.Entities;
@@ -12,7 +8,9 @@ using Abp.Collections.Extensions;
 using System.Linq.Dynamic;
 using System.Data.Entity;
 using Abp.Linq.Extensions;
-using Abp.AutoMapper;
+using EasyFast.Application.Common.Dto;
+using AutoMapper.QueryableExtensions;
+using System;
 
 namespace EasyFast.Application.Content
 {
@@ -30,19 +28,28 @@ namespace EasyFast.Application.Content
         }
 
         /// <summary>
+        /// 删除内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task DeleteContent(int id)
+        {
+            await _commonModelRepository.DeleteAsync(id);
+        }
+
+        /// <summary>
         /// 分页并搜索获取内容信息
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<PagedResultDto<GridContentOutput>> GetGridContents(PagedGridContentInput input)
+        public async Task<EasyUIGridOutput<GridContentOutput>> GetGridContents(DataGridInput input)
         {
-            input.Sorting = input.Sorting ?? "LastModificationTime";
             var query = _commonModelRepository.GetAll()
-                .WhereIf(input.ColumnId.HasValue, o => o.ColumnId == input.ColumnId)
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), o => o.Title.Contains(input.Filter) || o.Info.Contains(input.Filter) || o.Guide.Contains(input.Filter));
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), o => o.Title.Contains(input.Filter) || o.Info.Contains(input.Filter) || o.Guide.Contains(input.Filter))
+                .WhereIf(input.ColumnId.HasValue, o => o.ColumnId == (int)input.ColumnId);
             var count = await query.CountAsync();
-            var list = query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
-            return new PagedResultDto<GridContentOutput>(count, list.MapTo<List<GridContentOutput>>());
+            var list = await query.OrderBy($"{input.Sort} {input.Order}").Skip((input.Page - 1) * input.Rows).Take(input.Rows).ProjectTo<GridContentOutput>().ToListAsync();
+            return new EasyUIGridOutput<GridContentOutput> { total = count, rows = list };
         }
     }
 }

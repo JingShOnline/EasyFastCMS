@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EasyFast.Application.Common.Dto;
 
 namespace EasyFast.Application.Content
 {
@@ -19,6 +20,13 @@ namespace EasyFast.Application.Content
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PagedResultDto<GridContentOutput>> GetGridContents(PagedGridContentInput input);
+        Task<EasyUIGridOutput<GridContentOutput>> GetGridContents(DataGridInput input);
+
+        /// <summary>
+        /// 删除内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task DeleteContent(int id);
     }
 }

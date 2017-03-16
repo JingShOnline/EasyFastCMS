@@ -137,9 +137,9 @@
     <Compile Include="Migrations\201703120611446_Init.Designer.cs">
       <DependentUpon>201703120611446_Init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201703150921207_20170315_Add_Entities.cs" />
-    <Compile Include="Migrations\201703150921207_20170315_Add_Entities.Designer.cs">
-      <DependentUpon>201703150921207_20170315_Add_Entities.cs</DependentUpon>
+    <Compile Include="Migrations\201703160505427_20170316_add_entities.cs" />
+    <Compile Include="Migrations\201703160505427_20170316_add_entities.Designer.cs">
+      <DependentUpon>201703160505427_20170316_add_entities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -168,8 +168,8 @@
     <EmbeddedResource Include="Migrations\201703120611446_Init.resx">
       <DependentUpon>201703120611446_Init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703150921207_20170315_Add_Entities.resx">
-      <DependentUpon>201703150921207_20170315_Add_Entities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703160505427_20170316_add_entities.resx">
+      <DependentUpon>201703160505427_20170316_add_entities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

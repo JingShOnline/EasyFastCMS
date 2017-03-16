@@ -40,6 +40,6 @@ namespace EasyFast.Application.Article
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteArticle(int id);
+        Task DeleteAsync(int id);
     }
 }

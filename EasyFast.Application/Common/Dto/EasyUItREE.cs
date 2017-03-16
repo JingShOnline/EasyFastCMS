@@ -10,7 +10,7 @@ namespace EasyFast.Application.Common.Dto
     /// <summary>
     /// EasyUi树形菜单
     /// </summary>
-    public class EasyUITree
+    public class EasyUITree<T>
     {
         public int Id { get; set; }
         /// <summary>
@@ -23,9 +23,11 @@ namespace EasyFast.Application.Common.Dto
         /// </summary>
         public string State { get { return "open"; } }
 
+
         /// <summary>
         /// 子节点
         /// </summary>
-        public List<EasyUITree> Children { get; set; }
+        public virtual List<T> Children { get; set; }
+
     }
 }

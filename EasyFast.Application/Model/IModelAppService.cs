@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using EasyFast.Application.Model.Dto;
+using EasyFast.Application.Common.Dto;
 
 namespace EasyFast.Application.Model
 {
@@ -16,11 +17,11 @@ namespace EasyFast.Application.Model
     {
 
         /// <summary>
-        /// 分页获取内容模型记录基本信息带有搜索
+        /// 分页获取内容模型记录基本信息
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        Task<PagedResultDto<BasicModelOutput>> GetModels(GetModelsInput input);
+        Task<EasyUIGridOutput<BasicModelOutput>> GetModels(TreeGridInput input);
 
         /// <summary>
         /// 删除模型
