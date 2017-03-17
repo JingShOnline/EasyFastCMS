@@ -19,27 +19,29 @@ namespace EasyFast.Application.Article
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task AddArticle(ArticleDto dto);
+        Task AddAsync(ArticleDto dto);
 
         /// <summary>
         /// 修改文章
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task UpdateArticle(ArticleDto dto);
+        Task UpdateAsync(ArticleDto dto);
 
         /// <summary>
         /// 添加或修改文章
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task AddOrUpdateArticle(ArticleDto dto);
+        Task AddOrUpdateAsync(ArticleDto dto);
+
+
 
         /// <summary>
-        /// 删除文章
+        /// 获取
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task DeleteAsync(int id);
+        Task<ArticleDto> GetAsync(int id);
     }
 }

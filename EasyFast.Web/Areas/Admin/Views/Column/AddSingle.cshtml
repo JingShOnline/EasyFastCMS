@@ -156,22 +156,22 @@
 </div>
 @section Scripts {
     <script>
-        var selectedColumn = '@Model.ParentId'
+        var selectedColumn = '@Model.ParentId';
         var curentId = '@Model.Id';
         (function () {
-            $(function () {
+            $(function() {
 
                 abp.ajax({
                     url: "@Url.Action("GetTreeColumnName","Column")"
-                }).done(function (data) {
-                    var html = setTreeColumnSelect(data, "<select Name='ParentId' class='form-control col-md-1' required:true'><option value=''>请选择栏目</option>");
+                }).done(function(data) {
+                    var html = setTreeColumnSelect(data,
+                        "<select Name='ParentId' class='form-control col-md-1' required:true'><option value=''>请选择栏目</option>");
                     html += "</select>";
                     var select = $("#treeDiv").html(html);
                 });
 
 
-
-            })
+            });
         })();
 
         $("#submit").click(function () {

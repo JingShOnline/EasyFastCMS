@@ -14,10 +14,11 @@
     <div class="portlet-body form">
         <!-- BEGIN FORM-->
         <form id="addContent" class="form-horizontal form-bordered form-row-stripped">
+            @Html.HiddenFor(model=>model.Id)
             @Html.HiddenFor(model => model.ColumnId)
             @Html.HiddenFor(model => model.ModelId)
             @Html.HiddenFor(model => model.DefaultPicUrl)
-            <input type="hidden" id="Dir" name="Dir" value="/" />
+            <input type="hidden" id="Dir" name="Dir" value="/"/>
             <div class="form-body">
                 <div class="form-group">
                     <label class="control-label col-md-2">标题</label>
@@ -26,13 +27,13 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-share-alt"></i>
                             </span>
-                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入标题" } })
+                            @Html.EditorFor(model => model.Title, new {htmlAttributes = new {@class = "form-control", placeholder = "请输入标题"}})
                         </div>
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 <!--具体内容-->
-                @{Html.RenderAction("AddContent", (string)ViewBag.ctrl);}
+                @{Html.RenderAction((string) ViewBag.action, (string) ViewBag.ctrl);}
                 <div class="form-group">
                     <label class="control-label col-md-2">简介</label>
                     <div class="col-md-10">
@@ -40,16 +41,17 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-share-alt"></i>
                             </span>
-                            @Html.EditorFor(model => model.Info, new { htmlAttributes = new { @class = "form-control", placeholder = "请填写简介" } })
+                            @Html.EditorFor(model => model.Info, new {htmlAttributes = new {@class = "form-control", placeholder = "请填写简介"}})
                         </div>
-                        @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Info, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2">默认图片</label>
                     <div class="col-md-10">
                         <div id="defaultPic">
-                            <div id="fileList" class="uploader-list"></div>
+                            <div id="fileList" class="uploader-list"><img src="@Model.DefaultPicUrl"/>
+                            </div>
                             <div id="filePicker">选择图片</div>
                         </div>
                     </div>
@@ -61,9 +63,9 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-text-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.Hits, new { htmlAttributes = new { @class = "form-control", placeholder = "输入一个数字", style = "width:200px;" } })
+                            @Html.EditorFor(model => model.Hits, new {htmlAttributes = new {@class = "form-control", placeholder = "输入一个数字", style = "width:200px;"}})
                         </div>
-                        @Html.ValidationMessageFor(model => model.Hits, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Hits, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 <div class="form-group">
@@ -73,9 +75,9 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-code-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.Keyword, new { htmlAttributes = new { @class = "form-control", placeholder = "搜索关键字用逗号隔开", style = "width:200px;" } })
+                            @Html.EditorFor(model => model.Keyword, new {htmlAttributes = new {@class = "form-control", placeholder = "搜索关键字用逗号隔开", style = "width:200px;"}})
                         </div>
-                        @Html.ValidationMessageFor(model => model.Keyword, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Keyword, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 <div class="form-group">
@@ -85,9 +87,9 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-folder-o"></i>
                             </span>
-                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = "5", placeholder = "搜索引擎描述" })
+                            @Html.TextAreaFor(model => model.Description, new {@class = "form-control", rows = "5", placeholder = "搜索引擎描述"})
                         </div>
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
                     </div>
                 </div>
                 <div class="form-actions">
@@ -96,7 +98,7 @@
                             <button id="submit" onclick="submitConent()" type="button" class="btn blue">
                                 <i class="fa fa-check"></i>提交
                             </button>
-                            <button type="button" onclick="location.href='Index'" class="btn default">
+                            <button type="button" onclick="location.href = 'Index'" class="btn default">
                                 <i class="fa fa-reply"></i>返回
                             </button>
                         </div>
@@ -122,9 +124,9 @@
             mimeTypes: 'image/*'
         },
         formData: {
-            modelName:'@ViewBag.modelName'
+            modelName: '@ViewBag.modelName'
         }
-    })
+    });
 
 
     upload.on('fileQueued', function (file) {
@@ -155,7 +157,8 @@
 
         $('#' + file.id).addClass('upload-state-done');
         abp.notify.success("上传默认图片成功!");
-        $("input[name=DefaultPicUrl]").val()
+        $("#DefaultPicUrl").val(response);
+        console.log($("#DefaultPicUrl").val());
     });
 
 </script>

@@ -5,12 +5,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.AutoMapper;
+using EasyFast.Core.Entities;
 
 namespace EasyFast.Application.Content.Dto
 {
     /// <summary>
     /// 添加内容时所用的Dto 也可用于 编辑 操作
     /// </summary>
+    [AutoMap(typeof(Common_Model))]
     public class AddContentDto : EntityDto
     {
         /// <summary>

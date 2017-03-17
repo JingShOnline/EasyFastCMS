@@ -26,30 +26,33 @@ namespace EasyFast.Application.Article
         }
 
 
-        public async Task AddArticle(ArticleDto dto)
+        public async Task AddAsync(ArticleDto dto)
         {
             await _articleRepository.InsertAsync(dto.MapTo<Content_Article>());
         }
 
-        public async Task AddOrUpdateArticle(ArticleDto dto)
+        public async Task AddOrUpdateAsync(ArticleDto dto)
         {
             if (dto.Id == 0)
-                await AddArticle(dto);
+                await AddAsync(dto);
             else
-                await UpdateArticle(dto);
+                await UpdateAsync(dto);
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            await _commonModelRepository.DeleteAsync(id);
-            await _articleRepository.DeleteAsync(id);
-        }
 
-        public async Task UpdateArticle(ArticleDto dto)
+
+        public async Task UpdateAsync(ArticleDto dto)
         {
             var model = await _articleRepository.GetAsync(dto.Id);
             dto.MapTo(model);
             await _articleRepository.UpdateAsync(model);
+        }
+
+        public async Task<ArticleDto> GetAsync(int id)
+        {
+            var model = await _articleRepository.GetAsync(id);
+
+            return model.MapTo<ArticleDto>();
         }
     }
 }

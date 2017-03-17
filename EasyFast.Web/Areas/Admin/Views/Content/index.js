@@ -12,7 +12,7 @@
 })();
 
 var nodetemp;
-
+var _contentService = abp.services.app.content;
 function initTreeData() {
     $("#tree").tree({
         url: "/api/services/app/column/GetColumnEasyTree",
@@ -29,7 +29,7 @@ function initTreeData() {
             return data.result;
         },
         onClick: function (node) {  //点击事件
-            doSearch(node.id)
+            doSearch(node.id);
         },
         onContextMenu: function (e, node) { //右击事件
             e.preventDefault();
@@ -46,15 +46,16 @@ function initTreeData() {
 
 function formatOper(val, row, index) {
 
-    return "<a href='/Admin/Content/UpdateContent?id=" +
-        row.id +
-        "' class='btn green opt'><i class='fa fa-plus-square'></i>修改</a>&nbsp;" +
-        "<button class='btn red opt' onclick='deleteContent(&quot;" +
-        row.id +
-        "&quot;,&quot;" + row.modelRecordManagerControlerPath + "&quot;)'><i class='fa fa-plus-square'></i>删除</button>";
+    return "<a onclick='editContent(&quot;" + row.id + "&quot;,&quot;" + row.modelRecordManagerControlerPath + "&quot;,&quot;" + row.modelRecordModelName + "&quot;)' href='#' class='btn green opt'><i class='fa fa-plus-square'></i>修改</a>" +
+        "&nbsp;" +
+        "<button class='btn red opt' onclick='deleteContent(&quot;" + row.id + "&quot;)'><i class='fa fa-plus-square'></i>删除</button>";
 }
 
-
+function editContent(id, ctrl, modelName) {
+    var url = "/Admin/Content/UpdateContent?id=" + id + "&ctrl=" + ctrl + "&modelName=" + modelName + "";
+    url = encodeURI(url);
+    window.location.href = url;
+}
 
 
 //搜索
@@ -65,19 +66,16 @@ function doSearch(columnId) {
     });
 }
 
-function deleteContent(id, controller) {
+function deleteContent(id) {
     abp.message.confirm(
         '这将会删除此内容',
         '确定吗',
         function (isConfirmed) {
             if (isConfirmed) {
-                abp.ajax({
-                    url: "/Admin/" + controller + "/DeleteAsync",
-                    data: JSON.stringify({ id: id })
-                }).done(function () {
-                    app.notify.success("已经删除该内容", "操作成功");
+                _contentService.deleteContent(id).done(function () {
+                    abp.notify.success("已经删除该内容", "操作成功");
                     doSearch();
-                })
+                });
             }
         }
     );
@@ -87,6 +85,6 @@ function deleteContent(id, controller) {
 function addContent() {
     //后期换成易于SEO路由
     var url = "/Admin/Content/AddContent?modelId=" + nodetemp.attributes.modelId + "&ctrl=" + nodetemp.attributes.controller + "&columnId=" + nodetemp.id + "&modelName=" + nodetemp.attributes.modelName + "";
-    var url = encodeURI(url);
+    url = encodeURI(url);
     window.location.href = url;
 }

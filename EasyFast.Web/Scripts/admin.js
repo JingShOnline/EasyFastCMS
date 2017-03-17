@@ -12,3 +12,5 @@ function FormatColumnName(val, row) {
         return '<a href="/Admin/Column/SingleUpdate/' + row.Id + '">' + val + '</a>';
     }
 }
+
+

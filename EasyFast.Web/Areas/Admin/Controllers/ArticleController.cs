@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Threading;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
@@ -32,14 +33,15 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 删除文章
+        /// 修改文章
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task DeleteAsync(int id)
+        public ActionResult UpdateContent(int id)
         {
-            await _articleAppService.DeleteAsync(id);
+            var model = AsyncHelper.RunSync(() => _articleAppService.GetAsync(id));
+
+
+            return PartialView("AddContent", model);
         }
 
     }

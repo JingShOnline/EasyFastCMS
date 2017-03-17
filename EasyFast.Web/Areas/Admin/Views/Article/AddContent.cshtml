@@ -1,8 +1,18 @@
 ﻿@model EasyFast.Application.Article.Dto.ArticleDto
+
+
+<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+<script type="text/javascript" src="~/Ueditor/umeditor.config.js"></script>
+<script type="text/javascript" src="~/Ueditor/umeditor.js"></script>
+<link rel="stylesheet" href="~/Ueditor/themes/default/css/umeditor.min.css" />
 <script type="text/javascript">
     $(function () {
-        var content = UM.getEditor("articlecontent");
-    })
+        var content = UM.getEditor("articlecontent",
+            {
+                //图片上传处理
+                imageUrl: "/Ueditor/net/imageUp.ashx"
+            });
+    });
 
 
     function submitConent() {
@@ -13,13 +23,12 @@
             return;
         }
         var $div = $form.parent();
-        var data = $form.serializeFormToJson();
         abp.ui.setBusy($div);
         abp.ajax({
-            url: '/api/services/app/article/AddOrUpdateArticle',
-            data: $form.serializeFormToJson(),
+            url: '/api/services/app/article/addOrUpdateAsync',
+            data: $form.serializeFormToJson()
         }).done(function () {
-            abp.message.success("添加文章成功!", "操作成功");
+            abp.notify.success("添加文章成功", "操作成功");
             window.location.href = "Index";
 
         }).always(function () {
@@ -31,10 +40,6 @@
 </script>
 
 
-
-<script type="text/javascript" src="~/Ueditor/umeditor.config.js"></script>
-<script type="text/javascript" src="~/Ueditor/umeditor.min.js"></script>
-<link rel="stylesheet" href="~/Ueditor/themes/default/css/umeditor.min.css" />
 <div class="form-group">
     <label class="control-label col-md-2">二级标题</label>
     <div class="col-md-10">

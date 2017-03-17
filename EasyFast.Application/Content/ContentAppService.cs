@@ -11,6 +11,7 @@ using Abp.Linq.Extensions;
 using EasyFast.Application.Common.Dto;
 using AutoMapper.QueryableExtensions;
 using System;
+using Abp.AutoMapper;
 
 namespace EasyFast.Application.Content
 {
@@ -50,6 +51,17 @@ namespace EasyFast.Application.Content
             var count = await query.CountAsync();
             var list = await query.OrderBy($"{input.Sort} {input.Order}").Skip((input.Page - 1) * input.Rows).Take(input.Rows).ProjectTo<GridContentOutput>().ToListAsync();
             return new EasyUIGridOutput<GridContentOutput> { total = count, rows = list };
+        }
+
+        /// <summary>
+        /// 根据id获取内容
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<AddContentDto> GetContent(int id)
+        {
+            var model = await _commonModelRepository.GetAsync(id);
+            return model.MapTo<AddContentDto>();
         }
     }
 }

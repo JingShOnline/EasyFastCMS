@@ -28,5 +28,13 @@ namespace EasyFast.Application.Content
         /// <param name="id"></param>
         /// <returns></returns>
         Task DeleteContent(int id);
+
+
+        /// <summary>
+        /// 根据id获取内容用于编辑
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<AddContentDto> GetContent(int id);
     }
 }

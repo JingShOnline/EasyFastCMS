@@ -1,7 +1,7 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @using EasyFast.Application.Column.Dto
 
-@Html.IncludeScript("/Areas/Admin/Views/Column/index.js");
+@Html.IncludeScript("/Areas/Admin/Views/Column/index.js")
 
 <div class="row">
     <div class="col-md-12 opt">
@@ -22,7 +22,7 @@
                 <tr>
                     <th data-options="field:'Id',width:100,sortable: true">ID</th>
                     <th data-options="field:'Name',width:300,sortable: true">栏目名称</th>
-                    <th data-options="field:'ColumnTypeEnum',width:300,sortable: true">栏目类型</th>
+                    <th data-options="field:'ColumnTypeEnum',width:150,sortable: true">栏目类型</th>
                     <th data-options="field:'ContentCount',width:300,sortable: true">数据量</th>
                     <th data-options="field:'OrderId',width:300,sortable: true">顺序</th>
                     <th data-options="field:'xxx',width:300,align:'center',formatter:formatOper">操作</th>
