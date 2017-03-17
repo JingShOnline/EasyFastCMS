@@ -23,7 +23,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         /// <returns></returns>
         public JsonResult ColumnIndexGnerate(List<int> ids)
         {
-
+            return null;
         }
 
         /// <summary>

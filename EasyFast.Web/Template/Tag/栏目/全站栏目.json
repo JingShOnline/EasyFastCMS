@@ -1,4 +1,4 @@
 ﻿{
-  "Querysql": "select Name,Id,ParentId,ColumnTypeEnum,ImageUrl,OrderId form column order by order desc",
+  "Querysql": "select Name,Id,ParentId,ColumnTypeEnum,ImageUrl,OrderId form column order by orderId desc",
   "TempLate": "/Template/Tag/栏目/全站栏目.cshtml"
 }
