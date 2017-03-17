@@ -19,6 +19,8 @@ namespace EasyFast.Api
                 .ForAll<IApplicationService>(typeof(EasyFastApplicationModule).Assembly, "app")
                 .Build();
 
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+
             Configuration.Modules.AbpWebApi().HttpConfiguration.Filters.Add(new HostAuthenticationFilter("Bearer"));
         }
     }

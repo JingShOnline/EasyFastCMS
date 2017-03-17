@@ -1,8 +1,5 @@
 ﻿using EasyFast.Web.Controllers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
@@ -16,6 +13,17 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+
+        /// <summary>
+        /// 根据选择的栏目id生成首页静态文件
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public JsonResult ColumnIndexGnerate(List<int> ids)
+        {
+
         }
 
         /// <summary>
@@ -44,5 +52,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         {
             return View();
         }
+
+
     }
 }

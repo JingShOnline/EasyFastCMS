@@ -1,4 +1,6 @@
-﻿namespace EasyFast.Core
+﻿using System.Web;
+
+namespace EasyFast.Core
 {
     public class EasyFastConsts
     {
@@ -17,6 +19,8 @@
         /// <summary>
         /// 上传文件保存路径
         /// </summary>
-        public const string UploadFilePath = "\\Upload\\";
+        public const string UploadFilePath = "Upload";
+
+        public static string HostUrl = $"http://{HttpContext.Current.Request.Url.Host.ToString()}:{HttpContext.Current.Request.Url.Port.ToString()}/";
     }
 }

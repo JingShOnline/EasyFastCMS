@@ -169,6 +169,10 @@
     <Compile Include="Dto\PagedSortedAndFilteredInputDto.cs" />
     <Compile Include="EasyFastApplicationModule.cs" />
     <Compile Include="EasyFastAppServiceBase.cs" />
+    <Compile Include="HtmlGenerate\IHtmlGenerateAppService.cs" />
+    <Compile Include="Lawyer\Dto\LawyerDto.cs" />
+    <Compile Include="Lawyer\ILawyerAppService.cs" />
+    <Compile Include="Lawyer\LawyerAppService.cs" />
     <Compile Include="Model\Dto\BasicModelOutput.cs" />
     <Compile Include="Model\Dto\GetModelsInput.cs" />
     <Compile Include="Model\Dto\ModelDto.cs" />
@@ -186,6 +190,7 @@
     <Compile Include="Template\Dto\GetTreeOutput.cs" />
     <Compile Include="Template\TemplateAppService.cs" />
     <Compile Include="Template\ITemplateAppService.cs" />
+    <Compile Include="Upload\Dto\WebUploadDto.cs" />
     <Compile Include="Upload\IUploadFileAppService.cs" />
     <Compile Include="Upload\UploadFileAppService.cs" />
     <Compile Include="Users\Dto\CreateUserInput.cs" />

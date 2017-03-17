@@ -16,11 +16,10 @@ var _contentService = abp.services.app.content;
 function initTreeData() {
     $("#tree").tree({
         url: "/api/services/app/column/GetColumnEasyTree",
-        method: "post",
+        method: "get",
         onBeforeLoad: function (node, param) {
-            if (!param.id) {
-                param.id = null;
-            }
+            param.isIndexHtml = null;
+            
         },
         checkbox: false,
         animate: true,
@@ -45,14 +44,13 @@ function initTreeData() {
 
 
 function formatOper(val, row, index) {
-
-    return "<a onclick='editContent(&quot;" + row.id + "&quot;,&quot;" + row.modelRecordManagerControlerPath + "&quot;,&quot;" + row.modelRecordModelName + "&quot;)' href='#' class='btn green opt'><i class='fa fa-plus-square'></i>修改</a>" +
+    return "<a onclick='editContent(&quot;" + row.id + "&quot;,&quot;" + row.modelRecordManagerControlerPath + "&quot;,&quot;" + row.columnName + "&quot;)' href='#' class='btn green opt'><i class='fa fa-plus-square'></i>修改</a>" +
         "&nbsp;" +
         "<button class='btn red opt' onclick='deleteContent(&quot;" + row.id + "&quot;)'><i class='fa fa-plus-square'></i>删除</button>";
 }
 
-function editContent(id, ctrl, modelName) {
-    var url = "/Admin/Content/UpdateContent?id=" + id + "&ctrl=" + ctrl + "&modelName=" + modelName + "";
+function editContent(id, ctrl, columnName) {
+    var url = "/Admin/Content/UpdateContent?id=" + id + "&ctrl=" + ctrl + "&columnName=" + columnName + "";
     url = encodeURI(url);
     window.location.href = url;
 }
@@ -84,7 +82,7 @@ function deleteContent(id) {
 
 function addContent() {
     //后期换成易于SEO路由
-    var url = "/Admin/Content/AddContent?modelId=" + nodetemp.attributes.modelId + "&ctrl=" + nodetemp.attributes.controller + "&columnId=" + nodetemp.id + "&modelName=" + nodetemp.attributes.modelName + "";
+    var url = "/Admin/Content/AddContent?modelId=" + nodetemp.attributes.modelId + "&ctrl=" + nodetemp.attributes.controller + "&columnId=" + nodetemp.id + "&columnName=" + nodetemp.text + "";
     url = encodeURI(url);
     window.location.href = url;
 }

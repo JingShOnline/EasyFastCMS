@@ -12,7 +12,7 @@ using Abp.AutoMapper;
 namespace EasyFast.Application.Article
 {
     /// <summary>
-    /// 文章资源
+    /// 文章内容资源
     /// </summary>
     public class ArticleAppService : ApplicationService, IArticleAppService
     {

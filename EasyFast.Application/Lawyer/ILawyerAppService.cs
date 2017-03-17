@@ -1,47 +1,46 @@
 ﻿using Abp.Application.Services;
-using EasyFast.Application.Article.Dto;
+using EasyFast.Application.Lawyer.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EasyFast.Application.Article
+namespace EasyFast.Application.Lawyer
 {
     /// <summary>
-    /// 文章内容资源 
+    /// 律师内容资源 
     /// </summary>
-    public interface IArticleAppService : IApplicationService
+    public interface ILawyerAppService : IApplicationService
     {
-
         /// <summary>
-        /// 添加文章
+        /// 添加律师
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task AddAsync(ArticleDto dto);
+        Task AddAsync(LawyerDto dto);
 
         /// <summary>
-        /// 修改文章
+        /// 修改律师
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task UpdateAsync(ArticleDto dto);
+        Task UpdateAsync(LawyerDto dto);
 
         /// <summary>
-        /// 添加或修改文章
+        /// 添加或修改律师
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task AddOrUpdateAsync(ArticleDto dto);
+        Task AddOrUpdateAsync(LawyerDto dto);
 
 
 
         /// <summary>
-        /// 获取
+        /// 获取律师
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<ArticleDto> GetAsync(int id);
+        Task<LawyerDto> GetAsync(int id);
     }
 }

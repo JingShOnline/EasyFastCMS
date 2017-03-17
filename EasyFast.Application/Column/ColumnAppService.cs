@@ -178,9 +178,10 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree()
+        [HttpGet]
+        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool? isIndexHtml)
         {
-            var query = _columnRepository.GetAll().Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children);
+            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).WhereIf(isIndexHtml.HasValue, o => o.IsIndexHtml).Include(o => o.Children);
             var result = await query.ToListAsync();
             var list = result.MapTo<List<ColumnTreeMenuOutput>>();
             ToEasyUiTree(list);

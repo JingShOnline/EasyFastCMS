@@ -1,0 +1,49 @@
+﻿@model EasyFast.Application.Lawyer.Dto.LawyerDto
+@using Abp.Web.Mvc.Extensions
+<div class="form-group">
+    <label class="control-label col-md-2">职位</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-folder-o"></i>
+            </span>
+
+            @Html.TextBoxFor(model => model.Position, new { @class = "form-control", rows = "5", placeholder = "请输入职位描述" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">手机号码</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-folder-o"></i>
+            </span>
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", rows = "5", placeholder = "请输入手机号码" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">邮箱地址</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-folder-o"></i>
+            </span>
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", rows = "5", placeholder = "请输入邮箱地址" })
+        </div>
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">请输入律师详细介绍内容</label>
+    <div class="col-md-10">
+        <textarea id="content" name="content" style="height:400px;max-height:500px;">
+        <p>@Html.Raw(Model.Content)</p>
+        </textarea>
+    </div>
+</div>
+
+@Html.IncludeScript("/Areas/Admin/Views/lawyer/addOrEdit.js");

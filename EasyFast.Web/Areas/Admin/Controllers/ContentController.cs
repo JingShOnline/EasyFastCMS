@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using EasyFast.Application.Content;
+using EasyFast.Application.Upload.Dto;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
@@ -38,10 +39,10 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         /// 转到添加内容页
         /// </summary>
         /// <returns></returns>
-        public ActionResult AddContent(int columnId, int modelId, string ctrl, string modelName)
+        public ActionResult AddContent(int columnId, int modelId, string ctrl, string columnName)
         {
             ViewBag.ctrl = ctrl;
-            ViewBag.modelName = Server.UrlDecode(modelName);
+            ViewBag.columnName = Server.UrlDecode(columnName);
             ViewBag.action = "AddContent";
             return View(new AddContentDto() { ColumnId = columnId, ModelId = modelId });
         }
@@ -50,27 +51,39 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         /// 转到修改内容页
         /// </summary>
         /// <returns></returns>
-        public async Task<ActionResult> UpdateContent(int id, string ctrl, string modelName)
+        public async Task<ActionResult> UpdateContent(int id, string ctrl, string columnName)
         {
             var dto = await _contentAppService.GetContent(id);
             ViewBag.ctrl = ctrl;
-            ViewBag.modelName = Server.UrlDecode(modelName);
+            ViewBag.columnName = Server.UrlDecode(columnName);
             ViewBag.action = "UpdateContent";
             return View("AddContent", dto);
         }
 
-        /// <summary>S
+        /// <summary>
         /// 上传文件
         /// </summary>
         /// <returns></returns>
         [DisableAbpAntiForgeryTokenValidation]
-        public async Task<ActionResult> UploadFile(string id, string name, string type, string lastModifiedDate, int size, HttpPostedFileBase file, string modelName)
+        public async Task<ActionResult> UploadFile(WebUploadDto dto)
         {
-            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(name), modelName, file);
+            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(dto.File.FileName), dto.ColumnName, dto.Dir, dto.File);
 
             return Json(path);
         }
 
-
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <returns></returns>
+        [DisableAbpAntiForgeryTokenValidation]
+        public async Task<ContentResult> EditorUploadFile()
+        {
+            var file = Request.Files;
+            var dir = Request["dir"];
+            var columnName = Request["columnName"];
+            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(file[0].FileName), columnName, dir, file[0]);
+            return Content(path);
+        }
     }
 }

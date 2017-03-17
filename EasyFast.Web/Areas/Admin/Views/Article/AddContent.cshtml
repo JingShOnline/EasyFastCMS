@@ -1,45 +1,5 @@
 ﻿@model EasyFast.Application.Article.Dto.ArticleDto
-
-
-<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
-<script type="text/javascript" src="~/Ueditor/umeditor.config.js"></script>
-<script type="text/javascript" src="~/Ueditor/umeditor.js"></script>
-<link rel="stylesheet" href="~/Ueditor/themes/default/css/umeditor.min.css" />
-<script type="text/javascript">
-    $(function () {
-        var content = UM.getEditor("articlecontent",
-            {
-                //图片上传处理
-                imageUrl: "/Ueditor/net/imageUp.ashx"
-            });
-    });
-
-
-    function submitConent() {
-        var $form = $("#addContent");
-
-        if (!$form.valid()) {
-            abp.notify.error("您有未填写的必填项,请向上翻动页面查看");
-            return;
-        }
-        var $div = $form.parent();
-        abp.ui.setBusy($div);
-        abp.ajax({
-            url: '/api/services/app/article/addOrUpdateAsync',
-            data: $form.serializeFormToJson()
-        }).done(function () {
-            abp.notify.success("添加文章成功", "操作成功");
-            window.location.href = "Index";
-
-        }).always(function () {
-            abp.ui.clearBusy($div);
-        });
-    }
-
-
-</script>
-
-
+@using Abp.Web.Mvc.Extensions
 <div class="form-group">
     <label class="control-label col-md-2">二级标题</label>
     <div class="col-md-10">
@@ -47,6 +7,7 @@
             <span class="input-group-addon">
                 <i class="fa fa-folder-o"></i>
             </span>
+            
             @Html.TextAreaFor(model => model.ShortTitle, new { @class = "form-control", rows = "5", placeholder = "请输入二级标题" })
         </div>
         @Html.ValidationMessageFor(model => model.ShortTitle, "", new { @class = "text-danger" })
@@ -67,11 +28,11 @@
 <div class="form-group">
     <label class="control-label col-md-2">请输入文章内容</label>
     <div class="col-md-10">
-        <script id="articlecontent" name="content" type="text/plain" style="width:80%">
-            <p>@Html.Raw(Model.Content)</p>
-        </script>
+        <textarea id="content" name="content" style="height:400px;max-height:500px;">
+        <p>@Html.Raw(Model.Content)</p>
+        </textarea>
     </div>
 </div>
 
-
+@Html.IncludeScript("/Areas/Admin/Views/Article/addOrEdit.js");
 

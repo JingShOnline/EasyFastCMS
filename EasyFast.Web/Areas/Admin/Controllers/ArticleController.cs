@@ -24,7 +24,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 添加文章
+        /// 转到添加文章页面
         /// </summary>
         /// <returns></returns>
         public ActionResult AddContent()
@@ -33,7 +33,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// 修改文章
+        /// 转到更新文章页面
         /// </summary>
         /// <returns></returns>
         public ActionResult UpdateContent(int id)

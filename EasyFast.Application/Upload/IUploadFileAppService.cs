@@ -18,6 +18,6 @@ namespace EasyFast.Application.Upload
         /// </summary>
         /// <param name="modelName"></param>
         /// <returns></returns>
-        Task<string> UploadImg(string ext, string modelName, HttpPostedFileBase file);
+        Task<string> UploadImg(string ext, string columnName,string dir, HttpPostedFileBase file);
     }
 }

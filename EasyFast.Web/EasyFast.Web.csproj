@@ -315,6 +315,10 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="Areas\Admin\Views\Article\addOrEdit.js" />
+    <Content Include="Areas\Admin\Views\Content\add.js" />
+    <Content Include="Areas\Admin\Views\HTMLGenerate\indexGenrate.js" />
+    <Content Include="Areas\Admin\Views\Lawyer\addOrEdit.js" />
     <Content Include="Content\Uploader.swf" />
     <Content Include="Areas\Admin\Views\Content\index.js" />
     <Content Include="Areas\Admin\Views\Model\index.js" />
@@ -332,6 +336,8 @@
     <Content Include="Common\Scripts\passwordComplexityHelper.js" />
     <Content Include="Common\Scripts\utils.js" />
     <Content Include="Content\bootstrap-rtl.min.css" />
+    <Content Include="Content\wangEditor.min.css" />
+    <Content Include="fonts\icomoon.svg" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\jquery.treegrid.bootstrap3.js" />
@@ -451,12 +457,17 @@
     <Content Include="Abp\Framework\styles\abp.css.map" />
     <Content Include="Areas\Admin\Views\Content\AddContent.cshtml" />
     <Content Include="Areas\Admin\Views\Article\AddContent.cshtml" />
+    <Content Include="Areas\Admin\Views\Lawyer\AddContent.cshtml" />
+    <Content Include="Areas\Admin\Views\HTMLGenerate\Index.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Scripts\abp.extend.js" />
     <Content Include="Scripts\easyui.extend.js" />
+    <Content Include="fonts\icomoon.eot" />
+    <Content Include="fonts\icomoon.ttf" />
+    <Content Include="fonts\icomoon.woff" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />
@@ -606,84 +617,10 @@
     <Content Include="Scripts\sweetalert\sweet-alert.min.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\wangEditor.min.js" />
     <Content Include="Template\Index.html" />
-    <Content Include="Ueditor\dialogs\emotion\emotion.css" />
-    <Content Include="Ueditor\dialogs\emotion\emotion.js" />
-    <Content Include="Ueditor\dialogs\emotion\images\0.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\bface.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\cface.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\fface.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\jxface2.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\neweditor-tab-bg.png" />
-    <Content Include="Ueditor\dialogs\emotion\images\tface.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\wface.gif" />
-    <Content Include="Ueditor\dialogs\emotion\images\yface.gif" />
-    <Content Include="Ueditor\dialogs\formula\formula.css" />
-    <Content Include="Ueditor\dialogs\formula\formula.html" />
-    <Content Include="Ueditor\dialogs\formula\formula.js" />
-    <Content Include="Ueditor\dialogs\formula\images\formula.png" />
-    <Content Include="Ueditor\dialogs\image\image.css" />
-    <Content Include="Ueditor\dialogs\image\image.js" />
-    <Content Include="Ueditor\dialogs\image\images\close.png" />
-    <Content Include="Ueditor\dialogs\image\images\upload1.png" />
-    <Content Include="Ueditor\dialogs\image\images\upload2.png" />
-    <Content Include="Ueditor\dialogs\link\link.js" />
-    <Content Include="Ueditor\dialogs\map\map.html" />
-    <Content Include="Ueditor\dialogs\map\map.js" />
-    <Content Include="Ueditor\dialogs\video\images\center_focus.jpg" />
-    <Content Include="Ueditor\dialogs\video\images\left_focus.jpg" />
-    <Content Include="Ueditor\dialogs\video\images\none_focus.jpg" />
-    <Content Include="Ueditor\dialogs\video\images\right_focus.jpg" />
-    <Content Include="Ueditor\dialogs\video\video.css" />
-    <Content Include="Ueditor\dialogs\video\video.js" />
-    <Content Include="Ueditor\index.html" />
-    <Content Include="Ueditor\lang\en\en.js" />
-    <Content Include="Ueditor\lang\en\images\addimage.png" />
-    <Content Include="Ueditor\lang\en\images\alldeletebtnhoverskin.png" />
-    <Content Include="Ueditor\lang\en\images\alldeletebtnupskin.png" />
-    <Content Include="Ueditor\lang\en\images\background.png" />
-    <Content Include="Ueditor\lang\en\images\button.png" />
-    <Content Include="Ueditor\lang\en\images\copy.png" />
-    <Content Include="Ueditor\lang\en\images\deletedisable.png" />
-    <Content Include="Ueditor\lang\en\images\deleteenable.png" />
-    <Content Include="Ueditor\lang\en\images\imglabel.png" />
-    <Content Include="Ueditor\lang\en\images\listbackground.png" />
-    <Content Include="Ueditor\lang\en\images\localimage.png" />
-    <Content Include="Ueditor\lang\en\images\music.png" />
-    <Content Include="Ueditor\lang\en\images\rotateleftdisable.png" />
-    <Content Include="Ueditor\lang\en\images\rotateleftenable.png" />
-    <Content Include="Ueditor\lang\en\images\rotaterightdisable.png" />
-    <Content Include="Ueditor\lang\en\images\rotaterightenable.png" />
-    <Content Include="Ueditor\lang\en\images\upload.png" />
-    <Content Include="Ueditor\lang\zh-cn\images\copy.png" />
-    <Content Include="Ueditor\lang\zh-cn\images\imglabel.png" />
-    <Content Include="Ueditor\lang\zh-cn\images\localimage.png" />
-    <Content Include="Ueditor\lang\zh-cn\images\music.png" />
-    <Content Include="Ueditor\lang\zh-cn\images\upload.png" />
-    <Content Include="Ueditor\lang\zh-cn\zh-cn.js" />
-    <Content Include="Ueditor\themes\default\css\umeditor.css" />
-    <Content Include="Ueditor\themes\default\css\umeditor.min.css" />
-    <Content Include="Ueditor\themes\default\images\caret.png" />
-    <Content Include="Ueditor\themes\default\images\close.png" />
-    <Content Include="Ueditor\themes\default\images\icons.gif" />
-    <Content Include="Ueditor\themes\default\images\icons.png" />
-    <Content Include="Ueditor\themes\default\images\ok.gif" />
-    <Content Include="Ueditor\themes\default\images\pop-bg.png" />
-    <Content Include="Ueditor\themes\default\images\spacer.gif" />
-    <Content Include="Ueditor\themes\default\images\videologo.gif" />
-    <Content Include="Ueditor\third-party\jquery.min.js" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\STIXFontLicense2010.txt" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.svg" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.svg" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbolita-webfont.svg" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralitalic-webfont.svg" />
-    <Content Include="Ueditor\third-party\mathquill\font\Symbola.svg" />
-    <Content Include="Ueditor\third-party\mathquill\mathquill.css" />
-    <Content Include="Ueditor\third-party\mathquill\mathquill.js" />
-    <Content Include="Ueditor\third-party\mathquill\mathquill.min.js" />
-    <Content Include="Ueditor\umeditor.config.js" />
-    <Content Include="Ueditor\umeditor.js" />
-    <Content Include="Ueditor\umeditor.min.js" />
+    <None Include="Template\Tag\栏目\全站栏目.cshtml" />
+    <Content Include="Template\内容页模板.html" />
     <Content Include="Views\Account\Login.css">
       <DependentUpon>Login.less</DependentUpon>
     </Content>
@@ -713,6 +650,7 @@
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColumnController.cs" />
     <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LawyerController.cs" />
     <Compile Include="Areas\Admin\Controllers\SiteConfigController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HTMLGenerateController.cs" />
@@ -738,7 +676,6 @@
     </Compile>
     <Compile Include="Models\Layout\TopMenuViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ueditor\net\Uploader.cs" />
     <Compile Include="Views\EasyFastWebViewPageBase.cs" />
     <Compile Include="Views\UrlChecker.cs" />
   </ItemGroup>
@@ -781,24 +718,7 @@
     <Content Include="Scripts\jtable\themes\metro\pink\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
-    <Content Include="Ueditor\net\getContent.ashx" />
-    <Content Include="Ueditor\net\imageUp.ashx" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.eot" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.ttf" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneral-webfont.woff" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.eot" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.ttf" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbol-webfont.woff" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbolita-webfont.eot" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbolita-webfont.ttf" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralbolita-webfont.woff" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralitalic-webfont.eot" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralitalic-webfont.ttf" />
-    <Content Include="Ueditor\third-party\mathquill\font\stixgeneral-bundle\stixgeneralitalic-webfont.woff" />
-    <Content Include="Ueditor\third-party\mathquill\font\Symbola.eot" />
-    <Content Include="Ueditor\third-party\mathquill\font\Symbola.otf" />
-    <Content Include="Ueditor\third-party\mathquill\font\Symbola.ttf" />
-    <Content Include="Ueditor\third-party\mathquill\font\Symbola.woff" />
+    <Content Include="Template\Tag\栏目\全站栏目.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -828,11 +748,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\ContentInfo\" />
-    <Folder Include="Areas\Admin\Views\HTML\" />
     <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Template\Code\" />
     <Folder Include="Template\Page\" />
-    <Folder Include="Template\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -866,6 +784,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
+      <UserProperties Template_4Tag_4栏目_4全站栏目_1json__JSONSchema="http://json.schemastore.org/csscomb" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

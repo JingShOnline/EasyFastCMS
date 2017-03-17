@@ -23,7 +23,7 @@ namespace EasyFast.Application.Upload
         /// </summary>
         /// <param name="modelName"></param>
         /// <returns></returns>
-        public async Task<string> UploadImg(string ext, string modelName, HttpPostedFileBase file)
+        public async Task<string> UploadImg(string ext, string columnName, string dir, HttpPostedFileBase file)
         {
             if (file == null)
                 throw new UserFriendlyException("错误", "请选择上要传的图片");
@@ -34,7 +34,7 @@ namespace EasyFast.Application.Upload
 
 
             var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            var fullDirectory = $"{baseDirectory.Replace("\\EasyFast.Web\\", EasyFastConsts.UploadFilePath)}{modelName}\\";
+            var fullDirectory = $"{baseDirectory}{EasyFastConsts.UploadFilePath}\\{columnName}\\{dir}\\";
 
             var newName = $"{Md5Helper.GetFileMd5(file.InputStream)}{ext}";
 
@@ -49,7 +49,7 @@ namespace EasyFast.Application.Upload
                      img.Save(fullName);
                  }
              });
-            return fullName;
+            return $"{EasyFastConsts.HostUrl}{EasyFastConsts.UploadFilePath}/{columnName}/{dir}/{newName}";
 
         }
     }
