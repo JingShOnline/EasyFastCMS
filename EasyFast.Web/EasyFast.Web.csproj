@@ -718,7 +718,7 @@
     <Content Include="Scripts\jtable\themes\metro\pink\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
-    <Content Include="Template\Tag\栏目\全站栏目.json" />
+    <Content Include="Template\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

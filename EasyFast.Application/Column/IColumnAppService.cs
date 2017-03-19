@@ -86,9 +86,16 @@ namespace EasyFast.Application.Column
         /// <summary>
         /// 获取EasyTree格式的菜单
         /// </summary>
-        /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
         Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool? isIndexHtml);
+
+
+        /// <summary>
+        /// 根据id集合获取栏目用于生成静态化文件时
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        Task<List<T>> GetGenerateColumnByIds<T>(List<int> ids);
     }
 }

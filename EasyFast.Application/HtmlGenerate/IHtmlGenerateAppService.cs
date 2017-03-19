@@ -1,16 +1,13 @@
-﻿using Abp.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Abp.Application.Services;
 
-namespace EasyFast.Application.HomeGenerate
+namespace EasyFast.Application.HtmlGenerate
 {
     /// <summary>
     /// 静态文件生成资源
     /// </summary>
-    public interface IHomeGenerateAppService : IApplicationService
+    public interface IHtmlGenerateAppService : IApplicationService
     {
         /// <summary>
         /// 生成栏目首页

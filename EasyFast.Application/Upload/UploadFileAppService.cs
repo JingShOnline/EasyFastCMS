@@ -21,7 +21,6 @@ namespace EasyFast.Application.Upload
         /// <summary>
         /// 上传图片
         /// </summary>
-        /// <param name="modelName"></param>
         /// <returns></returns>
         public async Task<string> UploadImg(string ext, string columnName, string dir, HttpPostedFileBase file)
         {
@@ -33,7 +32,7 @@ namespace EasyFast.Application.Upload
                 throw new UserFriendlyException("大小超出限制", "仅支持上传1M及1M以下大小的图片");
 
 
-            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var baseDirectory = EasyFastConsts.BaseDirectory;
             var fullDirectory = $"{baseDirectory}{EasyFastConsts.UploadFilePath}\\{columnName}\\{dir}\\";
 
             var newName = $"{Md5Helper.GetFileMd5(file.InputStream)}{ext}";

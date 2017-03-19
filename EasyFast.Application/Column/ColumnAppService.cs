@@ -214,5 +214,16 @@ namespace EasyFast.Application.Column
 
             return new EasyUIGridOutput<TreeGridOutput> { total = totalCount, rows = list.MapTo<List<TreeGridOutput>>() };
         }
+
+        /// <summary>
+        /// 根据id集合获取栏目用于生成静态化文件时
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public async Task<List<T>> GetGenerateColumnByIds<T>(List<int> ids)
+        {
+            return await _columnRepository.GetAll().Where(o => ids.Contains(o.Id)).Where(o => o.IsIndexHtml).ProjectTo<T>().ToListAsync();
+
+        }
     }
 }

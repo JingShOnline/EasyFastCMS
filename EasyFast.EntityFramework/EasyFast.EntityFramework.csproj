@@ -133,6 +133,7 @@
   <ItemGroup>
     <Compile Include="EntityFramework\EasyFastDbContext.cs" />
     <Compile Include="EntityFramework\Repositories\EasyFastRepositoryBase.cs" />
+    <Compile Include="EntityFramework\Repositories\SqlExecuter.cs" />
     <Compile Include="Migrations\201703120611446_Init.cs" />
     <Compile Include="Migrations\201703120611446_Init.Designer.cs">
       <DependentUpon>201703120611446_Init.cs</DependentUpon>

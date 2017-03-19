@@ -13,7 +13,7 @@ namespace EasyFast.Application.Column.Dto
     /// 栏目Dto
     /// </summary>
     [AutoMap(typeof(Core.Entities.Column))]
-    public class ColumnDto : ColumnDtoBase
+    public sealed class ColumnDto : ColumnDtoBase
     {
 
         /// <summary>

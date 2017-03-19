@@ -140,11 +140,14 @@
     <Compile Include="Article\IArticleAppService.cs" />
     <Compile Include="AutoMapper\IDtoMapping.cs" />
     <Compile Include="Column\ColumnDtoMapping.cs" />
+    <Compile Include="Dto\StaticFileModel\BasicColumnBase.cs" />
     <Compile Include="Column\Dto\ColumnDto.cs" />
     <Compile Include="Column\Dto\ColumnDtoBase.cs" />
     <Compile Include="Column\Dto\ColumnGridOutput.cs" />
     <Compile Include="Column\Dto\ColumnNameOutput.cs" />
     <Compile Include="Column\Dto\ColumnTreeMenuOutput.cs" />
+    <Compile Include="Column\Dto\GenerateColumnBase.cs" />
+    <Compile Include="Column\Dto\GenerateColumnIndexOutput.cs" />
     <Compile Include="Column\Dto\SingleColumnDto.cs" />
     <Compile Include="Column\Dto\TreeGridInput.cs" />
     <Compile Include="Column\Dto\TreeGridOutput.cs" />
@@ -167,8 +170,10 @@
     <Compile Include="Dto\PagedAndSortedInputDto.cs" />
     <Compile Include="Dto\PagedInputDto.cs" />
     <Compile Include="Dto\PagedSortedAndFilteredInputDto.cs" />
+    <Compile Include="Dto\TagDto.cs" />
     <Compile Include="EasyFastApplicationModule.cs" />
     <Compile Include="EasyFastAppServiceBase.cs" />
+    <Compile Include="HtmlGenerate\HtrmlGenerateAppService.cs" />
     <Compile Include="HtmlGenerate\IHtmlGenerateAppService.cs" />
     <Compile Include="Lawyer\Dto\LawyerDto.cs" />
     <Compile Include="Lawyer\ILawyerAppService.cs" />
