@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using Abp.Application.Services;
 using Abp.Domain.Repositories;
 using Abp.Json;
@@ -13,25 +14,32 @@ using Abp.Runtime.Caching;
 using Abp.UI;
 using EasyFast.Application.Column;
 using EasyFast.Application.Column.Dto;
+using EasyFast.Application.Column.Dto.templateModel;
 using EasyFast.Application.Dto;
 using EasyFast.Core;
+using EasyFast.Core.HtmlGenreate;
+using System.Web.Http;
+using EasyFast.Common.FileRule;
 
 namespace EasyFast.Application.HtmlGenerate
 {
     /// <summary>
     /// 静态文件生成资源
     /// </summary>
-    public class HtrmlGenerateAppService : ApplicationService, IHtmlGenerateAppService
+    public class HtmlGenerateAppService : ApplicationService, IHtmlGenerateAppService
     {
         private readonly IColumnAppService _columnAppService;
 
         private readonly ICacheManager _cacheManager;
 
+        private readonly IHtmlGenerateManager _htmlGenerateManager;
 
-        public HtrmlGenerateAppService(IColumnAppService columnAppService, ICacheManager cacheManager)
+
+        public HtmlGenerateAppService(IColumnAppService columnAppService, ICacheManager cacheManager, IHtmlGenerateManager htmlGenerateManager)
         {
             _columnAppService = columnAppService;
             _cacheManager = cacheManager;
+            _htmlGenerateManager = htmlGenerateManager;
         }
 
         /// <summary>
@@ -39,65 +47,31 @@ namespace EasyFast.Application.HtmlGenerate
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
-        public async Task<bool> ColumnIndexGenerate(List<int> ids)
+        public async Task ColumnIndexGenerate(List<int> ids)
         {
+
             if (ids.Count <= 0)
                 throw new UserFriendlyException("请选择要生成的栏目或者点击全部生成");
             //拿到待生成的栏目集合
             var list = await _columnAppService.GetGenerateColumnByIds<GenerateColumnIndexOutput>(ids);
-
-            foreach (var temp in list)
+            var taskArray = new Task[list.Count];
+            for (int i = 0; i < list.Count; i++)
             {
-                var template = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey).Get($"ColumnIndexCache_{temp.Id}{temp.IndexTemplate}", () => File.ReadAllText(temp.IndexTemplate));
-                //拿到标签数组
-                var matches = Regex.Matches(EasyFastConsts.TagRegex, template);
-                foreach (Match m in matches)
-                {
 
-                    var dto = JsonSerializationHelper.DeserializeWithType<TagDto>(m.Value.TrimStart('$'));
-                    //根据action与type拿到对应的模板
-                    var itemTemplate = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey)
-                        .Get($"{dto.Type}_{dto.Action}",
-                            () =>
-                                File.ReadAllText(
-                                    $"{EasyFastConsts.TagPath}/{dto.Type}{dto.Action}{EasyFastConsts.TemplateType}"));
+                //拿到栏目的模板文件 以文件的最后修改时间做缓存
+                string fileName = list[i].IndexTemplate.Substring(list[i].IndexTemplate.LastIndexOf("\\", StringComparison.Ordinal) + 1);
+                var template = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey).Get($"{fileName}{File.GetLastWriteTime(list[i].IndexTemplate)}",
+                    () => File.ReadAllText(list[i].IndexTemplate, Encoding.UTF8));
 
-                    //取出sql
-                    var sql = Regex.Match(itemTemplate, EasyFastConsts.SqlRegex).Groups[1].Value;
-                    //拼接sql
-                    var parameters = new List<SqlParameter>();
-                    if (dto.Parameters.Count > 0)
-                    {
-                        var sqlParameters = new StringBuilder();
-                        foreach (var parameter in dto.Parameters)
-                        {
-                            // 取出value
-                            var pavalue = Regex.Match(parameter.Value, EasyFastConsts.SqlParameterRegex).Value.Trim('"');
-                            // and Name = "小明"  --  and Name = @Name
-                            var replaceParam = Regex.Replace(parameter.Value, EasyFastConsts.SqlParameterRegex, $"@{parameter.Key}");
-                            // and Name = @Name
-                            sqlParameters.Append($"{parameter.Key} = {replaceParam}");
-                            //加入到参数化查询中
-                            parameters.Add(new SqlParameter($"@{parameter.Key}", pavalue));
+                var i1 = i;
+                //生成规则 暂时仅支持{id} {name} {year} {month} {day} [Title]
+                var rulePath = RuleParseHelper.Parse(new StringBuilder(list[i1].IndexTemplate), list[i1].Id.ToString(), list[i1].Name);
 
-                        }
-                        sql += $" where {sqlParameters.ToString()}";
-
-                    }
-                    //排序
-                    if (string.IsNullOrWhiteSpace(dto.Sorting))
-                        sql += $" {dto.Sorting}";
-                    //进行查询
-                    var modelType = Type.GetType($"{EasyFastConsts.StaticFileModelAssembly}.BasicColumnBase");
-
-                    
-                }
+                taskArray[i] = Task.Factory.StartNew(() => _htmlGenerateManager.GenerateHtml<ColumnIndexModel>(template, list[i1].Dir + rulePath));
             }
-
-            return true;
+            //等待所有的task执行完成
+            await Task.WhenAll(taskArray);
 
         }
     }
-
-
 }

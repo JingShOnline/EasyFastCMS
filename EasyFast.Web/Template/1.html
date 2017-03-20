@@ -1,6 +1,9 @@
-﻿@model List<EasyFast.Application.Column.Dto.templateModel.ColumnIndexModel>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
 
-<t>select ColumnTypeEnum,Name,Id,ParentId,OrderId from [column] order by orderId desc</t>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -15,14 +18,17 @@
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav">
-                @{
-                    foreach (var column in Model)
-                    {
-                        <li><a href="#">@column.Name</a></li>
-                    }
-                }
+                        <li><a href="#">站点首页</a></li>
+                        <li><a href="#">新闻中心</a></li>
+                        <li><a href="#">时势新闻</a></li>
+                        <li><a href="#">律师团队</a></li>
+                        <li><a href="#">京师团队</a></li>
+
 
             </ul>
         </div>
     </div>
 </nav>
+<h1>Hi every one</h1>
+</body>
+</html>

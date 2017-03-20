@@ -24,6 +24,7 @@
 
 
 })();
+var generateService = abp.services.app.htmlGenerate;
 function genterateColumnIndex() {
     var nodes = $('#tree').tree('getChecked');
     if (nodes.length <= 0) {
@@ -33,8 +34,11 @@ function genterateColumnIndex() {
     var arrary = [];
     for (var i = 0; i < nodes.length; i++) {
         arrary.push(nodes[i].id);
-        
+
     };
-    
+    generateService.columnIndexGenerate(arrary).done(function () {
+
+        abp.message.success("生成成功!", "操作成功");
+    });
 
 }

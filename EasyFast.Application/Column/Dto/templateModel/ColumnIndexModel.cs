@@ -1,13 +1,12 @@
-﻿using System.Collections.Generic;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 using EasyFast.Core.Entities;
 
-namespace EasyFast.Application.Dto.StaticFileModel
+namespace EasyFast.Application.Column.Dto.templateModel
 {
     /// <summary>
-    /// 基本的具有子栏目的栏目Dto
+    /// 模板文件栏目首页模型
     /// </summary>
-    public class BasicColumnBase : EntityDto
+    public class ColumnIndexModel : EntityDto
     {
         /// <summary>
         /// 栏目类型
@@ -30,8 +29,14 @@ namespace EasyFast.Application.Dto.StaticFileModel
         public int OrderId { get; set; }
 
         /// <summary>
-        /// 子栏目
+        /// 鼠标放到栏目上的提示
         /// </summary>
-        public virtual List<BasicColumnBase> Children { get; set; }
+        public string Tooltip { get; set; }
+
+        /// <summary>
+        /// 栏目图片
+        /// </summary>
+        public string ImageUrl { get; set; }
+
     }
 }

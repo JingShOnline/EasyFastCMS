@@ -37,14 +37,13 @@ namespace EasyFast.EntityFramework.EntityFramework.Repositories
         /// <summary>
         /// Query
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="type"></param>
+        /// <typeparam name="T">返回类型</typeparam>
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public async Task<List<object>> SqlQuery(Type type, string sql, params SqlParameter[][] parameters)
+        public async Task<List<T>> SqlQuery<T>(string sql, params SqlParameter[] parameters)
         {
-            return await _dbContextProvider.GetDbContext().Database.SqlQuery(type, sql, parameters).ToListAsync();
+            return await _dbContextProvider.GetDbContext().Database.SqlQuery<T>(sql, parameters).ToListAsync();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Abp.Castle.Logging.Log4Net;
 using Abp.Web;
 using Castle.Facilities.Logging;
+using EasyFast.Core;
 
 namespace EasyFast.Web
 {
@@ -12,7 +13,6 @@ namespace EasyFast.Web
             AbpBootstrapper.IocManager.IocContainer.AddFacility<LoggingFacility>(
                 f => f.UseAbpLog4Net().WithConfig("log4net.config")
             );
-
             base.Application_Start(sender, e);
         }
     }

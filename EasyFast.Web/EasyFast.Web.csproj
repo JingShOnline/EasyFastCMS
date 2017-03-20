@@ -317,7 +317,7 @@
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
     <Content Include="Areas\Admin\Views\Article\addOrEdit.js" />
     <Content Include="Areas\Admin\Views\Content\add.js" />
-    <Content Include="Areas\Admin\Views\HTMLGenerate\indexGenrate.js" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\indexGenrate.js" />
     <Content Include="Areas\Admin\Views\Lawyer\addOrEdit.js" />
     <Content Include="Content\Uploader.swf" />
     <Content Include="Areas\Admin\Views\Content\index.js" />
@@ -458,7 +458,10 @@
     <Content Include="Areas\Admin\Views\Content\AddContent.cshtml" />
     <Content Include="Areas\Admin\Views\Article\AddContent.cshtml" />
     <Content Include="Areas\Admin\Views\Lawyer\AddContent.cshtml" />
-    <Content Include="Areas\Admin\Views\HTMLGenerate\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\Content.cshtml" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\Single.cshtml" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\List.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

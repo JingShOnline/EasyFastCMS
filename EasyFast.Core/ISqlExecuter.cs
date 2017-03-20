@@ -28,6 +28,6 @@ namespace EasyFast.Core
         /// <param name="sql">SQL 查询字符串</param>
         /// <param name="parameters">要应用于 SQL 查询字符串的参数</param>
         /// <returns></returns>
-        Task<List<object>> SqlQuery(Type type, string sql, params SqlParameter[][] parameters);
+        Task<List<T>> SqlQuery<T>(string sql, params SqlParameter[] parameters);
     }
 }

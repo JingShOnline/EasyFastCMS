@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Abp.Application.Services;
 
 namespace EasyFast.Application.HtmlGenerate
@@ -14,6 +15,6 @@ namespace EasyFast.Application.HtmlGenerate
         /// </summary>
         /// <param name="ids">栏目ids</param>
         /// <returns></returns>
-        Task<bool> ColumnIndexGenerate(List<int> ids);
+        Task ColumnIndexGenerate(List<int> ids);
     }
 }

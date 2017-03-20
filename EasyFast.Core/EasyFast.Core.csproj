@@ -178,6 +178,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Localization\Source\EasyFast-nl-NL.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyFast.Common\EasyFast.Common.csproj">
+      <Project>{9046a977-698b-495a-b1c0-75f1af84f686}</Project>
+      <Name>EasyFast.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

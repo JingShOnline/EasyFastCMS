@@ -4,6 +4,11 @@ namespace EasyFast.Core
 {
     public class EasyFastConsts
     {
+        static EasyFastConsts()
+        {
+
+        }
+
         public const string LocalizationSourceName = "EasyFastCMS";
 
         /// <summary>
@@ -29,7 +34,7 @@ namespace EasyFast.Core
         /// <summary>
         /// 地址
         /// </summary>
-        public static string BaseDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+        public static string BaseDirectory = HttpContext.Current.Server.MapPath("~");
 
         /// <summary>
         /// 标签匹配正则表达式
@@ -39,7 +44,7 @@ namespace EasyFast.Core
         /// <summary>
         /// 标签路径
         /// </summary>
-        public static string TagPath = $"{BaseDirectory}/Template/Tag";
+        public static string TagPath = $@"{HttpContext.Current.Server.MapPath("~")}\Template\Tag";
 
         /// <summary>
         /// 模板文件格式
@@ -61,10 +66,7 @@ namespace EasyFast.Core
         /// </summary>
         public const string SqlParameterRegex = "\".+\"";
 
-        /// <summary>
-        /// 静态文件模型程序集
-        /// </summary>
-        public const string StaticFileModelAssembly = "EasyFast.Application.Dto.StaticFileModel.";
+
 
     }
 }

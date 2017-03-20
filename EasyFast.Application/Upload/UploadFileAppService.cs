@@ -48,6 +48,7 @@ namespace EasyFast.Application.Upload
                      img.Save(fullName);
                  }
              });
+            Logger.Debug(EasyFastConsts.TagPath);
             return $"{EasyFastConsts.HostUrl}{EasyFastConsts.UploadFilePath}/{columnName}/{dir}/{newName}";
 
         }

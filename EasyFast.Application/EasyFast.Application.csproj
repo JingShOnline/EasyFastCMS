@@ -140,7 +140,7 @@
     <Compile Include="Article\IArticleAppService.cs" />
     <Compile Include="AutoMapper\IDtoMapping.cs" />
     <Compile Include="Column\ColumnDtoMapping.cs" />
-    <Compile Include="Dto\StaticFileModel\BasicColumnBase.cs" />
+    <Compile Include="Column\Dto\templateModel\ColumnIndexModel.cs" />
     <Compile Include="Column\Dto\ColumnDto.cs" />
     <Compile Include="Column\Dto\ColumnDtoBase.cs" />
     <Compile Include="Column\Dto\ColumnGridOutput.cs" />

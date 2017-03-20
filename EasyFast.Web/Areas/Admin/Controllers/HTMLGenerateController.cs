@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
-    public class HTMLGenerateController : EasyFastControllerBase
+    public class HtmlGenerateController : EasyFastControllerBase
     {
         /// <summary>
         /// 生成首页
@@ -16,15 +16,6 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         }
 
 
-        /// <summary>
-        /// 根据选择的栏目id生成首页静态文件
-        /// </summary>
-        /// <param name="ids"></param>
-        /// <returns></returns>
-        public JsonResult ColumnIndexGnerate(List<int> ids)
-        {
-            return null;
-        }
 
         /// <summary>
         /// 生成内容页

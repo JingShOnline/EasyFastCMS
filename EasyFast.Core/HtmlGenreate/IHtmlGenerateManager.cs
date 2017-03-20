@@ -16,8 +16,8 @@ namespace EasyFast.Core.HtmlGenreate
         /// 通用的生成静态文件服务
         /// </summary>
         /// <param name="template">模板</param>
-        /// <param name="modelName">模型名称</param>
+        /// <param name="savePath">保存路径 Article_id_index.html</param>
         /// <returns></returns>
-        Task GenerateHtml(string template,string modelName);
+        void GenerateHtml<T>(string template, string savePath);
     }
 }
