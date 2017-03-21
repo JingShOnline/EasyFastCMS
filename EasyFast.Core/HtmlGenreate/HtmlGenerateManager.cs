@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Abp.Domain.Services;
 using Abp.Json;
 using Abp.Runtime.Caching;
+using Abp.Threading;
 using EasyFast.Common;
 using Newtonsoft.Json;
 
@@ -34,66 +35,61 @@ namespace EasyFast.Core.HtmlGenreate
         /// <param name="template">模板</param>
         /// <param name="savePath">保存路径</param>
         /// <returns></returns>
-        public void GenerateHtml<T>(string template, string savePath)
+        public async Task GenerateHtml<T>(string template, string savePath)
         {
             //拿到标签数组
             var matches = Regex.Matches(template, EasyFastConsts.TagRegex);
-            for (int i = 0; i < matches.Count; i++)
+            for (var i = 0; i < matches.Count; i++)
             {
                 var i1 = i;
-                var task = Task.Factory.StartNew(() =>
-             {
-                 var trimStart = matches[i1].Value.TrimStart('$');
-                 var dto = JsonConvert.DeserializeObject<ParseTag>(trimStart);
-                 //根据action与type拿到对应的模板
-                 var tagPath = $@"{EasyFastConsts.TagPath}\{dto.Type}\{dto.Action}{EasyFastConsts.TemplateType}";
-                 //Cache TemplateCache -  拿文件的名称和最后修改时间做缓存名
-                 var lastModifyTime = $"{dto.Action}{File.GetLastWriteTime(tagPath)}";
-                 var itemTemplate = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey)
-                        .Get(lastModifyTime,
-                             () =>
-                                File.ReadAllText(tagPath));
 
-                 //取出sql
-                 var sql = Regex.Match(itemTemplate, EasyFastConsts.SqlRegex).Groups[1].Value;
-                 //拼接sql
-                 var parameters = new List<SqlParameter>();
-                 if (dto.Parameters != null && dto.Parameters.Count > 0)
-                 {
-                     var sqlParameters = new StringBuilder();
-                     foreach (var parameter in dto.Parameters)
-                     {
-                         // 取出value
-                         var pavalue = Regex.Match(parameter.Value, EasyFastConsts.SqlParameterRegex).Value.Trim('"');
-                         // and Name = "小明"  --  and Name = @Name
-                         var replaceParam = Regex.Replace(parameter.Value, EasyFastConsts.SqlParameterRegex, $"@{parameter.Key}");
-                         // and Name = @Name
-                         sqlParameters.Append($"{parameter.Key} = {replaceParam}");
-                         //加入到参数化查询中
-                         parameters.Add(new SqlParameter($"@{parameter.Key}", pavalue));
+                var trimStart = matches[i1].Value.TrimStart('$');
+                var dto = JsonConvert.DeserializeObject<ParseTag>(trimStart);
+                //根据action与type拿到对应的模板
+                var tagPath = $@"{EasyFastConsts.TagPath}\{dto.Type}\{dto.Action}{EasyFastConsts.TemplateType}";
+                //Cache TemplateCache -  拿文件的名称和最后修改时间做缓存名
+                var lastModifyTime = $"{dto.Action}{File.GetLastWriteTime(tagPath)}";
+                var itemTemplate = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey)
+                       .Get(lastModifyTime,
+                            () =>
+                               File.ReadAllText(tagPath));
 
-                     }
-                     sql += $" where {sqlParameters.ToString()}";
-                 }
-                 //排序
-                 if (!string.IsNullOrWhiteSpace(dto.Sorting))
-                     sql += $" {dto.Sorting}";
+                //取出sql
+                var sql = Regex.Match(itemTemplate, EasyFastConsts.SqlRegex).Groups[1].Value;
+                //拼接sql
+                var parameters = new List<SqlParameter>();
+                if (dto.Parameters != null && dto.Parameters.Count > 0)
+                {
+                    var sqlParameters = new StringBuilder();
+                    foreach (var parameter in dto.Parameters)
+                    {
+                        // 取出value
+                        var pavalue = Regex.Match(parameter.Value, EasyFastConsts.SqlParameterRegex).Value.Trim('"');
+                        // and Name = "小明"  --  and Name = @Name
+                        var replaceParam = Regex.Replace(parameter.Value, EasyFastConsts.SqlParameterRegex, $"@{parameter.Key}");
+                        // and Name = @Name
+                        sqlParameters.Append($"{parameter.Key} = {replaceParam}");
+                        //加入到参数化查询中
+                        parameters.Add(new SqlParameter($"@{parameter.Key}", pavalue));
 
-                 var sqltask = _sqlExecuter.SqlQuery<T>(sql, parameters.ToArray());
-                 sqltask.Wait();
+                    }
+                    sql += $" where {sqlParameters}";
+                }
+                //排序
+                if (!string.IsNullOrWhiteSpace(dto.Sorting))
+                    sql += $" {dto.Sorting}";
 
-                 var model = sqltask.Result;
 
-                 //parseHtml
-                 var resulthtml = RazorHelper.ParseCshtml<T>(itemTemplate, lastModifyTime, model);
+                var model = AsyncHelper.RunSync(() => _sqlExecuter.SqlQuery<T>(sql, parameters.ToArray()));
 
-                 //替换
-                 var replacestr = Regex.Replace(resulthtml, EasyFastConsts.SqlRegex, "");
+                //parseHtml
+                var resulthtml = RazorHelper.ParseCshtml<T>(itemTemplate, lastModifyTime, model);
 
-                 template = Regex.Replace(template, $"\\{matches[i1].Value}", replacestr);
+                //替换
+                var replacestr = Regex.Replace(resulthtml, EasyFastConsts.SqlRegex, "");
 
-             });
-                task.Wait();
+                template = Regex.Replace(template, $"\\{matches[i1].Value}", replacestr);
+
 
             }
             if (matches.Count > 0)
