@@ -29,12 +29,12 @@ namespace EasyFast.Core
         /// <summary>
         /// 域名+端口
         /// </summary>
-        public static string HostUrl = $"http://{HttpContext.Current.Request.Url.Host.ToString()}:{HttpContext.Current.Request.Url.Port.ToString()}/";
+        public static string HostUrl = $"http://{HttpContext.Current.Request.Url.Host}:{HttpContext.Current.Request.Url.Port}/";
 
         /// <summary>
         /// 地址
         /// </summary>
-        public static string BaseDirectory = HttpContext.Current.Server.MapPath("~");
+        public static string BaseDirectory = HttpContext.Current.Server.MapPath("~") + @"\";
 
         /// <summary>
         /// 标签匹配正则表达式
@@ -45,6 +45,16 @@ namespace EasyFast.Core
         /// 标签路径
         /// </summary>
         public static string TagPath = $@"{HttpContext.Current.Server.MapPath("~")}\Template\Tag";
+
+        /// <summary>
+        /// 模型type提取正则
+        /// </summary>
+        public static string ModelTypeRegex = @"model.+<t>";
+
+        /// <summary>
+        /// 静态文件地址
+        /// </summary>
+        public static string StaticFile = $@"{BaseDirectory}StaticFile\";
 
         /// <summary>
         /// 模板文件格式

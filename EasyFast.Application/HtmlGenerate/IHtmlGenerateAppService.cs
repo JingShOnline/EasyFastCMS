@@ -14,7 +14,35 @@ namespace EasyFast.Application.HtmlGenerate
         /// 生成栏目首页
         /// </summary>
         /// <param name="ids">栏目ids</param>
+        /// <param name="isAll">生成选项</param>
         /// <returns></returns>
-        Task ColumnIndexGenerate(List<int> ids);
+        Task ColumnIndexGenerate(List<int> ids, bool isAll = false);
+
+        /// <summary>
+        /// 生成网站首页
+        /// </summary>
+        /// <returns></returns>
+        Task GenerateIndex();
+
+        /// <summary>
+        /// 生成所有的首页
+        /// </summary>
+        /// <returns></returns>
+        Task GenerateAllIndex();
+
+        /// <summary>
+        /// 生成内容
+        /// </summary>
+        /// <param name="isAll">生成选项</param>
+        /// <returns></returns>
+        Task GenerateContent(bool isAll);
+
+        /// <summary>
+        /// 生成栏目列表页
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <param name="isAll">生成选项</param>
+        /// <returns></returns>
+        Task GenerateColumnList(List<int> ids, bool isAll);
     }
 }

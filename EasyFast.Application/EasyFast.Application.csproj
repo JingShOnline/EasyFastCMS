@@ -151,6 +151,7 @@
     <Compile Include="Column\Dto\SingleColumnDto.cs" />
     <Compile Include="Column\Dto\TreeGridInput.cs" />
     <Compile Include="Column\Dto\TreeGridOutput.cs" />
+    <Compile Include="Column\Dto\GenerateColumnListOutput.cs" />
     <Compile Include="Column\IColumnAppService.cs" />
     <Compile Include="Column\ColumnAppService.cs" />
     <Compile Include="Common\Dto\EasyUIDataGridOutput.cs" />

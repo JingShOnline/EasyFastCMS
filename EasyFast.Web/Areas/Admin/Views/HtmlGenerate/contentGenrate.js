@@ -17,7 +17,6 @@
             });
         }
 
-
         initTreeData();
     });
 
@@ -25,7 +24,7 @@
 
 })();
 var generateService = abp.services.app.htmlGenerate;
-function generateColumnIndex() {
+function genterateColumnIndex() {
     var nodes = $('#tree').tree('getChecked');
     if (nodes.length <= 0) {
         abp.message.error("请勾选要生成的栏目,或者点击全部生成所有的首页", "操作失败");
@@ -37,17 +36,8 @@ function generateColumnIndex() {
 
     };
     generateService.columnIndexGenerate(arrary).done(function () {
-        abp.message.success("栏目生成成功!", "操作成功");
+
+        abp.message.success("生成成功!", "操作成功");
     });
 
 }
-
-function generateIndex() {
-    generateService.columnIndexGenerate().done(function () {
-        abp.message.success("网站首页生成成功!", "操作成功");
-    });
-}
-
-function generateAllIndex() {
-    
-} 

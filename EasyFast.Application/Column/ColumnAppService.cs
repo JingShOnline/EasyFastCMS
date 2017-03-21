@@ -219,9 +219,12 @@ namespace EasyFast.Application.Column
         /// 根据id集合获取栏目用于生成静态化文件时
         /// </summary>
         /// <param name="ids"></param>
+        /// <param name="isAll"></param>
         /// <returns></returns>
-        public async Task<List<T>> GetGenerateColumnByIds<T>(List<int>  ids)
+        public async Task<List<T>> GetGenerateColumnByIds<T>(List<int> ids, bool isAll)
         {
+            if (isAll)
+                return await _columnRepository.GetAll().Where(o => o.IsIndexHtml).ProjectTo<T>().ToListAsync();
             return await _columnRepository.GetAll().Where(o => ids.Contains(o.Id)).Where(o => o.IsIndexHtml).ProjectTo<T>().ToListAsync();
 
         }

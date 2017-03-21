@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using EasyFast.Application.Config.Dto;
 using Abp.Domain.Repositories;
 using EasyFast.Core.Entities;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 
 namespace EasyFast.Application.Config
 {
@@ -20,28 +22,27 @@ namespace EasyFast.Application.Config
         }
         #endregion
 
-        public SiteInfoDto GetSiteInfo()
+        public async Task<SiteInfoDto> GetSiteInfo()
         {
-            var data = _siteConfigRepository.GetAll().FirstOrDefault();
-            return Mapper.Map<SiteInfoDto>(data);
+            return await _siteConfigRepository.GetAll().ProjectTo<SiteInfoDto>().FirstOrDefaultAsync();
+
         }
 
-        public SiteOptionDto GetSiteOption()
+        public async Task<SiteOptionDto> GetSiteOption()
         {
-            var data = _siteConfigRepository.GetAll().FirstOrDefault();
-            return Mapper.Map<SiteOptionDto>(data);
+            return await _siteConfigRepository.GetAll().ProjectTo<SiteOptionDto>().FirstOrDefaultAsync();
         }
 
-        public void UpdateSiteInfo(SiteInfoDto model)
+        public async Task UpdateSiteInfo(SiteInfoDto model)
         {
             var data = Mapper.Map<SiteConfig>(model);
-            _siteConfigRepository.InsertOrUpdate(data);
+            await _siteConfigRepository.InsertOrUpdateAsync(data);
         }
 
-        public void UpdateSiteOption(SiteOptionDto model)
+        public async Task UpdateSiteOption(SiteOptionDto model)
         {
             var data = Mapper.Map<SiteConfig>(model);
-            _siteConfigRepository.InsertOrUpdate(data);
+            await _siteConfigRepository.InsertOrUpdateAsync(data);
         }
     }
 }

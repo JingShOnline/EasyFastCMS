@@ -9,10 +9,10 @@ namespace EasyFast.Application.Config
 {
     public interface ISiteConfigAppService
     {
-        SiteOptionDto GetSiteOption();
-        void UpdateSiteOption(SiteOptionDto model);
+        Task<SiteOptionDto> GetSiteOption();
+        Task UpdateSiteOption(SiteOptionDto model);
 
-        SiteInfoDto GetSiteInfo();
-        void UpdateSiteInfo(SiteInfoDto model);
+        Task<SiteInfoDto> GetSiteInfo();
+        Task UpdateSiteInfo(SiteInfoDto model);
     }
 }

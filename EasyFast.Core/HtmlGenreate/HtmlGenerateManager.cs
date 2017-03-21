@@ -35,7 +35,7 @@ namespace EasyFast.Core.HtmlGenreate
         /// <param name="template">模板</param>
         /// <param name="savePath">保存路径</param>
         /// <returns></returns>
-        public async Task GenerateHtml<T>(string template, string savePath)
+        public async Task GenerateHtml(string template, string savePath)
         {
             //拿到标签数组
             var matches = Regex.Matches(template, EasyFastConsts.TagRegex);
@@ -78,12 +78,18 @@ namespace EasyFast.Core.HtmlGenreate
                 //排序
                 if (!string.IsNullOrWhiteSpace(dto.Sorting))
                     sql += $" {dto.Sorting}";
+                //解析ModelType
+                var modelType = Type.GetType(
+                    Regex.Match(itemTemplate, EasyFastConsts.ModelTypeRegex)
+                        .Value.Replace("model ", "")
+                        .Replace("List<", "")
+                        .Replace(">", "")
+                        .Replace("<t", ""));
 
-
-                var model = AsyncHelper.RunSync(() => _sqlExecuter.SqlQuery<T>(sql, parameters.ToArray()));
+                var model = AsyncHelper.RunSync(() => _sqlExecuter.SqlQuery(modelType, sql, parameters.ToArray()));
 
                 //parseHtml
-                var resulthtml = RazorHelper.ParseCshtml<T>(itemTemplate, lastModifyTime, model);
+                var resulthtml = RazorHelper.ParseCshtml(modelType, itemTemplate, lastModifyTime, model);
 
                 //替换
                 var replacestr = Regex.Replace(resulthtml, EasyFastConsts.SqlRegex, "");

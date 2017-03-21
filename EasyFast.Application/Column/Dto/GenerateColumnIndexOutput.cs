@@ -13,17 +13,13 @@ namespace EasyFast.Application.Column.Dto
     /// 生成静态化文件所用的栏目Dto
     /// </summary>
     [AutoMapFrom(typeof(Core.Entities.Column))]
-    public class GenerateColumnIndexOutput : EntityDto
+    public class GenerateColumnIndexOutput : GenerateColumnBase
     {
         /// <summary>
         /// 栏目类型
         /// </summary>
         public ColumnTypeEnum ColumnTypeEnum { get; set; }
 
-        /// <summary>
-        /// 栏目名称
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// 栏目首页模板
@@ -39,11 +35,6 @@ namespace EasyFast.Application.Column.Dto
         /// 单页节点生成规则
         /// </summary>
         public string SingleHtmlRule { get; set; }
-
-        /// <summary>
-        /// 路径
-        /// </summary>
-        public string Dir { get; set; }
 
 
     }

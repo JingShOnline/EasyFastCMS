@@ -21,12 +21,12 @@ namespace EasyFast.Core
         Task<int> Execute(string sql, params object[] parameters);
 
         /// <summary>
-        /// 创建一个原始 SQL 查询，该查询将返回给定泛型类型的元素。
+        /// 创建一个原始 SQL 查询
         /// </summary>
-        /// <typeparam name="T">查询所返回对象的类型</typeparam>
+        /// <param name="type"></param>
         /// <param name="sql">SQL 查询字符串</param>
         /// <param name="parameters">要应用于 SQL 查询字符串的参数</param>
         /// <returns></returns>
-        Task<List<T>> SqlQuery<T>(string sql, params SqlParameter[] parameters);
+        Task<List<object>> SqlQuery(Type type, string sql, params SqlParameter[] parameters);
     }
 }

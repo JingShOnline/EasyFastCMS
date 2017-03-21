@@ -22,13 +22,14 @@ namespace EasyFast.Common
         /// <summary>
         /// cshtml文件解析并返回字符串
         /// </summary>
+        /// <param name="type">model类型</param>
         /// <param name="html">cshtml内容</param>
         /// <param name="csName">缓存名</param>
         /// <param name="model">Model</param>
         /// <returns></returns>
-        public static string ParseCshtml<T>(string html, string csName, object model = null)
+        public static string ParseCshtml(Type type, string html, string csName, object model = null)
         {
-            string cshtml = Engine.Razor.RunCompile(html, csName, typeof(T), model);
+            string cshtml = Engine.Razor.RunCompile(html, csName, type, model);
             return cshtml;
         }
         public static RawString UrlEnCode(string str)

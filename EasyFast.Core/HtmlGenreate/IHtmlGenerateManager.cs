@@ -18,6 +18,6 @@ namespace EasyFast.Core.HtmlGenreate
         /// <param name="template">模板</param>
         /// <param name="savePath">保存路径 Article_id_index.html</param>
         /// <returns></returns>
-        Task GenerateHtml<T>(string template, string savePath);
+        Task GenerateHtml(string template, string savePath);
     }
 }
