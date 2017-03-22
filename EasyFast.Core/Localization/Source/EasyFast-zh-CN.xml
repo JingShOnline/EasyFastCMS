@@ -4,7 +4,7 @@
     <text name="HomePage" value="主页" />
     <text name="About" value="关于我们" />
     <text name="WellcomeMessage" value="欢迎使用 EasyFast!" />
-    
+
     <text name="FormIsNotValidMessage" value="部分输入信息不符合要求，请检查并改正.." />
     <text name="TenantNameCanNotBeEmpty" value="租户名不能为空" />
 
@@ -21,6 +21,28 @@
 
     <text name="LoginFailed" value="登录失败!" />
     <text name="Admin" value="后台管理" />
-    
+    <text name="EasyFastCmsAdminManager" value="易迅CM后台管理" />
+    <text name="AdminHome" value="后台首页" />
+
+    <text name="UserManager" value="用户管理" />
+    <text name="AdminUserManager" value="管理员管理" />
+    <text name="MemberManager" value="会员管理" />
+    <text name="UserRoleManager" value="角色管理" />
+
+    <text name="ContentManager" value="内容管理" />
+    <text name="ContentInfoManager" value="信息管理" />
+
+    <text name="HtmlGenerate" value="Html生成管理" />
+    <text name="IndexGenerate" value="生成首页及栏目首页" />
+    <text name="ContentGenerate" value="生成内容页" />
+    <text name="ColumnListGenerate" value="生成栏目列表页" />
+
+    <text name="ColumnRelatedManager" value="栏目相关管理" />
+    <text name="ColumnManager" value="栏目管理" />
+    <text name="ModelManager" value="模型管理" />
+
+    <text name="SiteManager" value="系统设置" />
+    <text name="SiteInfo" value="网络信息配置" />
+    <text name="SiteOption" value="	网站参数配置" />
   </texts>
 </localizationDictionary>

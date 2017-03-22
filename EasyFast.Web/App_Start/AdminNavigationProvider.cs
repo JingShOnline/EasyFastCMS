@@ -88,8 +88,8 @@ namespace EasyFast.Web.App_Start
                    L("SiteManager"),
                    icon: "icon-settings"
                  ).AddItem(new MenuItemDefinition(
-                        "SiteInfoManager",
-                        L("SiteInfoManager"),
+                        "SiteInfo",
+                        L("SiteInfo"),
                         url: "/Admin/SiteConfig/SiteInfo"
                  )).AddItem(new MenuItemDefinition(
                         "SiteOption",
