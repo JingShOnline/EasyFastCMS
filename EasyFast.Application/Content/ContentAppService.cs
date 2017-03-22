@@ -11,6 +11,7 @@ using Abp.Linq.Extensions;
 using EasyFast.Application.Common.Dto;
 using AutoMapper.QueryableExtensions;
 using System;
+using System.Collections.Generic;
 using Abp.AutoMapper;
 
 namespace EasyFast.Application.Content
@@ -63,5 +64,16 @@ namespace EasyFast.Application.Content
             var model = await _commonModelRepository.GetAsync(id);
             return model.MapTo<AddContentDto>();
         }
+
+
+        public async Task<List<GenerateContentOutput>> GetGenerateContentsByCIds(List<int> ids)
+        {
+            return
+                await _commonModelRepository.GetAll()
+                    .Where(o => ids.Contains(o.ColumnId) && o.Column.IsContentHtml)
+                    .ProjectTo<GenerateContentOutput>()
+                    .ToListAsync();
+        }
+
     }
 }

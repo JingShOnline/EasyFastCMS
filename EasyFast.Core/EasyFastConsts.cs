@@ -1,8 +1,10 @@
-﻿using System.Web;
+﻿using System;
+using System.Reflection;
+using System.Web;
 
 namespace EasyFast.Core
 {
-    public class EasyFastConsts
+    public static class EasyFastConsts
     {
         static EasyFastConsts()
         {
@@ -26,6 +28,14 @@ namespace EasyFast.Core
         /// </summary>
         public const string UploadFilePath = "Upload";
 
+
+
+        /// <summary>
+        /// 标签匹配正则表达式
+        /// </summary>
+        public const string TagRegex = @"\$.*?}";
+
+
         /// <summary>
         /// 域名+端口
         /// </summary>
@@ -34,22 +44,17 @@ namespace EasyFast.Core
         /// <summary>
         /// 地址
         /// </summary>
-        public static string BaseDirectory = HttpContext.Current.Server.MapPath("~") + @"\";
-
-        /// <summary>
-        /// 标签匹配正则表达式
-        /// </summary>
-        public const string TagRegex = @"\$.*?}";
+        public static string BaseDirectory = HttpContext.Current.Server.MapPath("~");
 
         /// <summary>
         /// 标签路径
         /// </summary>
-        public static string TagPath = $@"{HttpContext.Current.Server.MapPath("~")}\Template\Tag";
+        public static string TagPath = $@"{BaseDirectory}Template\Tag";
 
         /// <summary>
         /// 模型type提取正则
         /// </summary>
-        public static string ModelTypeRegex = @"model.+<t>";
+        public const string ModelTypeRegex = @"@model.+\s+<t>?";
 
         /// <summary>
         /// 静态文件地址
@@ -76,6 +81,16 @@ namespace EasyFast.Core
         /// </summary>
         public const string SqlParameterRegex = "\".+\"";
 
+        /// <summary>
+        /// 开发环境应用服务程序集地址
+        /// </summary>
+        public static string DevApplicationAssemblyPath =
+            $@"{BaseDirectory}EasyFast.Application\bin\Debug\EasyFast.Application.dll";
+
+        /// <summary>
+        /// 生产环境应用服务程序集地址
+        /// </summary>
+        public static string ProdApplicationAssemblyPath = $@"{BaseDirectory}bin\EasyFast.Application.dll";
 
 
     }

@@ -318,6 +318,8 @@
     <Content Include="Areas\Admin\Views\Article\addOrEdit.js" />
     <Content Include="Areas\Admin\Views\Content\add.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\contentGenrate.js" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\common.js" />
+    <Content Include="Areas\Admin\Views\HtmlGenerate\generateList.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\indexGenrate.js" />
     <Content Include="Areas\Admin\Views\Lawyer\addOrEdit.js" />
     <Content Include="Content\Uploader.swf" />
@@ -461,7 +463,6 @@
     <Content Include="Areas\Admin\Views\Lawyer\AddContent.cshtml" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\Content.cshtml" />
-    <Content Include="Areas\Admin\Views\HtmlGenerate\Single.cshtml" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\List.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -472,6 +473,7 @@
     <Content Include="fonts\icomoon.eot" />
     <Content Include="fonts\icomoon.ttf" />
     <Content Include="fonts\icomoon.woff" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />

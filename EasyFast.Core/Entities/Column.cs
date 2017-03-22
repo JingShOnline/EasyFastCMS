@@ -19,6 +19,8 @@ namespace EasyFast.Core.Entities
 
         public int? ParentId { get; set; }
 
+
+
         [ForeignKey("ParentId")]
         public virtual ICollection<Column> Children { get; set; }
 
@@ -124,22 +126,6 @@ namespace EasyFast.Core.Entities
         /// </summary>
         [StringLength(100)]
         public string ContentHtmlRule { get; set; }
-
-        /// <summary>
-        /// 是否生成单页节点
-        /// </summary>
-        public bool IsCreateSingle { get; set; }
-
-        /// <summary>
-        /// 单页节点模板
-        /// </summary>
-        [StringLength(100)]
-        public string SingleTemplate { get; set; }
-        /// <summary>
-        /// 单页节点生成规则
-        /// </summary>
-        [StringLength(100)]
-        public string SingleHtmlRule { get; set; }
 
         public int OrderId { get; set; }
 

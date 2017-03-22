@@ -1,30 +1,4 @@
-﻿(function () {
-    $(function () {
-        function initTreeData() {
-            $("#tree").tree({
-                url: "/api/services/app/column/GetColumnEasyTree",
-                method: "get",
-                onBeforeLoad: function (node, param) {
-                    param.isIndexHtml = true;
-                },
-                checkbox: true,
-                animate: true,
-                lines: true,
-                loadFilter: function (data) {
-                    return data.result;
-                },
-                cascadeCheck: false
-            });
-        }
-
-
-        initTreeData();
-    });
-
-
-
-})();
-var generateService = abp.services.app.htmlGenerate;
+﻿
 function generateColumnIndex() {
     var nodes = $('#tree').tree('getChecked');
     if (nodes.length <= 0) {
@@ -36,18 +10,20 @@ function generateColumnIndex() {
         arrary.push(nodes[i].id);
 
     };
-    generateService.columnIndexGenerate(arrary).done(function () {
+    generateService.generateColumnIndex(arrary, false).done(function () {
         abp.message.success("栏目生成成功!", "操作成功");
     });
 
 }
 
 function generateIndex() {
-    generateService.columnIndexGenerate().done(function () {
+    generateService.generateIndex().done(function () {
         abp.message.success("网站首页生成成功!", "操作成功");
     });
 }
 
 function generateAllIndex() {
-    
+    generateService.generateAllIndex().done(function () {
+        abp.message.success("全部生成成功!", "操作成功");
+    });
 } 

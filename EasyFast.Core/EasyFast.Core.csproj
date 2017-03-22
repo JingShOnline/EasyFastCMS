@@ -125,6 +125,7 @@
     <Compile Include="Authorization\PermissionNames.cs" />
     <Compile Include="Authorization\Roles\AppRoleConfig.cs" />
     <Compile Include="Authorization\Roles\StaticRoleNames.cs" />
+    <Compile Include="EasyFastStatics.cs" />
     <Compile Include="Editions\EditionManager.cs" />
     <Compile Include="Entities\Column.cs" />
     <Compile Include="Entities\ColumnTypeEnum.cs" />

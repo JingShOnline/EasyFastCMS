@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Abp.Specifications;
 
 namespace EasyFast.Application.Column
 {
@@ -21,7 +22,7 @@ namespace EasyFast.Application.Column
         /// 添加栏目
         /// </summary>
         /// <param name="model"></param>
-        Task AddAsync(Core.Entities.Column model);
+        Task AddAsync(ColumnDto model);
 
         /// <summary>
         /// 分页获取栏目用于表格展示
@@ -43,7 +44,7 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task UpdateAsync(Core.Entities.Column model);
+        Task UpdateAsync(ColumnDto model);
 
 
         /// <summary>
@@ -92,11 +93,10 @@ namespace EasyFast.Application.Column
 
 
         /// <summary>
-        /// 根据id集合获取栏目用于生成静态化文件时
+        /// 获取栏目用于生成静态化文件
         /// </summary>
-        /// <param name="ids"></param>
-        /// <param name="isAll"></param>
+        /// <param name="spec">规约</param>
         /// <returns></returns>
-        Task<List<T>> GetGenerateColumnByIds<T>(List<int> ids, bool isAll);
+        Task<List<T>> GetGenerateColumn<T>(ISpecification<Core.Entities.Column> spec);
     }
 }

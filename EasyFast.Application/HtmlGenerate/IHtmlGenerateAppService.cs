@@ -16,7 +16,7 @@ namespace EasyFast.Application.HtmlGenerate
         /// <param name="ids">栏目ids</param>
         /// <param name="isAll">生成选项</param>
         /// <returns></returns>
-        Task ColumnIndexGenerate(List<int> ids, bool isAll = false);
+        Task GenerateColumnIndex(List<int> ids, bool isAll = false);
 
         /// <summary>
         /// 生成网站首页
@@ -35,7 +35,7 @@ namespace EasyFast.Application.HtmlGenerate
         /// </summary>
         /// <param name="isAll">生成选项</param>
         /// <returns></returns>
-        Task GenerateContent(bool isAll);
+        Task GenerateContent(List<int> id);
 
         /// <summary>
         /// 生成栏目列表页
@@ -43,6 +43,6 @@ namespace EasyFast.Application.HtmlGenerate
         /// <param name="ids"></param>
         /// <param name="isAll">生成选项</param>
         /// <returns></returns>
-        Task GenerateColumnList(List<int> ids, bool isAll);
+        Task GenerateColumnList(List<int> ids, bool isAll = false);
     }
 }

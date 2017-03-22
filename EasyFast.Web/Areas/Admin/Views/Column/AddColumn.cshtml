@@ -64,19 +64,65 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">是否生成静态首页</label>
                     <div class="col-md-10">
-                        @Html.CheckBoxFor(model => model.IsIndexHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                        @if (Model.IsIndexHtml)
+                        {
+                            <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate" style="width: 78px;">
+                                <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
+                                    <input id="isIndexHtml" name="isIndexHtml" type="checkbox" class="make-switch" checked="" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="isIndexHtml" class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate" style="width: 78px;">
+                                <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
+                                    <input id="isIndexHtml" type="checkbox" class="make-switch" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                </div>
+                            </div>
+                        }
+
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2">是否生成静态列表页</label>
                     <div class="col-md-10">
-                        @Html.CheckBoxFor(model => model.IsListHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                        @if (Model.IsListHtml)
+                        {
+                            <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate" style="width: 78px;">
+                                <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
+                                    <input id="isListHtml" type="checkbox" class="make-switch" checked="" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate" style="width: 78px;">
+                                <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
+                                    <input id="isListHtml" type="checkbox" class="make-switch" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2">是否生成静态内容页</label>
                     <div class="col-md-10">
-                        @Html.CheckBoxFor(model => model.IsContentHtml, new { htmlAttributes = new { style = "width:200px;" } })
+                        @if (Model.IsContentHtml)
+                        {
+                            <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate" style="width: 78px;">
+                                <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
+                                    <input id="isContentHtml" type="checkbox" class="make-switch" checked="" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate" style="width: 78px;">
+                                <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
+                                    <input id="isContentHtml" type="checkbox" class="make-switch" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div class="form-group">
@@ -223,19 +269,19 @@
         var curentId = '@Model.Id';
         console.log(selectedColumn);
         (function () {
-            $(function () {
+            $(function() {
 
                 abp.ajax({
                     url: "@Url.Action("GetTreeColumnName","Column")"
-                }).done(function (data) {
-                    var html = setTreeColumnSelect(data, "<select Name='ParentId' class='form-control col-md-1' required:true'><option value=''>请选择栏目</option>");
+                }).done(function(data) {
+                    var html = setTreeColumnSelect(data,
+                        "<select Name='ParentId' class='form-control col-md-1' required:true'><option value=''>请选择栏目</option>");
                     html += "</select>";
                     var select = $("#treeDiv").html(html);
                 });
 
 
-
-            })
+            });
         })();
 
         $("#submit").click(function () {
@@ -246,10 +292,15 @@
                 return;
             }
             var $div = $form.parent();
+            var json = $form.serializeFormToObject();
+            json.IsIndexHtml= $("#isIndexHtml").bootstrapSwitch('state');
+            json.IsContentHtml = $("#isContentHtml").bootstrapSwitch('state');
+            json.IsListHtml =$("#isListHtml").bootstrapSwitch('state');
+
             abp.ui.setBusy($div);
             abp.ajax({
                 url: '@Url.Action("AddOrUpdateColumn", "Column")',
-                data: $form.serializeFormToJson(),
+                data: JSON.stringify(json)
             }).always(function () {
                 abp.ui.clearBusy($form.parent());
             });

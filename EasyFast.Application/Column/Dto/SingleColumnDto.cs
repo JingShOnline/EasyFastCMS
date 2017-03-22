@@ -14,7 +14,7 @@ namespace EasyFast.Application.Column.Dto
     /// 单页栏目
     /// </summary>
     [AutoMap(typeof(Core.Entities.Column))]
-    public class SingleColumnDto : ColumnDtoBase
+    public sealed class SingleColumnDto : ColumnDtoBase
     {
         /// <summary>
         /// 
@@ -24,21 +24,21 @@ namespace EasyFast.Application.Column.Dto
             ColumnTypeEnum = ColumnTypeEnum.Single;
 
         }
-
         /// <summary>
         /// 是否生成单页节点
         /// </summary>
-        public bool IsCreateSingle { get; set; }
+        public bool IsIndexHtml { get; set; }
+
 
         /// <summary>
         /// 单页节点模板
         /// </summary>
         [StringLength(100)]
-        public string SingleTemplate { get; set; }
+        public string IndexTemplate { get; set; }
 
         /// <summary>
         /// 单页节点生成规则
         /// </summary>
-        public string SingleHtmlRule { get; set; }
+        public string IndexHtmlRule { get; set; }
     }
 }

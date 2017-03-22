@@ -13,41 +13,22 @@
 </div>
 <div class="row">
 
-    <div class="col-md-4">
-        <label>是否生成子栏目</label>
-        <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate bootstrap-switch-on" style="width: 78px;">
-            <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
-                <input type="checkbox" class="make-switch" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
-            </div>
-        </div><br /><br />
+    <div class="col-md-5">
         <ul id="tree"></ul>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-7">
         <div class="m-heading-1 border-green m-bordered">
             <h3>
                 <font><font>生成选中栏目下的内容页</font></font>
             </h3>
             <p>
                 <font><font>您可以点击这里生成选中栏目下的内容页面</font></font><br>
-                <button type="button" class="btn blue">
+                <button type="button" class="btn blue" onclick="generateContent()">
                     <i class="fa fa-check"></i>生成
                 </button>
             </p>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="m-heading-1 border-green m-bordered">
-            <h3>
-                <font><font>生成所有的栏目下的内容页面</font></font>
-            </h3>
-            <p>
-                <font><font>您可以点击这里生成所有栏目下的内容页</font></font><br>
-                <button type="button" class="btn blue">
-                    <i class="fa fa-check"></i>生成
-                </button>
-            </p>
-        </div>
-
     </div>
 </div>
-@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/contentGenrate.js");
+@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/common.js")
+@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/contentGenrate.js")

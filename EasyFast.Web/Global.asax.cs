@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Abp.Castle.Logging.Log4Net;
 using Abp.Web;
 using Castle.Facilities.Logging;
@@ -14,6 +15,21 @@ namespace EasyFast.Web
                 f => f.UseAbpLog4Net().WithConfig("log4net.config")
             );
             base.Application_Start(sender, e);
+
+            var baseDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+
+            try
+            {
+                EasyFastStatics.ApplicationAss = Assembly.LoadFile(baseDirectory.Replace(@"EasyFast.Web\",
+                @"EasyFast.Application\bin\Debug\EasyFast.Application.dll"));
+            }
+            catch
+            {
+
+                EasyFastStatics.ApplicationAss = Assembly.LoadFile($@"{baseDirectory}bin\EasyFast.Application.dll");
+            }
+
+
         }
     }
 }

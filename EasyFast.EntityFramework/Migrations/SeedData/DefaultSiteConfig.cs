@@ -22,10 +22,11 @@ namespace EasyFast.Migrations.SeedData
                 //初始化种子数据
                 _context.SiteConfig.Add(new SiteConfig
                 {
-                    TemplateDir = "/Template",
+                    TemplateDir = "Template\\",
                     TagDir = "Tags",
                     PageDir = "Pages",
-                    CodeDir = "Codes"
+                    CodeDir = "Codes",
+                    HTMLDir = @"StaticFile\"
                 });
 
                 List<Model> models = new List<Model>() {new Model()
@@ -54,10 +55,12 @@ namespace EasyFast.Migrations.SeedData
                 {
                     ColumnTypeEnum = ColumnTypeEnum.Single,
                     Name = "站点首页",
-                    Dir = "/",
-                    SingleTemplate = "Index.html",
-                    IsCreateSingle = true,
-                    SingleHtmlRule = "Index.html",
+                    Dir = "Index\\",
+                    IndexTemplate = "Page\\栏目首页.html",
+                    IsIndexHtml = true,
+                    IsContentHtml = false,
+                    IsListHtml = false,
+                    IndexHtmlRule = "Index.html",
                     ModelId = models[0].Id
                 });
 
@@ -65,7 +68,13 @@ namespace EasyFast.Migrations.SeedData
                 {
                     ColumnTypeEnum = ColumnTypeEnum.Normal,
                     Name = "新闻中心",
-                    Dir = "/",
+                    Dir = @"Column",
+                    IsIndexHtml = true,
+                    IsListHtml = true,
+                    IsContentHtml = true,
+                    IndexTemplate = "Page\\栏目首页.html",
+                    ListTemplate = "Page\\列表首页.html",
+                    ContentHtmlRule = "Page\\内容页.html",
                     ModelId = models[0].Id
                 };
                 _context.Column.Add(news);
@@ -75,7 +84,13 @@ namespace EasyFast.Migrations.SeedData
                     ParentId = news.Id,
                     ColumnTypeEnum = ColumnTypeEnum.Normal,
                     Name = "时势新闻",
-                    Dir = "/",
+                    Dir = @"Column",
+                    IsIndexHtml = true,
+                    IsListHtml = true,
+                    IsContentHtml = true,
+                    IndexTemplate = "Page\\栏目首页.html",
+                    ListTemplate = "Page\\列表首页.html",
+                    ContentHtmlRule = "Page\\内容页.html",
                     ModelId = models[0].Id
                 });
 
@@ -83,7 +98,13 @@ namespace EasyFast.Migrations.SeedData
                 {
                     ColumnTypeEnum = ColumnTypeEnum.Normal,
                     Name = "律师团队",
-                    Dir = "/",
+                    Dir = @"Column",
+                    IsIndexHtml = true,
+                    IsListHtml = true,
+                    IsContentHtml = true,
+                    IndexTemplate = "Page\\栏目首页.html",
+                    ListTemplate = "Page\\列表首页.html",
+                    ContentHtmlRule = "Page\\内容页.html",
                     ModelId = models[1].Id
                 };
                 _context.Column.Add(lawyers);
@@ -94,7 +115,13 @@ namespace EasyFast.Migrations.SeedData
                     ParentId = lawyers.Id,
                     ColumnTypeEnum = ColumnTypeEnum.Normal,
                     Name = "京师团队",
-                    Dir = "/",
+                    Dir = @"Column",
+                    IsIndexHtml = true,
+                    IsListHtml = true,
+                    IsContentHtml = true,
+                    IndexTemplate = "Page\\栏目首页.html",
+                    ListTemplate = "Page\\列表首页.html",
+                    ContentHtmlRule = "Page\\内容页.html",
                     ModelId = models[1].Id
                 });
 

@@ -1,17 +1,37 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@using Abp.Web.Mvc.Extensions
+<div class="row">
+    <div class="col-md-4">
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>List</title>
-</head>
-<body>
-    <div> 
+        <ul id="tree"></ul>
     </div>
-</body>
-</html>
+    <div class="col-md-3">
+        <div class="m-heading-1 border-green m-bordered">
+            <h3>
+                <font><font>生成选中栏目的列表页面</font></font>
+            </h3>
+            <p>
+                <font><font>您可以点击这里生成选中栏目下的列表页面</font></font><br>
+                <button type="button" class="btn blue" onclick="generateList()">
+                    <i class="fa fa-check"></i>生成
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="m-heading-1 border-green m-bordered">
+            <h3>
+                <font><font>生成所有的栏目列表页面</font></font>
+            </h3>
+            <p>
+                <font><font>您可以点击这里生成所有栏目下的列表页面</font></font><br>
+                <button type="button" class="btn blue" onclick="generateAllList()">
+                    <i class="fa fa-check"></i>生成
+                </button>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/common.js")
+@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/generateList.js")

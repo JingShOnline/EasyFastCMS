@@ -36,5 +36,12 @@ namespace EasyFast.Application.Content
         /// <param name="id"></param>
         /// <returns></returns>
         Task<AddContentDto> GetContent(int id);
+
+        /// <summary>
+        /// 根据栏目id获取生成所用的内容
+        /// </summary>
+        /// <returns></returns>
+        Task<List<GenerateContentOutput>> GetGenerateContentsByCIds(List<int> ids);
     }
 }
+

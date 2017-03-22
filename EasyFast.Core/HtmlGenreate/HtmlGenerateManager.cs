@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -37,6 +39,8 @@ namespace EasyFast.Core.HtmlGenreate
         /// <returns></returns>
         public async Task GenerateHtml(string template, string savePath)
         {
+
+            Debug.WriteLine("--进来了");
             //拿到标签数组
             var matches = Regex.Matches(template, EasyFastConsts.TagRegex);
             for (var i = 0; i < matches.Count; i++)
@@ -47,13 +51,14 @@ namespace EasyFast.Core.HtmlGenreate
                 var dto = JsonConvert.DeserializeObject<ParseTag>(trimStart);
                 //根据action与type拿到对应的模板
                 var tagPath = $@"{EasyFastConsts.TagPath}\{dto.Type}\{dto.Action}{EasyFastConsts.TemplateType}";
+                Debug.WriteLine("---去拿模板了" + tagPath);
                 //Cache TemplateCache -  拿文件的名称和最后修改时间做缓存名
                 var lastModifyTime = $"{dto.Action}{File.GetLastWriteTime(tagPath)}";
                 var itemTemplate = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey)
                        .Get(lastModifyTime,
                             () =>
                                File.ReadAllText(tagPath));
-
+                Debug.WriteLine("----拿到模板了");
                 //取出sql
                 var sql = Regex.Match(itemTemplate, EasyFastConsts.SqlRegex).Groups[1].Value;
                 //拼接sql
@@ -75,21 +80,23 @@ namespace EasyFast.Core.HtmlGenreate
                     }
                     sql += $" where {sqlParameters}";
                 }
+                Debug.WriteLine("------sql拼完了");
                 //排序
                 if (!string.IsNullOrWhiteSpace(dto.Sorting))
                     sql += $" {dto.Sorting}";
                 //解析ModelType
-                var modelType = Type.GetType(
-                    Regex.Match(itemTemplate, EasyFastConsts.ModelTypeRegex)
-                        .Value.Replace("model ", "")
+                var modelStr = Regex.Match(itemTemplate, EasyFastConsts.ModelTypeRegex)
+                    .Value;
+                var modelType = EasyFastStatics.ApplicationAss.GetType(modelStr.Replace("@model ", "")
                         .Replace("List<", "")
                         .Replace(">", "")
-                        .Replace("<t", ""));
-
+                        .Replace("<t", "").Trim());
+                Debug.WriteLine("--------去拿数据了");
                 var model = AsyncHelper.RunSync(() => _sqlExecuter.SqlQuery(modelType, sql, parameters.ToArray()));
-
+                Debug.WriteLine("----------拿到数据了");
+                itemTemplate = itemTemplate.Replace(modelStr.Replace("<t>", ""), "");
                 //parseHtml
-                var resulthtml = RazorHelper.ParseCshtml(modelType, itemTemplate, lastModifyTime, model);
+                var resulthtml = RazorHelper.ParseCshtml(itemTemplate, lastModifyTime, model);
 
                 //替换
                 var replacestr = Regex.Replace(resulthtml, EasyFastConsts.SqlRegex, "");
@@ -98,15 +105,17 @@ namespace EasyFast.Core.HtmlGenreate
 
 
             }
+
             if (matches.Count > 0)
             {
+                Debug.WriteLine("----------------开始保存了!" + savePath);
                 //保存文件
                 var dir = Path.GetDirectoryName(savePath);
                 if (!Directory.Exists(dir))
-                    if (dir != null) Directory.CreateDirectory(dir);
+                    Directory.CreateDirectory(dir);
                 File.WriteAllText(savePath, template);
             }
-
+            Debug.WriteLine("开始保存了!");
         }
 
     }

@@ -154,6 +154,8 @@
     <Compile Include="Column\Dto\GenerateColumnListOutput.cs" />
     <Compile Include="Column\IColumnAppService.cs" />
     <Compile Include="Column\ColumnAppService.cs" />
+    <Compile Include="Column\Specification\GenerateIndexSpecification.cs" />
+    <Compile Include="Column\Specification\GenerateListSpecification.cs" />
     <Compile Include="Common\Dto\EasyUIDataGridOutput.cs" />
     <Compile Include="Common\Dto\EasyUIDataGridPager.cs" />
     <Compile Include="Common\Dto\EasyUITree.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Content\ContentAppService.cs" />
     <Compile Include="Content\Dto\AddContentDto.cs" />
     <Compile Include="Content\Dto\DataGridInput.cs" />
+    <Compile Include="Content\Dto\GenerateContentOutput.cs" />
     <Compile Include="Content\Dto\GridContentOutput.cs" />
     <Compile Include="Content\Dto\PagedGridContentInput.cs" />
     <Compile Include="Content\IContentAppService.cs" />
@@ -174,7 +177,7 @@
     <Compile Include="Dto\TagDto.cs" />
     <Compile Include="EasyFastApplicationModule.cs" />
     <Compile Include="EasyFastAppServiceBase.cs" />
-    <Compile Include="HtmlGenerate\HtrmlGenerateAppService.cs" />
+    <Compile Include="HtmlGenerate\HtmlGenerateAppService.cs" />
     <Compile Include="HtmlGenerate\IHtmlGenerateAppService.cs" />
     <Compile Include="Lawyer\Dto\LawyerDto.cs" />
     <Compile Include="Lawyer\ILawyerAppService.cs" />

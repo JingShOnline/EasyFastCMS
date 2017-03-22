@@ -66,13 +66,9 @@ namespace EasyFast.Web.App_Start
                             L("ContentGenerate"),
                             url: "/Admin/HtmlGenerate/Content"
                     )).AddItem(new MenuItemDefinition(
-                            "SingleGenerate",
-                            L("SingleGenerate"),
-                            url: "/Admin/HtmlGrnerate/Single"
-                    )).AddItem(new MenuItemDefinition(
-                            "ColumnGenerate",
-                            L("SingleGenerate"),
-                            url: "/Admin/HtmlGenerate/Column"
+                            "ColumnListGenerate",
+                            L("ColumnListGenerate"),
+                            url: "/Admin/HtmlGenerate/List"
                     )))
                 .AddItem(new MenuItemDefinition(
                     "ColumnRelatedManager",

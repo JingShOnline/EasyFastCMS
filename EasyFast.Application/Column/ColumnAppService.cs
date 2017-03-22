@@ -18,6 +18,7 @@ using Abp.Linq.Extensions;
 using Abp.Application.Services.Dto;
 using System.Web;
 using System.Web.Http;
+using Abp.Specifications;
 
 namespace EasyFast.Application.Column
 {
@@ -41,9 +42,9 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task AddAsync(Core.Entities.Column model)
+        public async Task AddAsync(ColumnDto model)
         {
-            await _columnRepository.InsertAsync(model);
+            await _columnRepository.InsertAsync(model.MapTo<Core.Entities.Column>());
         }
 
 
@@ -85,7 +86,7 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task UpdateAsync(Core.Entities.Column model)
+        public async Task UpdateAsync(ColumnDto model)
         {
             var column = await _columnRepository.GetAsync(model.Id);
             model.MapTo(column);
@@ -143,16 +144,7 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         public async Task AddOrUpdateSingleAsync(SingleColumnDto model)
         {
-            var column = model.MapTo<Core.Entities.Column>();
-            // _columnManger.InitSignleColumn(column);
-            if (model.Id == 0)
-            {
-                await AddAsync(column);
-            }
-            else
-            {
-                await UpdateAsync(column);
-            }
+            await _columnRepository.InsertOrUpdateAsync(model.MapTo<Core.Entities.Column>());
         }
 
         /// <summary>
@@ -162,14 +154,13 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         public async Task AddOrUpdateColumn(ColumnDto model)
         {
-            var column = model.MapTo<Core.Entities.Column>();
-            //_columnManger.InitColumn(column);
+
             if (model.Id == 0)
             {
-                await AddAsync(column);
+                await AddAsync(model);
             }
             else
-                await UpdateAsync(column);
+                await UpdateAsync(model);
         }
 
 
@@ -216,16 +207,12 @@ namespace EasyFast.Application.Column
         }
 
         /// <summary>
-        /// 根据id集合获取栏目用于生成静态化文件时
+        /// 获取栏目用于生成静态化文件
         /// </summary>
-        /// <param name="ids"></param>
-        /// <param name="isAll"></param>
         /// <returns></returns>
-        public async Task<List<T>> GetGenerateColumnByIds<T>(List<int> ids, bool isAll)
+        public async Task<List<T>> GetGenerateColumn<T>(ISpecification<Core.Entities.Column> spec)
         {
-            if (isAll)
-                return await _columnRepository.GetAll().Where(o => o.IsIndexHtml).ProjectTo<T>().ToListAsync();
-            return await _columnRepository.GetAll().Where(o => ids.Contains(o.Id)).Where(o => o.IsIndexHtml).ProjectTo<T>().ToListAsync();
+            return await _columnRepository.GetAll().Where(spec.ToExpression()).ProjectTo<T>().ToListAsync();
 
         }
     }

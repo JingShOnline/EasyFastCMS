@@ -26,14 +26,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 生成单页节点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Single()
-        {
-            return View();
-        }
+
 
         /// <summary>
         /// 生成列表页

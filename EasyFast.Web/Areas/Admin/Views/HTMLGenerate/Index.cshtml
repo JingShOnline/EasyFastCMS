@@ -42,7 +42,7 @@
             <h3><font><font>全部生成</font></font></h3>
             <p>
                 <font><font>您可以点击这里同时生成网站首页和所有的栏目页面</font></font><br>
-                <button type="button" class="btn blue">
+                <button type="button" onclick="generateAllIndex()" class="btn blue">
                     <i class="fa fa-check"></i>生成
                 </button>
             </p>
@@ -50,4 +50,5 @@
 
     </div>
 </div>
-@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/indexGenrate.js");
+@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/common.js")
+@Html.IncludeScript("/Areas/Admin/Views/HTMLGenerate/indexGenrate.js")

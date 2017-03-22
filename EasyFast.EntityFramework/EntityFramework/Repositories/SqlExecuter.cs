@@ -44,6 +44,7 @@ namespace EasyFast.EntityFramework.EntityFramework.Repositories
         /// <returns></returns>
         public async Task<List<object>> SqlQuery(Type type, string sql, params SqlParameter[] parameters)
         {
+
             return await _dbContextProvider.GetDbContext().Database.SqlQuery(type, sql, parameters).ToListAsync();
         }
     }
