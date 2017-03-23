@@ -30,7 +30,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         public ActionResult AddSingle()
         {
             ViewBag.SingleTitle = "新建单页节点";
-            SingleColumnDto model = new SingleColumnDto();
+            var model = new SingleColumnDto();
             return View(model);
         }
 
@@ -59,7 +59,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         public ActionResult AddColumn()
         {
             ViewBag.ColumnTitle = "新建栏目";
-            ColumnDto model = new ColumnDto();
+            var model = new ColumnDto();
             return View(model);
         }
 

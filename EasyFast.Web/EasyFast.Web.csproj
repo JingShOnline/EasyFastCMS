@@ -316,6 +316,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
     <Content Include="Areas\Admin\Views\Article\addOrEdit.js" />
+    <Content Include="Areas\Admin\Views\Column\uploadImg.js" />
     <Content Include="Areas\Admin\Views\Content\add.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\contentGenrate.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\common.js" />

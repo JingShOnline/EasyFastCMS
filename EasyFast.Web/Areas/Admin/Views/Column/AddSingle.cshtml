@@ -1,6 +1,6 @@
 ﻿@model EasyFast.Application.Column.Dto.SingleColumnDto
 @using EasyFast.Application.Column.Dto
-
+@using Abp.Web.Mvc.Extensions
 
 <div class="portlet box blue ">
     <div class="portlet-title">
@@ -17,6 +17,7 @@
         <!-- BEGIN FORM-->
         <form id="AddSingle" class="form-horizontal form-bordered form-row-stripped">
             @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model=>model.ImageUrl)
             <input type="hidden" id="Dir" name="Dir" value="/" />
             <div class="form-body">
                 <div class="form-group">
@@ -100,13 +101,12 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">单页图片地址</label>
                     <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-file-image-o"></i>
-                            </span>
-                            @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-control", placeholder = "用于在单页显示指定的图片" } })
+                        <div id="columnPic">
+                            <div id="fileList" class="uploader-list">
+                                <img src="@Model.ImageUrl" />
+                            </div>
+                            <div id="filePicker">选择图片</div>
                         </div>
-                        @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -175,6 +175,7 @@
         <!-- END FORM-->
     </div>
 </div>
+@Html.IncludeScript("/Areas/Admin/Views/Column/uploadImg.js")
 @section Scripts {
     <script>
         var selectedColumn = '@Model.ParentId';

@@ -49,7 +49,7 @@ namespace EasyFast.Web.App_Start
                         icon: "fa fa-file-word-o"
                         ).AddItem(new MenuItemDefinition(
                             "ContentInfoManager",
-                            L("ContentInfoManger"),
+                            L("ContentInfoManager"),
                             url: "/Admin/Content/Index"
                         ))
 

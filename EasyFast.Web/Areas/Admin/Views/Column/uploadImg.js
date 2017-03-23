@@ -9,9 +9,15 @@
         mimeTypes: 'image/*'
     },
     formData: {
-        columnName: $("#columnName").text(),
-        dir: "defaultPic"
+        columnName: $("#Name").val(),
+        dir: "columnPic"
     }
+});
+
+//当文件被加入队列之前触发
+upload.on('beforeFileQueued', function (file) {
+    upload.options.formData = { "columnName": $("#Name").val(), "dir": "columnPic" }
+
 });
 
 
@@ -40,7 +46,8 @@ upload.on('fileQueued', function (file) {
 
 //上传成功
 upload.on('uploadSuccess', function (file, response) {
+
     $('#' + file.id).addClass('upload-state-done');
     abp.notify.success("上传默认图片成功!");
-    $("#DefaultPicUrl").val(response);
+    $("#ImageUrl").val(response);
 });
