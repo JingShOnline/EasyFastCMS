@@ -1,4 +1,4 @@
-﻿@model EasyFast.Application.Config.Dto.SiteOptionDto
+﻿@model EasyFast.Application.Config.Dto.SiteConfigDto
 
 @{
 
@@ -19,96 +19,107 @@
         <!-- BEGIN FORM-->
         <form id="SiteOption" class="form-horizontal form-bordered form-row-stripped">
             @Html.HiddenFor(model => model.Id)
-            <div class="form-body">
-                <div class="form-group">
-                    <label class="control-label col-md-2">生成HTML目录</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-file-word-o"></i>
-                            </span>
-                            @Html.EditorFor(model => model.HTMLDir, new { htmlAttributes = new { @class = "form-control", placeholder = "生成HTML目录，留空表示生成到根目录。" } })
+            @Html.HiddenFor(model => model.SiteName)
+            @Html.HiddenFor(model => model.SiteTitle)
+            @Html.HiddenFor(model => model.SiteUrl)
+            @Html.HiddenFor(model => model.LogoUrl)
+            @Html.HiddenFor(model => model.SiteName)
+            @Html.HiddenFor(model => model.Email)
+            @Html.HiddenFor(model => model.CopyRitht)
+            @Html.HiddenFor(model => model.Keywords)
+            @Html.HiddenFor(model => model.Description)
+            @Html.HiddenFor(model => model.BannerUrl)
+                <div class="form-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">生成HTML目录</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-file-word-o"></i>
+                                </span>
+                                @Html.EditorFor(model => model.HTMLDir, new { htmlAttributes = new { @class = "form-control", placeholder = "生成HTML目录，留空表示生成到根目录。" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.HTMLDir, "", new { @class = "text-danger" })
                         </div>
-                        @Html.ValidationMessageFor(model => model.HTMLDir, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">网站模板目录</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-folder-o"></i>
-                            </span>
-                            @Html.EditorFor(model => model.TemplateDir, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-group">
+                        <label class="control-label col-md-2">网站模板目录</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-folder-o"></i>
+                                </span>
+                                @Html.EditorFor(model => model.TemplateDir, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.TemplateDir, "", new { @class = "text-danger" })
                         </div>
-                        @Html.ValidationMessageFor(model => model.TemplateDir, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">标签库目录</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-folder-o"></i>
-                            </span>
-                            @Html.EditorFor(model => model.TagDir, new { htmlAttributes = new { @class = "form-control", placeholder = "标签库目录需在模板目录中" } })
+                    <div class="form-group">
+                        <label class="control-label col-md-2">标签库目录</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-folder-o"></i>
+                                </span>
+                                @Html.EditorFor(model => model.TagDir, new { htmlAttributes = new { @class = "form-control", placeholder = "标签库目录需在模板目录中" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.TagDir, "", new { @class = "text-danger" })
                         </div>
-                        @Html.ValidationMessageFor(model => model.TagDir, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">分页标签库目录</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-folder-o"></i>
-                            </span>
-                            @Html.EditorFor(model => model.PageDir, new { htmlAttributes = new { @class = "form-control", placeholder = "分页标签库目录需在模板目录中" } })
+                    <div class="form-group">
+                        <label class="control-label col-md-2">分页标签库目录</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-folder-o"></i>
+                                </span>
+                                @Html.EditorFor(model => model.PageDir, new { htmlAttributes = new { @class = "form-control", placeholder = "分页标签库目录需在模板目录中" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.PageDir, "", new { @class = "text-danger" })
                         </div>
-                        @Html.ValidationMessageFor(model => model.PageDir, "", new { @class = "text-danger" })
                     </div>
-                </div>
-                <div class="form-group last">
-                    <label class="control-label col-md-2">代码片段库目录</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-folder-o"></i>
-                            </span>
-                            @Html.EditorFor(model => model.CodeDir, new { htmlAttributes = new { @class = "form-control", placeholder = "断码片段库目录需在模板目录中" } })
+                    <div class="form-group last">
+                        <label class="control-label col-md-2">代码片段库目录</label>
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-folder-o"></i>
+                                </span>
+                                @Html.EditorFor(model => model.CodeDir, new { htmlAttributes = new { @class = "form-control", placeholder = "断码片段库目录需在模板目录中" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.CodeDir, "", new { @class = "text-danger" })
                         </div>
-                        @Html.ValidationMessageFor(model => model.CodeDir, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            </div>
-            <div class="form-actions">
-                <div class="row">
-                    <div class="col-md-offset-2 col-md-9">
-                        <button id="submit" type="button" class="btn blue">
-                            <i class="fa fa-check"></i>提交
-                        </button>
-                        <button type="button" class="btn default">
-                            <i class="fa fa-reply"></i>返回
-                        </button>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-9">
+                            <button id="submit" type="button" class="btn blue">
+                                <i class="fa fa-check"></i>提交
+                            </button>
+                            <button type="button" class="btn default">
+                                <i class="fa fa-reply"></i>返回
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </form>
-        <!-- END FORM-->
+            </form>
+            <!-- END FORM-->
+        </div>
     </div>
-</div>
-@section Scripts {
-    <script>
+    @section Scripts {
+        <script>
         $("#submit").click(function(){
             abp.ui.setBusy(
-                $('#SiteOption'), 
+                $('#SiteOption'),
                 abp.ajax({
-                    url: '@Url.Action("SiteOption","Config")',
-                    data:$('#SiteOption').serialize(),
-                }).done(function (data) {
-                    //abp.notify.success("网站参数配置修改成功！");
+                    url: '/Admin/SiteConfig/UpdateSiteConfig',
+                    data:$('#SiteOption').serializeFormToJson()
+                }).done(function () {
+                    abp.notify.success("网站参数配置修改成功！");
+                    abp.ui.clearBusy("#SiteOption");
                 })
             );
         });
-    </script>
-}
+        </script>
+    }

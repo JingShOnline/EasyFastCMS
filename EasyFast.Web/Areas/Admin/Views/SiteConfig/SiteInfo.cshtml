@@ -1,109 +1,183 @@
-﻿@model EasyFast.Application.Config.Dto.SiteInfoDto
+﻿@using Abp.Web.Mvc.Extensions
+@model EasyFast.Application.Config.Dto.SiteConfigDto
 
-@{
-    ViewBag.Title = "SiteInfo";
-}
-
-<h2>SiteInfo</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>SiteInfoDto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SiteName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SiteName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SiteName, "", new { @class = "text-danger" })
-            </div>
+<div class="portlet box blue ">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-file-word-o"></i>网站参数配置
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SiteTitle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SiteTitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SiteTitle, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SiteUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SiteUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SiteUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LogoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LogoUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LogoUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BannerUrl, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BannerUrl, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BannerUrl, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Webmaster, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Webmaster, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Webmaster, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CopyRitht, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CopyRitht, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CopyRitht, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse" data-original-title="" title="收缩/展开"></a>
+            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload" data-original-title="" title="刷新"></a>
         </div>
     </div>
-}
+    <div class="portlet-body form">
+        <!-- BEGIN FORM-->
+        <form id="SiteInfo" class="form-horizontal form-bordered form-row-stripped">
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.BannerUrl)
+            @Html.HiddenFor(model => model.HTMLDir)
+            @Html.HiddenFor(model => model.TemplateDir)
+            @Html.HiddenFor(model => model.TagDir)
+            @Html.HiddenFor(model => model.PageDir)
+            @Html.HiddenFor(model => model.CodeDir)
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-2">网站名称</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-file-word-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.SiteName, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入您的网站名称" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SiteName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">网站标题</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.SiteTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入您的网站标题" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SiteTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">网站地址</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.SiteUrl, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入您的网站地址" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SiteUrl, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">登陆地址</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.LogoUrl, new { htmlAttributes = new { @class = "form-control", placeholder = "后台登陆地址" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.LogoUrl, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">网站Banner图</label>
+                    <div class="col-md-10">
+                        <div id="columnPic">
+                            <div id="fileList" class="uploader-list">
+                                <img src="@Model.BannerUrl" />
+                            </div>
+                            <div id="filePicker">选择图片</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">站长名称</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.SiteName, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入网站站长名称" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.SiteName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">站长邮箱</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入站长邮箱" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">网站版权信息</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.CopyRitht, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入网站版权信息" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.CopyRitht, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">META关键词</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入META关键词" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">META描述</label>
+                    <div class="col-md-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-folder-o"></i>
+                            </span>
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "在此输入META描述" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-9">
+                        <button id="submit" type="button" class="btn blue">
+                            <i class="fa fa-check"></i>提交
+                        </button>
+                        <button type="button" class="btn default">
+                            <i class="fa fa-reply"></i>返回
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!-- END FORM-->
+    </div>
+</div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+
 </div>
+
+@Html.IncludeScript("/Areas/Admin/Views/SiteConfig/uploadImg.js")
+@section Scripts {
+    <script>
+            $("#submit").click(function() {
+                abp.ui.setBusy(
+                    $('#SiteInfo'),
+                    abp.ajax({
+                        url: '/Admin/SiteConfig/UpdateSiteConfig',
+                        data: $('#SiteInfo').serializeFormToJson()
+                    }).done(function() {
+                        abp.notify.success("网站参数配置修改成功！");
+                        abp.ui.clearBusy("#SiteOption");
+                    })
+                );
+            });
+    </script>
+}

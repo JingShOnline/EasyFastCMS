@@ -31,13 +31,11 @@ namespace EasyFast.Core.Entities
         /// <summary>
         /// Logo地址
         /// </summary>
-        [StringLength(50)]
         public string LogoUrl { get; set; }
 
         /// <summary>
         /// Banner地址
         /// </summary>
-        [StringLength(50)]
         public string BannerUrl { get; set; }
 
         /// <summary>

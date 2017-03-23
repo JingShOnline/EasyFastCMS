@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.AutoMapper;
 using EasyFast.Application.Config.Dto;
 using Abp.Domain.Repositories;
 using EasyFast.Core.Entities;
@@ -33,16 +34,28 @@ namespace EasyFast.Application.Config
             return await _siteConfigRepository.GetAll().ProjectTo<SiteOptionDto>().FirstOrDefaultAsync();
         }
 
+        public async Task<SiteConfigDto> GetSiteConfig()
+        {
+            var model = await _siteConfigRepository.GetAll().FirstOrDefaultAsync();
+            return model.MapTo<SiteConfigDto>();
+        }
+
         public async Task UpdateSiteInfo(SiteInfoDto model)
         {
             var data = Mapper.Map<SiteConfig>(model);
             await _siteConfigRepository.InsertOrUpdateAsync(data);
         }
 
+        //这种更新会把SiteInfo的覆盖掉
         public async Task UpdateSiteOption(SiteOptionDto model)
         {
             var data = Mapper.Map<SiteConfig>(model);
             await _siteConfigRepository.InsertOrUpdateAsync(data);
+        }
+
+        public async Task UpdateSiteConfig(SiteConfigDto dto)
+        {
+            await _siteConfigRepository.InsertOrUpdateAsync(dto.MapTo<SiteConfig>());
         }
     }
 }

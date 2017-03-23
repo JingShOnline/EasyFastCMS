@@ -323,6 +323,7 @@
     <Content Include="Areas\Admin\Views\HtmlGenerate\generateList.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\indexGenrate.js" />
     <Content Include="Areas\Admin\Views\Lawyer\addOrEdit.js" />
+    <Content Include="Areas\Admin\Views\SiteConfig\uploadImg.js" />
     <Content Include="Content\Uploader.swf" />
     <Content Include="Areas\Admin\Views\Content\index.js" />
     <Content Include="Areas\Admin\Views\Model\index.js" />

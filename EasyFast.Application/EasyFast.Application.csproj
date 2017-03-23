@@ -159,6 +159,7 @@
     <Compile Include="Common\Dto\EasyUIDataGridOutput.cs" />
     <Compile Include="Common\Dto\EasyUIDataGridPager.cs" />
     <Compile Include="Common\Dto\EasyUITree.cs" />
+    <Compile Include="Config\Dto\SiteConfigDto.cs" />
     <Compile Include="Config\SiteConfigAppService.cs" />
     <Compile Include="Config\Dto\SiteInfoDto.cs" />
     <Compile Include="Config\ISiteConfigAppService.cs" />

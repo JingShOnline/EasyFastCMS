@@ -9,15 +9,9 @@
         mimeTypes: 'image/*'
     },
     formData: {
-        columnName: $("#Name").val(),
-        dir: "columnPic"
+        columnName: "SiteInfo",
+        dir: "Banner"
     }
-});
-
-//当文件被加入队列之前触发
-upload.on('beforeFileQueued', function (file) {
-    upload.options.formData = { "columnName": $("#Name").val(), "dir": "columnPic" }
-
 });
 
 
@@ -48,6 +42,6 @@ upload.on('fileQueued', function (file) {
 upload.on('uploadSuccess', function (file, response) {
 
     $('#' + file.id).addClass('upload-state-done');
-    abp.notify.success("上传栏目图片成功!");
-    $("#ImageUrl").val(response);
+    abp.notify.success("上传网站Banner图成功!");
+    $("#BannerUrl").val(response);
 });

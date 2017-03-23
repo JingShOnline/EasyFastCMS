@@ -14,5 +14,9 @@ namespace EasyFast.Application.Config
 
         Task<SiteInfoDto> GetSiteInfo();
         Task UpdateSiteInfo(SiteInfoDto model);
+
+        Task<SiteConfigDto> GetSiteConfig();
+
+        Task UpdateSiteConfig(SiteConfigDto dto);
     }
 }

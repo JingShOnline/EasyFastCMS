@@ -4,6 +4,7 @@ using EasyFast.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,30 +21,26 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         #endregion
 
 
-        public ActionResult SiteInfo()
+        public async Task<ActionResult> SiteInfo()
         {
-            var data = _siteConfigAppService.GetSiteInfo();
+            var data = await _siteConfigAppService.GetSiteConfig();
+            return View(data);
+        }
+
+
+        public async Task<ActionResult> SiteOption()
+        {
+            var data = await _siteConfigAppService.GetSiteConfig();
             return View(data);
         }
 
         [HttpPost]
-        public ActionResult SiteInfo(SiteInfoDto model)
+        public async Task<ActionResult> UpdateSiteConfig(SiteConfigDto dto)
         {
-            _siteConfigAppService.UpdateSiteInfo(model);
-            return Json(model);
+            await _siteConfigAppService.UpdateSiteConfig(dto);
+            return Json(dto);
         }
 
-        public ActionResult SiteOption()
-        {
-            var data = _siteConfigAppService.GetSiteOption();
-            return View(data);
-        }
 
-        [HttpPost]
-        public JsonResult SiteOption(SiteOptionDto model)
-        {
-            _siteConfigAppService.UpdateSiteOption(model);
-            return Json(model);
-        }
     }
 }

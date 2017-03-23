@@ -146,6 +146,10 @@
     <Compile Include="Migrations\201703220943053_20170322_Update_Column.Designer.cs">
       <DependentUpon>201703220943053_20170322_Update_Column.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703230156254_20170323_Update_SiteConfig.cs" />
+    <Compile Include="Migrations\201703230156254_20170323_Update_SiteConfig.Designer.cs">
+      <DependentUpon>201703230156254_20170323_Update_SiteConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="EasyFastDataModule.cs" />
@@ -178,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703220943053_20170322_Update_Column.resx">
       <DependentUpon>201703220943053_20170322_Update_Column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230156254_20170323_Update_SiteConfig.resx">
+      <DependentUpon>201703230156254_20170323_Update_SiteConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
