@@ -18,11 +18,7 @@ namespace EasyFast.Application.Column
     /// </summary>
     public interface IColumnAppService : IApplicationService
     {
-        /// <summary>
-        /// 添加栏目
-        /// </summary>
-        /// <param name="model"></param>
-        Task AddAsync(ColumnDto model);
+     
 
         /// <summary>
         /// 分页获取栏目用于表格展示
@@ -38,14 +34,7 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         Task<EasyUIGridOutput<TreeGridOutput>> GetTreeGrid(TreeGridInput search);
 
-
-        /// <summary>
-        /// 修改栏目
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task UpdateAsync(ColumnDto model);
-
+     
 
         /// <summary>
         /// 删除栏目
@@ -89,7 +78,7 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool? isIndexHtml);
+        Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isSingleColumn);
 
 
         /// <summary>

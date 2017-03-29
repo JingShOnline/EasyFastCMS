@@ -13,19 +13,7 @@ namespace EasyFast.Application.Lawyer
     /// </summary>
     public interface ILawyerAppService : IApplicationService
     {
-        /// <summary>
-        /// 添加律师
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        Task AddAsync(LawyerDto dto);
-
-        /// <summary>
-        /// 修改律师
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        Task UpdateAsync(LawyerDto dto);
+       
 
         /// <summary>
         /// 添加或修改律师

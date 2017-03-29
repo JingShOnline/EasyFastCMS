@@ -39,6 +39,6 @@ namespace EasyFast.Application.Column.Dto
         /// <summary>
         /// 子栏目
         /// </summary>
-        public List<TreeGridOutput> Children { get; set; }
+        public List<TreeGridOutput> children { get; set; }
     }
 }

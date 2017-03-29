@@ -13,6 +13,7 @@ using AutoMapper.QueryableExtensions;
 using System;
 using System.Collections.Generic;
 using Abp.AutoMapper;
+using Abp.Web.Models;
 
 namespace EasyFast.Application.Content
 {
@@ -44,6 +45,7 @@ namespace EasyFast.Application.Content
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [DontWrapResult]
         public async Task<EasyUIGridOutput<GridContentOutput>> GetGridContents(DataGridInput input)
         {
             var query = _commonModelRepository.GetAll()

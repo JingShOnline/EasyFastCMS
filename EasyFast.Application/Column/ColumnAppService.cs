@@ -37,16 +37,7 @@ namespace EasyFast.Application.Column
         }
         #endregion
 
-        /// <summary>
-        /// 添加栏目
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public async Task AddAsync(ColumnDto model)
-        {
-            await _columnRepository.InsertAsync(model.MapTo<Core.Entities.Column>());
-        }
-
+      
 
         /// <summary>
         /// 删除栏目
@@ -81,17 +72,7 @@ namespace EasyFast.Application.Column
         }
 
 
-        /// <summary>
-        /// 修改栏目 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public async Task UpdateAsync(ColumnDto model)
-        {
-            var column = await _columnRepository.GetAsync(model.Id);
-            model.MapTo(column);
-            await _columnRepository.UpdateAsync(column);
-        }
+     
 
 
         /// <summary>
@@ -144,6 +125,10 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         public async Task AddOrUpdateSingleAsync(SingleColumnDto model)
         {
+            if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
+                model.IndexHtmlRule = $"{model.Name}\\index.shtml";
+            else if (!model.IndexHtmlRule.Contains(".shtml"))
+                model.IndexHtmlRule += ".shtml";
             await _columnRepository.InsertOrUpdateAsync(model.MapTo<Core.Entities.Column>());
         }
 
@@ -155,24 +140,33 @@ namespace EasyFast.Application.Column
         public async Task AddOrUpdateColumn(ColumnDto model)
         {
 
-            if (model.Id == 0)
-            {
-                await AddAsync(model);
-            }
-            else
-                await UpdateAsync(model);
+            if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
+                model.IndexHtmlRule = $"index.shtml";
+
+
+            if (string.IsNullOrWhiteSpace(model.ListHtmlRule))
+                model.ListHtmlRule = $@"List\list_{{Id}}.shtml";
+
+
+            if (string.IsNullOrWhiteSpace(model.ContentHtmlRule))
+                model.ContentHtmlRule = $@"Content\{{Year}}\{{Month}}\{{Day}}\{model.Name}_{{Id}}.shtml";
+            else if (!model.ContentHtmlRule.Contains(".shtml"))
+                model.ContentHtmlRule += ".shtml";
+            await _columnRepository.InsertOrUpdateAsync(model.MapTo<Core.Entities.Column>());
+
         }
 
 
         /// <summary>
         /// 获取EasyTree格式的菜单
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="isIndexHtml">是否获取仅生成首页的栏目</param>
+        /// <param name="isSingleColumn">是否获取单页</param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool? isIndexHtml)
+        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isSingleColumn)
         {
-            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).WhereIf(isIndexHtml.HasValue, o => o.IsIndexHtml).Include(o => o.Children);
+            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).WhereIf(isIndexHtml, o => o.IsIndexHtml).WhereIf(!isSingleColumn, o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children);
             var result = await query.ToListAsync();
             var list = result.MapTo<List<ColumnTreeMenuOutput>>();
             ToEasyUiTree(list);
@@ -197,8 +191,7 @@ namespace EasyFast.Application.Column
         {
             var query =
                 _columnRepository.GetAll()
-                    .Where(o => o.ParentId == null || o.ParentId == 0)
-                    .Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children);
+                    .Where(o => o.ParentId == null || o.ParentId == 0).Include(o => o.Children);
             var totalCount = await query.CountAsync();
             var list = await query.OrderBy($"{search.Sort} {search.Order}").Skip((search.Page - 1) * search.Rows).Take(search.Rows).ToListAsync();
 

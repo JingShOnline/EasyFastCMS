@@ -1,6 +1,42 @@
 ﻿@model EasyFast.Application.Article.Dto.ArticleDto
 @using Abp.Web.Mvc.Extensions
 <div class="form-group">
+    <label class="control-label col-md-2">@Html.DisplayNameFor(model => model.Title)</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-share-alt"></i>
+            </span>
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入标题" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">@Html.DisplayNameFor(model => model.Info)</label>
+    <div class="col-md-10">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-share-alt"></i>
+            </span>
+            @Html.EditorFor(model => model.Info, new { htmlAttributes = new { @class = "form-control", placeholder = "请填写简介" } })
+        </div>
+        @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-2">@Html.DisplayNameFor(model => model.DefaultPicUrl)</label>
+    <div class="col-md-10">
+        <div id="defaultPic">
+            <div id="fileList" class="uploader-list">
+                <img src="@Model.DefaultPicUrl" />
+            </div>
+            <div id="filePicker">选择图片</div>
+        </div>
+        @Html.ValidationMessageFor(model => model.DefaultPicUrl, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group">
     <label class="control-label col-md-2">二级标题</label>
     <div class="col-md-10">
         <div class="input-group">

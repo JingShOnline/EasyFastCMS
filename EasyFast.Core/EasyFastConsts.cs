@@ -79,7 +79,7 @@ namespace EasyFast.Core
         /// <summary>
         /// sql参数正则
         /// </summary>
-        public const string SqlParameterRegex = "\".+\"";
+        public const string SqlParameterRegex = "\'.+\'";
 
         /// <summary>
         /// 开发环境应用服务程序集地址

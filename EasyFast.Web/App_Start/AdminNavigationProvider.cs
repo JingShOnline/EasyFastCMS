@@ -26,7 +26,7 @@ namespace EasyFast.Web.App_Start
                         "UserManager",
                         L("UserManager"),
                         url: "/Admin/Client/Index/",
-                        icon: "icon-Users"
+                        icon: "fa fa-users"
                         ).AddItem(
                             new MenuItemDefinition(
                                 "AdminUserManager",
@@ -44,7 +44,7 @@ namespace EasyFast.Web.App_Start
                                 url: "/Admin/User/UserRoleList"
                            ))
                  ).AddItem(new MenuItemDefinition(
-                        "ContentManger",
+                        "ContentManager",
                         L("ContentManager"),
                         icon: "fa fa-file-word-o"
                         ).AddItem(new MenuItemDefinition(

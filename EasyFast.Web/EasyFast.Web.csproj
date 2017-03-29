@@ -326,7 +326,6 @@
     <Content Include="Areas\Admin\Views\SiteConfig\uploadImg.js" />
     <Content Include="Content\Uploader.swf" />
     <Content Include="Areas\Admin\Views\Content\index.js" />
-    <Content Include="Areas\Admin\Views\Model\index.js" />
     <Content Include="Common\Scripts\appUserNotificationHelper.js" />
     <Content Include="Common\Scripts\Chat\chat.js" />
     <Content Include="Common\Scripts\Chat\chat.signalr.js" />

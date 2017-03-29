@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using Abp.Web.Models;
 using EasyFast.Application.Model.Dto;
 using EasyFast.Application.Common.Dto;
 
@@ -21,6 +22,7 @@ namespace EasyFast.Application.Model
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [DontWrapResult]
         Task<EasyUIGridOutput<BasicModelOutput>> GetModels(TreeGridInput input);
 
         /// <summary>

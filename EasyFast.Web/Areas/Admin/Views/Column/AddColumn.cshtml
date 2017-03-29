@@ -1,7 +1,9 @@
 ﻿@model EasyFast.Application.Column.Dto.ColumnDto
 @using Abp.Web.Mvc.Extensions
 @using EasyFast.Application.Column.Dto
-
+@{
+    ViewBag.CurrentPageName = "ColumnRelatedManager";
+}
 
 <div class="portlet box blue ">
     <div class="portlet-title">
@@ -70,13 +72,13 @@
                         {
                             <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-animate" style="width: 78px;">
                                 <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
-                                    <input id="isIndexHtml" name="isIndexHtml" type="checkbox" class="make-switch" checked="" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
+                                    <input id="isIndexHtml" type="checkbox" class="make-switch" checked="" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
                                 </div>
                             </div>
                         }
                         else
                         {
-                            <div id="isIndexHtml" class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate" style="width: 78px;">
+                            <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-on bootstrap-switch-animate" style="width: 78px;">
                                 <div class="bootstrap-switch-container" style="width: 114px; margin-left: 0px;">
                                     <input id="isIndexHtml" type="checkbox" class="make-switch" data-on-text="<i class='fa fa-check'></i>" data-off-text="<i class='fa fa-times'></i>">
                                 </div>
@@ -134,7 +136,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-text-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.IndexTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入或选择模板", style = "width:200px;" } })
+                            @Html.EditorFor(model => model.IndexTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "例News\\index.html", style = "width:400px;" } })
                             <span class="btn green fileinput-button">
                                 <i class="fa fa-plus"></i>
                                 <span><font><font> 添加文件... </font></font></span>
@@ -150,7 +152,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-code-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.ListTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入或选择模板", style = "width:200px;" } })
+                            @Html.EditorFor(model => model.ListTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "例News\\list.html", style = "width:400px;" } })
                             <span class="btn green fileinput-button">
                                 <i class="fa fa-plus"></i>
                                 <span><font><font> 添加文件... </font></font></span>
@@ -166,7 +168,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-code-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.ContentTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入或选择模板", style = "width:200px;" } })
+                            @Html.EditorFor(model => model.ContentTemplate, new { htmlAttributes = new { @class = "form-control", placeholder = "例News\\content.html", style = "width:400px;" } })
                             <span class="btn green fileinput-button">
                                 <i class="fa fa-plus"></i>
                                 <span><font><font> 添加文件... </font></font></span>
@@ -182,7 +184,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-code-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.ContentHtmlRule, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入要生成的Html文件名 默认在{ColumnDir}/Conent/{Year}/{Month}/{Day}{Id}.html,可自定义路径还有标签{Title}可用", style = "width:800px;" } }) <strong style="margin-left:5px; line-height:34px;">.html</strong>
+                            @Html.EditorFor(model => model.ContentHtmlRule, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入要生成的Html文件名 默认在{ColumnDir}\\Content\\{Year}\\{Month}\\{Day}\\{ColumnDir}_{Id}.shtml,可自定义路径还有标签{Title}可用", style = "width:800px;" } }) <strong style="margin-left:5px; line-height:34px;">.html</strong>
                         </div>
                         @Html.ValidationMessageFor(model => model.ContentHtmlRule, "", new { @class = "text-danger" })
                     </div>
@@ -198,7 +200,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="form-group">
                     <label class="control-label col-md-2">栏目提示信息</label>
                     <div class="col-md-10">
@@ -299,8 +301,7 @@
             var json = $form.serializeFormToObject();
             json.IsIndexHtml= $("#isIndexHtml").bootstrapSwitch('state');
             json.IsContentHtml = $("#isContentHtml").bootstrapSwitch('state');
-            json.IsListHtml =$("#isListHtml").bootstrapSwitch('state');
-
+            json.IsListHtml = $("#isListHtml").bootstrapSwitch('state');
             abp.ui.setBusy($div);
             abp.ajax({
                 url: '@Url.Action("AddOrUpdateColumn", "Column")',
@@ -311,7 +312,7 @@
         });
 
         function nameBlur() {
-            $("input[name=Dir]").val($("input[name=Name]").val());
+            $("input[name=Dir]").val($("input[name=Name]").val()+"\\");
         }
 
         //设置tree下拉框

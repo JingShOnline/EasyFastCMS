@@ -1,5 +1,9 @@
 ﻿@model EasyFast.Application.Content.Dto.AddContentDto
 @using Abp.Web.Mvc.Extensions
+@{
+    ViewBag.CurrentPageName = "ContentManager";
+}
+
 <div class="portlet box blue ">
     <div class="portlet-title">
         <div class="caption">
@@ -21,43 +25,9 @@
             <span id="columnName" style="display:none">@ViewBag.columnName</span>
             <input type="hidden" id="Dir" name="Dir" value="/" />
             <div class="form-body">
-                <div class="form-group">
-                    <label class="control-label col-md-2">标题</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-share-alt"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入标题" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                    </div>
-                </div>
                 <!--具体内容-->
                 @{Html.RenderAction((string)ViewBag.action, (string)ViewBag.ctrl);}
-                <div class="form-group">
-                    <label class="control-label col-md-2">简介</label>
-                    <div class="col-md-10">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <i class="fa fa-share-alt"></i>
-                            </span>
-                            @Html.EditorFor(model => model.Info, new { htmlAttributes = new { @class = "form-control", placeholder = "请填写简介" } })
-                        </div>
-                        @Html.ValidationMessageFor(model => model.Info, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">默认图片</label>
-                    <div class="col-md-10">
-                        <div id="defaultPic">
-                            <div id="fileList" class="uploader-list">
-                                <img src="@Model.DefaultPicUrl" />
-                            </div>
-                            <div id="filePicker">选择图片</div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label class="control-label col-md-2">浏览量</label>
                     <div class="col-md-10">
@@ -77,7 +47,7 @@
                             <span class="input-group-addon">
                                 <i class="fa fa-file-code-o"></i>
                             </span>
-                            @Html.EditorFor(model => model.Keyword, new { htmlAttributes = new { @class = "form-control", placeholder = "搜索关键字用逗号隔开", style = "width:200px;" } })
+                            @Html.EditorFor(model => model.Keyword, new { htmlAttributes = new { @class = "form-control", placeholder = "搜索关键字用逗号隔开" } })
                         </div>
                         @Html.ValidationMessageFor(model => model.Keyword, "", new { @class = "text-danger" })
                     </div>

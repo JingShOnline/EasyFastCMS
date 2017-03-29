@@ -1,11 +1,6 @@
 ﻿(function () {
     $(function () {
-        $("#easyui-datagrid").datagrid({
-            url: "/api/services/app/content/GetGridContents",
-            loadFilter: function (data) {
-                return data.result;
-            }
-        })
+      
         initTreeData();
     });
 
@@ -18,8 +13,8 @@ function initTreeData() {
         url: "/api/services/app/column/GetColumnEasyTree",
         method: "get",
         onBeforeLoad: function (node, param) {
-            param.isIndexHtml = null;
-            
+            param.isIndexHtml = false;
+            param.isSingleColumn = false;
         },
         checkbox: false,
         animate: true,

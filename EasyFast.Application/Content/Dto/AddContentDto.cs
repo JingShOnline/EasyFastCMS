@@ -1,6 +1,7 @@
 ﻿using Abp.Application.Services.Dto;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -37,18 +38,20 @@ namespace EasyFast.Application.Content.Dto
         /// <summary>
         /// 简介
         /// </summary>
-        public string Info { get; set; }
+        [DisplayName("内容简介")]
+        public virtual string Info { get; set; }
 
         /// <summary>
         /// 导读 用于截断内容的一部分,Info为空时代替展示 
         /// </summary>
-        public string Guide { get; set; }
+        public virtual string Guide { get; set; }
 
         /// <summary>
         /// 标题
         /// </summary>
+        [DisplayName("内容标题")]
         [Required(ErrorMessage = "请输入标题")]
-        public string Title { get; set; }
+        public virtual string Title { get; set; }
 
         /// <summary>
         /// 总点击量
@@ -73,7 +76,8 @@ namespace EasyFast.Application.Content.Dto
         /// <summary>
         /// 默认图片地址
         /// </summary>
-        public string DefaultPicUrl { get; set; }
+        [DisplayName("默认图片地址")]
+        public virtual string DefaultPicUrl { get; set; }
 
         /// <summary>
         /// 搜素引擎描述

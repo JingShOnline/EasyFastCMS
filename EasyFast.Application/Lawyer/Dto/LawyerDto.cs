@@ -4,6 +4,7 @@ using EasyFast.Application.Content.Dto;
 using EasyFast.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,19 @@ namespace EasyFast.Application.Lawyer.Dto
     [AutoMap(typeof(Content_Lawyer))]
     public class LawyerDto : AddContentDto
     {
+
+        [DisplayName("律师姓名")]
+        [Required(ErrorMessage = "请填写律师姓名")]
+        public override string Title { get; set; }
+
+        [DisplayName("律师列表小图")]
+        [Required(ErrorMessage = "请上传律师列表小图")]
+        public override string DefaultPicUrl { get; set; }
+
+        [DisplayName("律师简介")]
+        [Required(ErrorMessage = "请输入律师简介")]
+        public override string Info { get; set; }
+
         /// <summary>
         /// 职位
         /// </summary>

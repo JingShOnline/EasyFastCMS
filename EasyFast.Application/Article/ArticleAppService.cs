@@ -18,35 +18,23 @@ namespace EasyFast.Application.Article
     {
         private readonly IRepository<Content_Article> _articleRepository;
 
-        private readonly IRepository<Common_Model> _commonModelRepository;
-        public ArticleAppService(IRepository<Content_Article> articleRepository, IRepository<Common_Model> commonModelRepository)
+        public ArticleAppService(IRepository<Content_Article> articleRepository)
         {
             _articleRepository = articleRepository;
-            _commonModelRepository = commonModelRepository;
+  
         }
 
 
-        public async Task AddAsync(ArticleDto dto)
-        {
-            await _articleRepository.InsertAsync(dto.MapTo<Content_Article>());
-        }
 
         public async Task AddOrUpdateAsync(ArticleDto dto)
         {
-            if (dto.Id == 0)
-                await AddAsync(dto);
-            else
-                await UpdateAsync(dto);
+            //截断出正文中的内容添加到导读中
+            if (string.IsNullOrWhiteSpace(dto.Info))
+                dto.Guide = dto.Content.Substring(0, (int)Math.Ceiling(dto.Content.Length * 0.3));
+            await _articleRepository.InsertOrUpdateAsync(dto.MapTo<Content_Article>());
         }
 
 
-
-        public async Task UpdateAsync(ArticleDto dto)
-        {
-            var model = await _articleRepository.GetAsync(dto.Id);
-            dto.MapTo(model);
-            await _articleRepository.UpdateAsync(model);
-        }
 
         public async Task<ArticleDto> GetAsync(int id)
         {

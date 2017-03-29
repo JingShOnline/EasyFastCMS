@@ -10,7 +10,7 @@ function generateContent() {
         arrary.push(nodes[i].id);
 
     };
-    generateService.GenerateContent(arrary).done(function () {
+    generateService.generateContent(arrary).done(function () {
 
         abp.message.success("生成内容页成功!", "操作成功");
     });

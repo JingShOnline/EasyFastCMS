@@ -137,6 +137,7 @@
   <ItemGroup>
     <Compile Include="Article\ArticleAppService.cs" />
     <Compile Include="Article\Dto\ArticleDto.cs" />
+    <Compile Include="Article\Dto\ArticleListOutput.cs" />
     <Compile Include="Article\IArticleAppService.cs" />
     <Compile Include="AutoMapper\IDtoMapping.cs" />
     <Compile Include="Column\ColumnDtoMapping.cs" />

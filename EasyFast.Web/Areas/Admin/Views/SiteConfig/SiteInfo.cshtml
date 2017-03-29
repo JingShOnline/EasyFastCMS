@@ -1,6 +1,9 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @model EasyFast.Application.Config.Dto.SiteConfigDto
 
+@{
+    ViewBag.CurrentPageName = "SiteManager";
+}
 <div class="portlet box blue ">
     <div class="portlet-title">
         <div class="caption">
@@ -167,17 +170,17 @@
 @Html.IncludeScript("/Areas/Admin/Views/SiteConfig/uploadImg.js")
 @section Scripts {
     <script>
-            $("#submit").click(function() {
-                abp.ui.setBusy(
-                    $('#SiteInfo'),
-                    abp.ajax({
-                        url: '/Admin/SiteConfig/UpdateSiteConfig',
-                        data: $('#SiteInfo').serializeFormToJson()
-                    }).done(function() {
-                        abp.notify.success("网站参数配置修改成功！");
-                        abp.ui.clearBusy("#SiteOption");
-                    })
-                );
-            });
+        $("#submit").click(function () {
+            abp.ui.setBusy(
+                $('#SiteInfo'),
+                abp.ajax({
+                    url: '/Admin/SiteConfig/UpdateSiteConfig',
+                    data: $('#SiteInfo').serializeFormToJson()
+                }).done(function () {
+                    abp.notify.success("网站参数配置修改成功！");
+                    abp.ui.clearBusy("#SiteOption");
+                })
+            );
+        });
     </script>
 }

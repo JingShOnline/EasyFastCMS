@@ -25,17 +25,12 @@ namespace EasyFast.Application.Lawyer
         }
 
 
-        public async Task AddAsync(LawyerDto dto)
-        {
-            await _contentLawyerRepository.InsertAsync(dto.MapTo<Content_Lawyer>());
-        }
-
+       
         public async Task AddOrUpdateAsync(LawyerDto dto)
         {
-            if (dto.Id == 0)
-                await AddAsync(dto);
-            else
-                await UpdateAsync(dto);
+            var model = dto.MapTo<Content_Lawyer>();
+
+            await _contentLawyerRepository.InsertOrUpdateAsync(model);
 
         }
 
@@ -45,11 +40,6 @@ namespace EasyFast.Application.Lawyer
             return model.MapTo<LawyerDto>();
         }
 
-        public async Task UpdateAsync(LawyerDto dto)
-        {
-            var model = await _contentLawyerRepository.GetAsync(dto.Id);
-            dto.MapTo(model);
-            await _contentLawyerRepository.UpdateAsync(model);
-        }
+ 
     }
 }

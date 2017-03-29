@@ -14,19 +14,6 @@ namespace EasyFast.Application.Article
     public interface IArticleAppService : IApplicationService
     {
 
-        /// <summary>
-        /// 添加文章
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        Task AddAsync(ArticleDto dto);
-
-        /// <summary>
-        /// 修改文章
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        Task UpdateAsync(ArticleDto dto);
 
         /// <summary>
         /// 添加或修改文章

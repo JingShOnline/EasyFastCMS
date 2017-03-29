@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
+using EasyFast.Core.Entities;
 
 namespace EasyFast.Application.Content.Dto
 {
@@ -15,6 +17,7 @@ namespace EasyFast.Application.Content.Dto
         /// <summary>
         /// 内容页规则
         /// </summary>
+        [AutoMapFrom(typeof(Common_Model))]
         public string ColumnContentHtmlRule { get; set; }
 
         /// <summary>

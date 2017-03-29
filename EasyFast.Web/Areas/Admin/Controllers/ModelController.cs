@@ -27,26 +27,5 @@ namespace EasyFast.Web.Areas.Admin.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 添加
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult CreateModel()
-        {
-            ViewBag.ActionName = "添加内容模型";
-            return PartialView("CreateOrUpdateModel", new ModelDto());
-        }
-
-        /// <summary>
-        /// 修改
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<ActionResult> EditModel(int id)
-        {
-            ViewBag.ActionName = "修改内容模型";
-            var model = await _modelAppService.GetAsync(id);
-            return PartialView("CreateOrUpdateModel", model);
-        }
     }
 }

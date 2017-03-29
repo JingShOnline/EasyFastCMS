@@ -6,6 +6,7 @@
                 method: "get",
                 onBeforeLoad: function (node, param) {
                     param.isIndexHtml = true;
+                    param.isSingleColumn = true;
                 },
                 checkbox: true,
                 animate: true,

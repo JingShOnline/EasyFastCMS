@@ -10,6 +10,7 @@ using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using Abp.Web.Models;
 using EasyFast.Application.Model.Dto;
 using EasyFast.Application.Common.Dto;
 
@@ -35,6 +36,7 @@ namespace EasyFast.Application.Model
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [DontWrapResult]
         public async Task<EasyUIGridOutput<BasicModelOutput>> GetModels(TreeGridInput input)
         {
             var result = _modelRepository.GetAll();

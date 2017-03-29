@@ -6,7 +6,7 @@
 @{
     @helper RenderUserMenuItem(UserMenuItem menuItem, int menuItemIndex, bool rootLevel)
     {
-        <li class="nav-item @(menuItemIndex == 0 && rootLevel ? "start" : "") @(menuItem.IsMenuActive("AdminHome") ? "active" : "")">
+        <li class="nav-item @(menuItemIndex == 0 && rootLevel ? "start" : "") @(menuItem.IsMenuActive((string)ViewBag.CurrentPageName) ? "active" : "")">
             @if (menuItem.Items.IsNullOrEmpty())
             {
                 <a href="@menuItem.Url">

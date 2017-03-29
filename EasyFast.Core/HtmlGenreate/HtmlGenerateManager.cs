@@ -36,8 +36,9 @@ namespace EasyFast.Core.HtmlGenreate
         /// </summary>
         /// <param name="template">模板</param>
         /// <param name="savePath">保存路径</param>
+        /// <param name="dict">调用除加参数</param>
         /// <returns></returns>
-        public async Task GenerateHtml(string template, string savePath)
+        public async Task GenerateHtml(string template, string savePath, Dictionary<string, string> dict)
         {
 
             Debug.WriteLine("--进来了");
@@ -63,23 +64,14 @@ namespace EasyFast.Core.HtmlGenreate
                 var sql = Regex.Match(itemTemplate, EasyFastConsts.SqlRegex).Groups[1].Value;
                 //拼接sql
                 var parameters = new List<SqlParameter>();
+                if (!sql.Contains("where"))
+                    sql += " where ";
                 if (dto.Parameters != null && dto.Parameters.Count > 0)
-                {
-                    var sqlParameters = new StringBuilder();
-                    foreach (var parameter in dto.Parameters)
-                    {
-                        // 取出value
-                        var pavalue = Regex.Match(parameter.Value, EasyFastConsts.SqlParameterRegex).Value.Trim('"');
-                        // and Name = "小明"  --  and Name = @Name
-                        var replaceParam = Regex.Replace(parameter.Value, EasyFastConsts.SqlParameterRegex, $"@{parameter.Key}");
-                        // and Name = @Name
-                        sqlParameters.Append($"{parameter.Key} = {replaceParam}");
-                        //加入到参数化查询中
-                        parameters.Add(new SqlParameter($"@{parameter.Key}", pavalue));
+                    sql = $" {ParseParameters(sql, parameters, dto.Parameters)}";
 
-                    }
-                    sql += $" where {sqlParameters}";
-                }
+
+                if (dict != null && dict.Count > 0)
+                    sql = ParseParameters(sql, parameters, dict);
                 Debug.WriteLine("------sql拼完了");
                 //排序
                 if (!string.IsNullOrWhiteSpace(dto.Sorting))
@@ -102,8 +94,6 @@ namespace EasyFast.Core.HtmlGenreate
                 var replacestr = Regex.Replace(resulthtml, EasyFastConsts.SqlRegex, "");
 
                 template = Regex.Replace(template, $"\\{matches[i1].Value}", replacestr);
-
-
             }
 
             if (matches.Count > 0)
@@ -116,6 +106,24 @@ namespace EasyFast.Core.HtmlGenreate
                 File.WriteAllText(savePath, template);
             }
             Debug.WriteLine("开始保存了!");
+        }
+
+        public string ParseParameters(string sql, List<SqlParameter> parameters, Dictionary<string, string> dict)
+        {
+            var sqlParameters = new StringBuilder();
+            foreach (var parameter in dict)
+            {
+                // 取出value
+                var pavalue = Regex.Match(parameter.Value, EasyFastConsts.SqlParameterRegex).Value.Trim('\'');
+                // and Name = "小明"  --  and Name = @Name
+                var replaceParam = Regex.Replace(parameter.Value, EasyFastConsts.SqlParameterRegex, $"@{parameter.Key}");
+                // and Name = @Name
+                sqlParameters.Append($"{replaceParam}");
+                //加入到参数化查询中
+                parameters.Add(new SqlParameter($"@{parameter.Key}", pavalue));
+
+            }
+            return sql += $" {sqlParameters}";
         }
 
     }

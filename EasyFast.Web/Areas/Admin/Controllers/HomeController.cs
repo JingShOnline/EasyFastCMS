@@ -22,13 +22,13 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            ViewBag.Menu = AsyncHelper.RunSync(() => _userNavigationManager.GetMenuAsync("AdminMenu", AbpSession.ToUserIdentifier()));
             return View();
         }
 
-        public ActionResult Navigation()
+        public ActionResult Navigation(string currentPageName)
         {
             var model = AsyncHelper.RunSync(() => _userNavigationManager.GetMenuAsync("AdminMenu", AbpSession.ToUserIdentifier()));
+            ViewBag.CurrentPageName = currentPageName;
             return PartialView("~/Areas/Admin/Views/Shared/_navigation.cshtml", model);
         }
     }

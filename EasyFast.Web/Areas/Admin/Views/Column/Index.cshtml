@@ -1,6 +1,8 @@
 ﻿@using Abp.Web.Mvc.Extensions
 @using EasyFast.Application.Column.Dto
-
+@{
+    ViewBag.CurrentPageName = "ColumnRelatedManager";
+}
 @Html.IncludeScript("/Areas/Admin/Views/Column/index.js")
 
 <div class="row">
@@ -11,6 +13,7 @@
     <div class="col-md-12">
         <table id="easyui-treegrid" class="easyui-treegrid" data-options="
                method: 'post',
+               url: '/Admin/Column/GetTreeGrid',
                pagination: true,
                pageSize: 20,
                sortName:'OrderId',

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Abp.Web.Models;
 using EasyFast.Application.Common.Dto;
 
 namespace EasyFast.Application.Content
@@ -20,6 +21,7 @@ namespace EasyFast.Application.Content
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [DontWrapResult]
         Task<EasyUIGridOutput<GridContentOutput>> GetGridContents(DataGridInput input);
 
         /// <summary>

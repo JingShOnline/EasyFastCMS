@@ -4,6 +4,7 @@ using EasyFast.Application.Column.Dto;
 using EasyFast.Web.Controllers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Abp.AutoMapper;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
@@ -89,9 +90,10 @@ namespace EasyFast.Web.Areas.Admin.Controllers
                 ViewBag.ColumnTitle = "修改栏目";
                 return View("AddColumn", model);
             }
+            var singleDto = model.MapTo<SingleColumnDto>();
 
             ViewBag.ColumnTitle = "修改单页节点";
-            return View("AddSingle", model);
+            return View("AddSingle", singleDto);
 
 
         }
