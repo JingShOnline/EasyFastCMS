@@ -8,6 +8,8 @@ using EasyFast.Application.Article.Dto;
 using Abp.Domain.Repositories;
 using EasyFast.Core.Entities;
 using Abp.AutoMapper;
+using EasyFast.Common;
+using EasyFast.Core;
 
 namespace EasyFast.Application.Article
 {
@@ -21,7 +23,7 @@ namespace EasyFast.Application.Article
         public ArticleAppService(IRepository<Content_Article> articleRepository)
         {
             _articleRepository = articleRepository;
-  
+
         }
 
 

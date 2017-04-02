@@ -19,6 +19,8 @@ using Abp.Application.Services.Dto;
 using System.Web;
 using System.Web.Http;
 using Abp.Specifications;
+using EasyFast.Common;
+using EasyFast.Core;
 
 namespace EasyFast.Application.Column
 {
@@ -37,7 +39,7 @@ namespace EasyFast.Application.Column
         }
         #endregion
 
-      
+
 
         /// <summary>
         /// 删除栏目
@@ -72,7 +74,7 @@ namespace EasyFast.Application.Column
         }
 
 
-     
+
 
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         public async Task<List<ColumnNameOutput>> GetTreeColumnNameAsync()
         {
-            var query = await _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children).OrderBy(o => o.OrderId).ToListAsync();
+            var query = await _columnRepository.GetAll().Include(o => o.Children).Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).OrderBy(o => o.OrderId).ToListAsync();
 
             var list = query.MapTo<List<ColumnNameOutput>>();
 
@@ -139,7 +141,7 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         public async Task AddOrUpdateColumn(ColumnDto model)
         {
-
+           
             if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
                 model.IndexHtmlRule = $"index.shtml";
 

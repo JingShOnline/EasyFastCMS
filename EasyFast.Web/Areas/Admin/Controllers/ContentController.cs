@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
 using EasyFast.Application.Content;
 using EasyFast.Application.Upload.Dto;
 
@@ -16,6 +17,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
     /// <summary>
     /// 信息管理
     /// </summary>
+    [AbpMvcAuthorize]
     public class ContentController : Controller
     {
 

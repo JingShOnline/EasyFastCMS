@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Abp.Threading;
+using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
     /// <summary>
     /// 文章内容_控制器
     /// </summary>
+    [AbpMvcAuthorize]
     public class ArticleController : Controller
     {
         private readonly IArticleAppService _articleAppService;

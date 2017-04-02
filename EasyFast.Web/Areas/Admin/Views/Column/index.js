@@ -8,7 +8,7 @@ function deleteColumn(id) {
             if (isConfirmed) {
                 _columnnService.deleteAsync(id).done(function () {
                     abp.notify.success('已删除该栏目', '操作成功');
-                    $("#" + id).remove();
+                    $("#" + id).parent().parent().parent().$7remove();
                 });
             }
         }
@@ -20,7 +20,7 @@ function formatOper(val, row, index) {
     return "<a href='/Admin/Column/UpdateColumn?id=" +
         row.Id +
         "' class='btn green opt'><i class='fa fa-plus-square'></i>修改</a>&nbsp;" +
-        "<button class='btn red opt' onclick='deleteColumn(" +
+        "<button id=" + row.Id + " class='btn red opt' onclick='deleteColumn(" +
         row.Id +
         ")'><i class='fa fa-plus-square'></i>删除</button>";
 }

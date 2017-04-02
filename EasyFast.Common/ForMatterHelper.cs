@@ -35,5 +35,6 @@ namespace EasyFast.Common
             return length < MaxImgLength;
 
         }
+
     }
 }

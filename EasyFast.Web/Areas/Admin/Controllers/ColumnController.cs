@@ -5,9 +5,11 @@ using EasyFast.Web.Controllers;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Abp.AutoMapper;
+using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
+    [AbpMvcAuthorize]
     public class ColumnController : EasyFastControllerBase
     {
         #region 依赖注入

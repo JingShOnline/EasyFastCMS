@@ -7,9 +7,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
+
+    [AbpMvcAuthorize]
     public class SiteConfigController : EasyFastControllerBase
     {
         #region 依赖注入

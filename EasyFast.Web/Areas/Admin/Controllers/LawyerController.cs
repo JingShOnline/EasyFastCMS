@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
     /// <summary>
     /// 律师模型
     /// </summary>
+    [AbpMvcAuthorize]
     public class LawyerController : Controller
     {
 

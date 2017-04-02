@@ -49,7 +49,7 @@ namespace EasyFast.Application.Upload
                  }
              });
             Logger.Debug(EasyFastConsts.TagPath);
-            return $"{EasyFastConsts.HostUrl}{EasyFastConsts.UploadFilePath}/{columnName}/{dir}/{newName}";
+            return $"/{EasyFastConsts.UploadFilePath}/{columnName}/{dir}/{newName}";
 
         }
     }

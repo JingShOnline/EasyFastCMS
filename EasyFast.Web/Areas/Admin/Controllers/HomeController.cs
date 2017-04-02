@@ -2,14 +2,12 @@
 using Abp.Runtime.Session;
 using Abp.Threading;
 using EasyFast.Web.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
+    [AbpMvcAuthorize]
     public class HomeController : EasyFastControllerBase
     {
         private readonly IUserNavigationManager _userNavigationManager;

@@ -235,9 +235,9 @@
 
                 if (list[i].id != curentId) {
                     if (list[i].id == selectedColumn) {
-                        str += "<option value=" + list[i].id + " selected>" + list[i].name + "</option>"
+                        str += "<option value=" + list[i].id + " dir=" + list[i].dir + " selected>" + list[i].name + "</option>"
                     } else {
-                        str += "<option value=" + list[i].id + " >" + list[i].name + "</option>"
+                        str += "<option value=" + list[i].id + " dir=" + list[i].dir + ">" + list[i].name + "</option>"
                     }
                 }
 
@@ -247,9 +247,19 @@
 
         }
 
-
         function nameBlur() {
-            $("input[name=Dir]").val($("input[name=Name]").val() + "\\");
+
+            var name = $("input[name=Name]").val();
+            if (name) {
+                var dir = $("select[name='ParentId'] option:selected").attr("dir");
+                if (dir) {
+                    $("input[name=Dir]").val(dir + "\\" + $("input[name=Name]").val() + "\\");
+                } else {
+                    $("input[name=Dir]").val($("input[name=Name]").val() + "\\");
+                }
+
+            }
+
         }
     </script>
 }

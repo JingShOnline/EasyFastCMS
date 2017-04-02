@@ -16,6 +16,8 @@ namespace EasyFast.Application.Column.Dto
     {
         public string Name { get; set; }
 
+        public string Dir { get; set; }
+
         public List<ColumnNameOutput> Children { get; set; }
     }
 }

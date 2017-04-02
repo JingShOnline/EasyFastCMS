@@ -1,9 +1,11 @@
 ﻿using EasyFast.Web.Controllers;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
+    [AbpMvcAuthorize]
     public class HtmlGenerateController : EasyFastControllerBase
     {
         /// <summary>
