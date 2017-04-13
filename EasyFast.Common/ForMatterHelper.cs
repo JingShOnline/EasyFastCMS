@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace EasyFast.Common
 {
@@ -36,5 +32,21 @@ namespace EasyFast.Common
 
         }
 
+        /// <summary>
+        /// 去除html标签
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string ReplaceHtmlTag(string html, int length = 0)
+        {
+            string strText = System.Text.RegularExpressions.Regex.Replace(html, "<[^>]+>", "");
+            strText = System.Text.RegularExpressions.Regex.Replace(strText, "&[^;]+;", "");
+            strText = strText.Replace("\r\n", "").Trim();
+            if (length > 0 && strText.Length > length)
+                return strText.Substring(0, length);
+
+            return strText;
+        }
     }
 }

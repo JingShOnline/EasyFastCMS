@@ -11,9 +11,10 @@ namespace EasyFast.Common.FileRule
     /// </summary>
     public class DateRuleHandler : IRuleHandler
     {
-        public StringBuilder Handler(StringBuilder sb, string id, string name)
+        public StringBuilder Handler(StringBuilder sb, DateTime? date, string id, string name)
         {
-            var now = DateTime.Now;
+            var now = date ?? DateTime.Now;
+
             return sb.Replace("{Year}", now.Year.ToString())
                  .Replace("{Month}", now.Month.ToString())
                  .Replace("{Day}", now.Day.ToString());

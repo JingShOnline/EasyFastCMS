@@ -51,8 +51,10 @@ function editContent(id, ctrl, columnName) {
 }
 
 
+var cId;
 //搜索
 function doSearch(columnId) {
+    cId = columnId;
     $('#easyui-datagrid').datagrid('load', {
         columnId: columnId,
         filter: $('#filter').val()
@@ -67,7 +69,7 @@ function deleteContent(id) {
             if (isConfirmed) {
                 _contentService.deleteContent(id).done(function () {
                     abp.notify.success("已经删除该内容", "操作成功");
-                    doSearch();
+                    doSearch(cId);
                 });
             }
         }

@@ -33,7 +33,7 @@ namespace EasyFast.Core
         /// <summary>
         /// 标签匹配正则表达式
         /// </summary>
-        public const string TagRegex = @"\$.*?}";
+        public const string TagRegex = @"\$.*?\$";
 
 
         /// <summary>
@@ -80,17 +80,6 @@ namespace EasyFast.Core
         /// sql参数正则
         /// </summary>
         public const string SqlParameterRegex = "\'.+\'";
-
-        /// <summary>
-        /// 开发环境应用服务程序集地址
-        /// </summary>
-        public static string DevApplicationAssemblyPath =
-            $@"{BaseDirectory}EasyFast.Application\bin\Debug\EasyFast.Application.dll";
-
-        /// <summary>
-        /// 生产环境应用服务程序集地址
-        /// </summary>
-        public static string ProdApplicationAssemblyPath = $@"{BaseDirectory}bin\EasyFast.Application.dll";
 
 
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EasyFast.Core
 {
@@ -11,7 +7,7 @@ namespace EasyFast.Core
         /// <summary>
         /// 类型
         /// </summary>
-       public string Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// 操作
@@ -27,6 +23,11 @@ namespace EasyFast.Core
         /// 排序 Ordre by {xorting} desc/asc
         /// </summary>
         public string Sorting { get; set; }
+
+        /// <summary>
+        /// 标签类型
+        /// </summary>
+        public string TagType { get; set; }
     }
 
 }

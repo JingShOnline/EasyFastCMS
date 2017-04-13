@@ -137,7 +137,7 @@
     <Compile Include="Features\FeatureValueStore.cs" />
     <Compile Include="HtmlGenreate\HtmlGenerateManager.cs" />
     <Compile Include="HtmlGenreate\IHtmlGenerateManager.cs" />
-    <Compile Include="IParseTag.cs" />
+    <Compile Include="ParseTag.cs" />
     <Compile Include="ISqlExecuter.cs" />
     <Compile Include="MultiTenancy\Tenant.cs" />
     <Compile Include="MultiTenancy\TenantManager.cs" />

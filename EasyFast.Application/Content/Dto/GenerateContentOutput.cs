@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using EasyFast.Core.Entities;
@@ -34,5 +30,7 @@ namespace EasyFast.Application.Content.Dto
         /// 标题
         /// </summary>
         public string Title { get; set; }
+
+        public DateTime? LastModificationTime { get; set; }
     }
 }

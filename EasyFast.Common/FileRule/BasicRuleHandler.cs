@@ -11,7 +11,7 @@ namespace EasyFast.Common.FileRule
     /// </summary>
     public class BasicRuleHandler : IRuleHandler
     {
-        public StringBuilder Handler(StringBuilder sb, string id, string name)
+        public StringBuilder Handler(StringBuilder sb, DateTime? date, string id, string name)
         {
             return sb.Replace("{Id}", id).Replace("{Name}", name).Replace("{Title}", name);
         }

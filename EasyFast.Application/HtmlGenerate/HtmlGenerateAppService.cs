@@ -9,17 +9,14 @@ using EasyFast.Common.FileRule;
 using EasyFast.Core;
 using EasyFast.Core.HtmlGenreate;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Abp.Domain.Uow;
-using EasyFast.Application.Column.Dto.templateModel;
 using EasyFast.Application.Column.Specification;
 using EasyFast.Application.Content;
+using EasyFast.Common;
 
 namespace EasyFast.Application.HtmlGenerate
 {
@@ -82,9 +79,9 @@ namespace EasyFast.Application.HtmlGenerate
                     () => File.ReadAllText(fullPath, Encoding.UTF8));
 
                 //生成规则 暂时仅支持{Id} {Name} {Year} {Month} {Day} [Title]
-                var rulePath = RuleParseHelper.Parse(new StringBuilder(list[i1].IndexHtmlRule), list[i1].Id.ToString(), list[i1].Name);
-                //地址 CurrentPath +  HtmlDir + Column Dir + rulePath  例 MapPath(~)\Column\Index_1.html
-                taskArray[i] = _htmlGenerateManager.GenerateHtml(template, EasyFastConsts.BaseDirectory + siteOption.HTMLDir + list[i1].Dir + rulePath, null);
+                var rulePath = RuleParseHelper.Parse(new StringBuilder(list[i1].IndexHtmlRule), list[i1].Id.ToString(), list[i1].Name, null);
+                //地址 CurrentPath +  HtmlDir + Column Dir + rulePath  例 MapPath(~)\Index_1.html
+                taskArray[i] = _htmlGenerateManager.GenerateHtml(template, EasyFastConsts.BaseDirectory + rulePath.Trim(), null);
 
 
             }
@@ -103,13 +100,26 @@ namespace EasyFast.Application.HtmlGenerate
                 await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
                     .GetAsync("siteOptionCache", () => _siteConfigAppService.GetSiteOption());
 
-            var indexPath = $"{EasyFastConsts.BaseDirectory}{siteOption.TemplateDir}Index.html"; //siteOption.HTMLDir + "\\Index.html";
-            if (!File.Exists(indexPath))
-                throw new UserFriendlyException($"请在{siteOption.HTMLDir}目录下查看是否存在Index.html文件");
-            //拿到网站首页模板以文件的最后修改时间做缓存
-            var template = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey).Get($"Index.html{File.GetLastWriteTime(indexPath)}",
-               () => File.ReadAllText(indexPath, Encoding.UTF8));
-            await _htmlGenerateManager.GenerateHtml(template, $"{EasyFastConsts.BaseDirectory}{siteOption.HTMLDir}Index.html", null);
+
+            var tagPath = $@"{EasyFastConsts.BaseDirectory}{siteOption.TemplateDir}index.cshtml";
+
+            //Cache TemplateCache -  拿文件的名称和最后修改时间做缓存名
+            var lastModifyTime = $"index{File.GetLastWriteTime(tagPath)}";
+            var template = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey)
+                   .Get(lastModifyTime,
+                        () =>
+                           File.ReadAllText(tagPath));
+
+            //其实就是在这里生成foot.html
+            var columnList = await _columnAppService.GetSiteColumns();
+            var str = RazorHelper.Parsecshtml(template, lastModifyTime, columnList);
+            //保存文件
+            var savePath = $"{EasyFastConsts.BaseDirectory}foot.html";
+            var dir = Path.GetDirectoryName(savePath);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+            File.WriteAllText(savePath, str);
+
         }
 
         /// <summary>
@@ -136,7 +146,6 @@ namespace EasyFast.Application.HtmlGenerate
             var contents = await _contentAppService.GetGenerateContentsByCIds(ids);
             if (contents.Count <= 0)
                 throw new UserFriendlyException("您选择的栏目下暂时没有要生成的内容页");
-
             var taskArray = new Task[contents.Count];
             //拿到网站配置
             var siteOption =
@@ -154,10 +163,10 @@ namespace EasyFast.Application.HtmlGenerate
                     () => File.ReadAllText(fullPath, Encoding.UTF8));
 
                 //生成规则 暂时仅支持{Id} {Name} {Year} {Month} {Day} [Title]
-                var rulePath = RuleParseHelper.Parse(new StringBuilder(contents[i1].ColumnContentHtmlRule), contents[i1].Id.ToString(), contents[i1].Title);
+                var rulePath = RuleParseHelper.Parse(new StringBuilder(contents[i1].ColumnContentHtmlRule), contents[i1].Id.ToString(), contents[i1].Title, contents[i1].LastModificationTime);
                 //地址 CurrentPath +  HtmlDir + Column Dir + rulePath  例 MapPath(~)\Column\Index_1.html
                 var dict = new Dictionary<string, string> { { "id", $"and tleft.id = '{contents[i1].Id}'" } };
-                taskArray[i] = _htmlGenerateManager.GenerateHtml(template, EasyFastConsts.BaseDirectory + siteOption.HTMLDir + contents[i1].ColumnDir + rulePath, dict);
+                taskArray[i] = _htmlGenerateManager.GenerateHtml(template, EasyFastConsts.BaseDirectory + rulePath.Trim(), dict);
             }
             //等待所有的task执行完成
             await Task.WhenAll(taskArray);
@@ -192,9 +201,9 @@ namespace EasyFast.Application.HtmlGenerate
                 //拿到栏目的模板文件 以文件的最后修改时间做缓存
                 var template = _cacheManager.GetCache<string, string>(EasyFastConsts.TemplateCacheKey).Get($"{fileName}{File.GetLastWriteTime(fullPath)}",
                     () => File.ReadAllText(fullPath, Encoding.UTF8));
-                var rulePath = RuleParseHelper.Parse(new StringBuilder(columns[i1].ListHtmlRule), columns[i1].Id.ToString(), columns[i1].Name);
+                var rulePath = RuleParseHelper.Parse(new StringBuilder(columns[i1].ListHtmlRule), columns[i1].Id.ToString(), columns[i1].Name, null);
 
-                taskArray[i] = _htmlGenerateManager.GenerateHtml(template, EasyFastConsts.BaseDirectory + siteOption.HTMLDir + columns[i1].Dir + rulePath, null);
+                taskArray[i] = _htmlGenerateManager.GenerateHtml(template, EasyFastConsts.BaseDirectory + rulePath.Trim(), null);
             }
             await Task.WhenAll(taskArray);
         }

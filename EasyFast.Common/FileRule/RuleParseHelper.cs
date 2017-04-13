@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace EasyFast.Common.FileRule
@@ -20,12 +21,13 @@ namespace EasyFast.Common.FileRule
         /// <param name="sb"></param>
         /// <param name="id"></param>
         /// <param name="name"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
-        public static string Parse(StringBuilder sb, string id, string name)
+        public static string Parse(StringBuilder sb, string id, string name, DateTime? data)
         {
             foreach (var ruleHandler in _list)
             {
-                ruleHandler.Handler(sb, id, name);
+                ruleHandler.Handler(sb, data, id, name);
             }
 
             return sb.ToString();

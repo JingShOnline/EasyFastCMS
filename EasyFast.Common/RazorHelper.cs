@@ -22,12 +22,12 @@ namespace EasyFast.Common
         /// <summary>
         /// cshtml文件解析并返回字符串
         /// </summary>
- 
+
         /// <param name="html">cshtml内容</param>
         /// <param name="csName">缓存名</param>
         /// <param name="model">Model</param>
         /// <returns></returns>
-        public static string ParseCshtml(string html, string csName, object model = null)
+        public static string Parsecshtml(string html, string csName, object model = null)
         {
             string cshtml = Engine.Razor.RunCompile(html, csName, null, model);
             return cshtml;
@@ -239,7 +239,7 @@ namespace EasyFast.Common
         /// <summary>
         /// 分页组件,生成页码的html
         /// </summary>
-        /// <param name="urlFormat">约定的超链接格式,比如 Index_{pageNum}.cshtml,动态的替换{pageNum}为当前页码</param>
+        /// <param name="urlFormat">约定的超链接格式,比如 Index_{page}.cshtml,动态的替换{pageNum}为当前页码</param>
         /// <param name="totalSize">数据的总条数</param>
         /// <param name="pageSize">每一页显示的条数</param>
         /// <param name="currentPage">当前的页码</param>
@@ -260,24 +260,24 @@ namespace EasyFast.Common
             long lastPageNum = Math.Min(currentPage + 5, totalpageCount);
 
             //生成首页
-            sb.Append("<li><a href='" + urlFormat.Replace("{pageNum}", "1") + "'>首页</a></li>");
+            //sb.Append("<li><a href='" + urlFormat.Replace("{Page}", "1") + "'>首页</a></li>");
             //从相对于当前页码的第一条页码开始到相对于当前页码的最后一条页码结束
             for (long i = firstPageNum; i <= lastPageNum; i++)
             {
                 //生成当前页
-                if (i == currentPage)
+                if (i == (currentPage + 1))
                 {
                     sb.Append("<li class='active'><a>" + i + "</a></li>");
                 }
                 else
                 {
-                    sb.Append("<li><a href='" + urlFormat.Replace("{pageNum}", i.ToString()) + "'>" + i + "</a></li>");
+                    sb.Append("<li><a href='" + urlFormat.Replace("{Page}", i.ToString()) + "'>" + i + "</a></li>");
                 }
 
             }
 
-            //生成尾页
-            sb.Append("<li><a href='" + urlFormat.Replace("{pageNum}", totalpageCount.ToString()) + "'>尾页</a></li>");
+            ////生成尾页
+            //sb.Append("<li><a href='" + urlFormat.Replace("{Page}", totalpageCount.ToString()) + "'>尾页</a></li>");
 
             return new RawString(sb.ToString());
         }

@@ -311,18 +311,16 @@
         });
 
         function nameBlur() {
-
             var name = $("input[name=Name]").val();
             if (name) {
                 var dir = $("select[name='ParentId'] option:selected").attr("dir");
                 if (dir) {
-                    $("input[name=Dir]").val(dir + "\\" + $("input[name=Name]").val() + "\\");
+                    $("input[name=Dir]").val(dir + $("input[name=Name]").val() + "\\");
                 } else {
                     $("input[name=Dir]").val($("input[name=Name]").val() + "\\");
                 }
-      
-            }
 
+            }
         }
 
         //设置tree下拉框
