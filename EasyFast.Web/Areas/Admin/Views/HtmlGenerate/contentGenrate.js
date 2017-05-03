@@ -1,4 +1,8 @@
 ﻿
+$(function () {
+    initTreeData(false, true, false, true);
+});
+
 function generateContent() {
     var nodes = $('#tree').tree('getChecked');
     if (nodes.length <= 0) {

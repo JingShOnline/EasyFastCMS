@@ -1,4 +1,6 @@
-﻿
+﻿$(function () {
+    initTreeData(false, false, true, false);
+});
 function generateList() {
     var nodes = $('#tree').tree('getChecked');
     if (nodes.length <= 0) {
@@ -16,7 +18,7 @@ function generateList() {
 }
 
 function generateAllList() {
-    generateService.generateColumnList(new [], true).done(function () {
+    generateService.generateColumnList([], true).done(function () {
         abp.message.success("栏目列表生成成功!", "操作成功");
     });
 }

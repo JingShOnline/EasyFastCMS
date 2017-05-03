@@ -22,15 +22,15 @@ namespace EasyFast.Web
         public void Configuration(IAppBuilder app)
         {
             app.UseAbp();
-           
+
             app.UseOAuthBearerAuthentication(AccountController.OAuthBearerOptions);
-            
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login")
             });
-           
+
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             if (IsTrue("ExternalAuth.Facebook.IsEnabled"))
@@ -51,10 +51,10 @@ namespace EasyFast.Web
             app.MapSignalR();
 
             //ENABLE TO USE HANGFIRE dashboard (Requires enabling Hangfire in EasyFastWebModule)
-            //app.UseHangfireDashboard("/hangfire", new DashboardOptions
-            //{
-            //    Authorization = new[] { new AbpHangfireAuthorizationFilter() } //You can remove this line to disable authorization
-            //});
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new[] { new AbpHangfireAuthorizationFilter() } //You can remove this line to disable authorization
+            });
         }
 
         private static FacebookAuthenticationOptions CreateFacebookAuthOptions()

@@ -1,10 +1,9 @@
-﻿(function () {
-    $(function () {
-      
-        initTreeData();
-    });
+﻿
+$(function () {
 
-})();
+    initTreeData();
+});
+
 
 var nodetemp;
 var _contentService = abp.services.app.content;
@@ -14,7 +13,9 @@ function initTreeData() {
         method: "get",
         onBeforeLoad: function (node, param) {
             param.isIndexHtml = false;
-            param.isSingleColumn = false;
+            param.isModel = true;
+            param.isListHtml = false;
+            param.isContenthtml = false;
         },
         checkbox: false,
         animate: true,

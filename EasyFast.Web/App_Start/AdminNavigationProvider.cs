@@ -69,7 +69,12 @@ namespace EasyFast.Web.App_Start
                             "ColumnListGenerate",
                             L("ColumnListGenerate"),
                             url: "/Admin/HtmlGenerate/List"
-                    )))
+                    )).AddItem(new MenuItemDefinition(
+                            "CleanStaticFile",
+                            L("CleanStaticFile"),
+                           url: "/Admin/HtmlGenerate/CleanStaticFile"
+
+                        )))
                 .AddItem(new MenuItemDefinition(
                     "ColumnRelatedManager",
                     L("ColumnRelatedManager"),

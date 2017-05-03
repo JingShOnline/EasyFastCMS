@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Abp.Dependency;
+using Abp.Domain.Uow;
 using Abp.EntityFramework;
-using EasyFast.Core;
+using Abp.UI;
+using EasyFast.Core.Interface;
 
 namespace EasyFast.EntityFramework.EntityFramework.Repositories
 {
@@ -18,34 +18,60 @@ namespace EasyFast.EntityFramework.EntityFramework.Repositories
 
         private readonly IDbContextProvider<EasyFastDbContext> _dbContextProvider;
 
+
+
         public SqlExecuter(IDbContextProvider<EasyFastDbContext> dbContextProvider)
         {
             _dbContextProvider = dbContextProvider;
         }
 
-        /// <summary>
-        /// Execute No Query
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        public async Task<int> Execute(string sql, params object[] parameters)
+
+        public int Execute(string sql, int count = 0, params object[] parameters)
         {
-            return await _dbContextProvider.GetDbContext().Database.ExecuteSqlCommandAsync(sql, parameters);
+            try
+            {
+                if (count >= 5)
+                    throw new UserFriendlyException("生成失败,请重试");
+                return _dbContextProvider.GetDbContext().Database.ExecuteSqlCommand(sql, parameters);
+            }
+            catch (Exception e)
+            {
+                return Execute(sql, count + 1, parameters);
+            }
+
+
         }
 
-        /// <summary>
-        /// Query
-        /// </summary>
-        /// <typeparam name="T">返回类型</typeparam>
-        /// <param name="type"></param>
-        /// <param name="sql"></param>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        public async Task<List<object>> SqlQuery(Type type, string sql, params SqlParameter[] parameters)
-        {
 
-            return await _dbContextProvider.GetDbContext().Database.SqlQuery(type, sql, parameters).ToListAsync();
+        [UnitOfWork(IsDisabled = true)]
+        public List<object> SqlQuery(Type type, string sql, int count = 0, params SqlParameter[] parameters)
+        {
+            try
+            {
+                if (count >= 5)
+                    throw new UserFriendlyException("生成失败,请重试");
+                return _dbContextProvider.GetDbContext().Database.SqlQuery(type, sql, parameters).Cast<object>().ToList();
+            }
+            catch (Exception e)
+            {
+                return SqlQuery(type, sql, count + 1, parameters);
+            }
+
+        }
+
+        [UnitOfWork(IsDisabled = true)]
+        public List<T> SqlQuery<T>(string sql, int count = 0, params SqlParameter[] parameters)
+        {
+            try
+            {
+                if (count >= 5)
+                    throw new UserFriendlyException("生成失败,请重试");
+                return _dbContextProvider.GetDbContext().Database.SqlQuery<T>(sql, parameters).ToList();
+            }
+            catch (Exception e)
+            {
+                return SqlQuery<T>(sql, count + 1, parameters);
+            }
         }
     }
 }

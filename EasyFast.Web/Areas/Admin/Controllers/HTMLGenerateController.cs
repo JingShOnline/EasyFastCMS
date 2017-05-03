@@ -5,6 +5,7 @@ using Abp.Web.Mvc.Authorization;
 
 namespace EasyFast.Web.Areas.Admin.Controllers
 {
+
     [AbpMvcAuthorize]
     public class HtmlGenerateController : EasyFastControllerBase
     {
@@ -39,6 +40,13 @@ namespace EasyFast.Web.Areas.Admin.Controllers
             return View();
         }
 
-
+        /// <summary>
+        /// 清理静态文件
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CleanStaticFile()
+        {
+            return View();
+        }
     }
 }

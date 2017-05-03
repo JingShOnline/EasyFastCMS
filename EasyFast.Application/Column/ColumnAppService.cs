@@ -1,45 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EasyFast.Application.Column.Dto;
 using Abp.Domain.Repositories;
 using EasyFast.Core.Entities;
-using AutoMapper;
 using EasyFast.Application.Common.Dto;
 using System.Linq.Dynamic;
 using AutoMapper.QueryableExtensions;
 using System.Data.Entity;
 using Abp.AutoMapper;
 using Abp.UI;
-using EasyFast.Application.Dto;
-using Abp.Linq.Extensions;
-using Abp.Application.Services.Dto;
-using System.Web;
 using System.Web.Http;
+using Abp.Runtime.Caching;
 using Abp.Specifications;
-using EasyFast.Common;
+using EasyFast.Application.Config;
+using EasyFast.Application.Config.Dto;
 using EasyFast.Core;
+using LinqKit;
 
 namespace EasyFast.Application.Column
 {
     public class ColumnAppService : EasyFastAppServiceBase, IColumnAppService
     {
+
+        private readonly ICacheManager _cacheManager;
+
+        private readonly ISiteConfigAppService _siteConfigAppService;
+
+
         #region 依赖注入
         private readonly IRepository<Core.Entities.Column> _columnRepository;
-        public ColumnAppService(IRepository<Core.Entities.Column> columnRepository)
+        public ColumnAppService(IRepository<Core.Entities.Column> columnRepository, ISiteConfigAppService siteConfigAppService, ICacheManager cacheManager)
         {
             _columnRepository = columnRepository;
+            _siteConfigAppService = siteConfigAppService;
+            _cacheManager = cacheManager;
         }
 
-        public void Add(ColumnDto model)
-        {
-            throw new NotImplementedException();
-        }
         #endregion
-
-
 
         /// <summary>
         /// 删除栏目
@@ -58,32 +56,13 @@ namespace EasyFast.Application.Column
 
         }
 
-
-        /// <summary>
-        /// 获取栏目用于表格展示
-        /// </summary>
-        /// <returns></returns>
-        public async Task<PagedResultDto<ColumnGridOutput>> GetColumnGridAsync(PagedSortedAndFilteredInputDto input)
-        {
-            if (string.IsNullOrEmpty(input.Sorting))
-                input.Sorting = "OrderId";
-            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children).WhereIf(!string.IsNullOrEmpty(input.Filter), o => o.Name.Contains(input.Filter));
-            var count = await query.CountAsync();
-            var list = await query.OrderBy(input.Sorting).PageBy(input).ToListAsync();
-            return new PagedResultDto<ColumnGridOutput>(count, list.MapTo<List<ColumnGridOutput>>());
-        }
-
-
-
-
-
         /// <summary>
         /// 获取树形结构的栏目名称
         /// </summary>
         /// <returns></returns>
         public async Task<List<ColumnNameOutput>> GetTreeColumnNameAsync()
         {
-            var query = await _columnRepository.GetAll().Include(o => o.Children).Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).OrderBy(o => o.OrderId).ToListAsync();
+            var query = await _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).Where(o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children).OrderBy(o => o.OrderId).ToListAsync();
 
             var list = query.MapTo<List<ColumnNameOutput>>();
 
@@ -99,6 +78,7 @@ namespace EasyFast.Application.Column
         /// 对栏目名称进行顺序处理
         /// </summary>
         /// <param name="list"></param>
+        /// <param name="prefix"></param>
         private void TreeColumnNameSorting(List<ColumnNameOutput> list, string prefix)
         {
             foreach (var temp in list)
@@ -120,40 +100,71 @@ namespace EasyFast.Application.Column
             return column.MapTo<T>();
         }
 
+
+        public async Task<List<SiteColumnModel>> GetSiteColumns()
+        {
+            var list =
+                await _columnRepository.GetAll()
+                    .Where(o => o.ParentId == null || o.ParentId == 0)
+                    .Include(o => o.Children)
+                    .OrderByDescending(o => o.OrderId)
+                    .ToListAsync();
+
+            return list.MapTo<List<SiteColumnModel>>();
+        }
+
         /// <summary>
-        /// 添加或删除单页
+        /// 添加或修改单页
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task AddOrUpdateSingleAsync(SingleColumnDto model)
         {
+            //拿到网站配置
+            var siteOption =
+              await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
+                    .GetAsync("siteOptionCache", () => _siteConfigAppService.GetSiteOption());
             if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
-                model.IndexHtmlRule = $"{model.Name}\\index.shtml";
-            else if (!model.IndexHtmlRule.Contains(".shtml"))
-                model.IndexHtmlRule += ".shtml";
+                model.IndexHtmlRule = $"{model.Dir}index.shtml";
+
+            if (model.IsIndexHtml && !string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.IndexHtmlRule.Contains(siteOption.HTMLDir))
+                model.IndexHtmlRule = siteOption.HTMLDir + model.IndexHtmlRule;
             await _columnRepository.InsertOrUpdateAsync(model.MapTo<Core.Entities.Column>());
         }
 
         /// <summary>
-        /// 添加或删除栏目
+        /// 添加或修改栏目
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task AddOrUpdateColumn(ColumnDto model)
         {
-           
-            if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
-                model.IndexHtmlRule = $"index.shtml";
+            //拿到网站配置
+            var siteOption =
+              await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
+                    .GetAsync("siteOptionCache", () => _siteConfigAppService.GetSiteOption());
 
+            if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
+                model.IndexHtmlRule = "#";
+            else if (!model.IndexHtmlRule.Contains("#") && model.IndexHtmlRule.Contains("shtml"))
+            {
+                if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.IndexHtmlRule.Contains(siteOption.HTMLDir))
+                    model.IndexHtmlRule = siteOption.HTMLDir + model.IndexHtmlRule;
+            }
 
             if (string.IsNullOrWhiteSpace(model.ListHtmlRule))
-                model.ListHtmlRule = $@"List\list_{{Id}}.shtml";
-
+                model.ListHtmlRule = $@"{model.Dir}List\list_{{Page}}.shtml";
 
             if (string.IsNullOrWhiteSpace(model.ContentHtmlRule))
-                model.ContentHtmlRule = $@"Content\{{Year}}\{{Month}}\{{Day}}\{model.Name}_{{Id}}.shtml";
+                model.ContentHtmlRule = $@"{model.Dir}Content\{{Year}}\{{Month}}\{{Day}}\{model.Name}_{{Id}}.shtml";
             else if (!model.ContentHtmlRule.Contains(".shtml"))
                 model.ContentHtmlRule += ".shtml";
+
+            if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.ListHtmlRule.Contains(siteOption.HTMLDir) && model.ListHtmlRule.Contains("shtml"))
+                model.ListHtmlRule = siteOption.HTMLDir + model.ListHtmlRule;
+
+            if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.ContentHtmlRule.Contains(siteOption.HTMLDir) && model.ContentHtmlRule.Contains("shtml"))
+                model.ContentHtmlRule = siteOption.HTMLDir + model.ContentHtmlRule;
             await _columnRepository.InsertOrUpdateAsync(model.MapTo<Core.Entities.Column>());
 
         }
@@ -163,13 +174,29 @@ namespace EasyFast.Application.Column
         /// 获取EasyTree格式的菜单
         /// </summary>
         /// <param name="isIndexHtml">是否获取仅生成首页的栏目</param>
-        /// <param name="isSingleColumn">是否获取单页</param>
+        /// <param name="isModel">是否获取具有模型的栏目</param>
+        /// <param name="isListHtml"></param>
         /// <returns></returns>
         [HttpGet]
-        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isSingleColumn)
+        public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isModel, bool isContentHtml, bool isListHtml)
         {
-            var query = _columnRepository.GetAll().Where(o => o.ParentId == null || o.ParentId == 0).WhereIf(isIndexHtml, o => o.IsIndexHtml).WhereIf(!isSingleColumn, o => o.ColumnTypeEnum == ColumnTypeEnum.Normal).Include(o => o.Children);
-            var result = await query.ToListAsync();
+            var conditions = PredicateBuilder.New<Core.Entities.Column>();
+
+            if (isIndexHtml)
+                conditions = conditions.Or(o => o.IsIndexHtml);
+            if (isListHtml)
+                conditions = conditions.Or(o => o.IsListHtml);
+            if (isModel || isContentHtml)
+                conditions = conditions.Or(o => o.ModelId != null && o.IsContentHtml);
+
+            var query = _columnRepository.GetAll().Where(conditions);
+            var result = await query.AsNoTracking().OrderByDescending(o => o.OrderId).ToListAsync();
+            foreach (var column in result)
+            {
+                column.Children =
+                    column.Children.Where(conditions)
+                        .ToList();
+            }
             var list = result.MapTo<List<ColumnTreeMenuOutput>>();
             ToEasyUiTree(list);
             return list;
@@ -210,5 +237,7 @@ namespace EasyFast.Application.Column
             return await _columnRepository.GetAll().Where(spec.ToExpression()).ProjectTo<T>().ToListAsync();
 
         }
+
+
     }
 }

@@ -1,4 +1,6 @@
-﻿
+﻿$(function () {
+    initTreeData(true, false, false, false);
+});
 function generateColumnIndex() {
     var nodes = $('#tree').tree('getChecked');
     if (nodes.length <= 0) {

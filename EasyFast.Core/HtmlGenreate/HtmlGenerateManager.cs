@@ -3,13 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Abp.Domain.Services;
 using Abp.Runtime.Caching;
-using Abp.Threading;
 using EasyFast.Common;
+using EasyFast.Common.FileRule;
+using EasyFast.Core.DomainDto;
 using EasyFast.Core.Interface;
 using Newtonsoft.Json;
 
@@ -35,7 +37,7 @@ namespace EasyFast.Core.HtmlGenreate
         /// <param name="savePath">保存路径</param>
         /// <param name="dict">调用除加参数</param>
         /// <returns></returns>
-        public async Task GenerateHtml(string template, string savePath, Dictionary<string, string> dict)
+        public void GenerateHtml(string template, string savePath, Dictionary<string, string> dict)
         {
             if (dict != null && dict.ContainsKey("tableName"))
             {
@@ -75,12 +77,12 @@ namespace EasyFast.Core.HtmlGenreate
         {
             var tableName = dict["tableName"];
             //总条数 
-            var count = AsyncHelper.RunSync(() => _sqlExecuter.SqlQueryAsync<int>(
-                $"select count(tleft.Id) from {tableName} tleft join Common_Model as tright on tleft.Id=tright.Id left join [column] as c on c.Id=tright.ColumnId where IsDeleted=0  and c.Id = {dict["columnId"]} "));
+            var count = _sqlExecuter.SqlQuery<int>(
+                $"select count(tleft.Id) from {tableName} tleft join Common_Model as tright on tleft.Id=tright.Id left join [column] as c on c.Id=tright.ColumnId where IsDeleted=0  and c.Id = {dict["columnId"]} ");
             //每页显示条数
             var size = 10;//Convert.ToInt32(dict["size"]);
             //拿到总页数
-            int totalPage = Math.Max((int)Math.Ceiling((count * 1.0) / size), 1);
+            int totalPage = Math.Max((int)Math.Ceiling((count[0] * 1.0) / size), 1);
             //生成每一页
             for (int i = 0; i < totalPage; i++)
             {
@@ -90,7 +92,7 @@ namespace EasyFast.Core.HtmlGenreate
                 for (var j = 0; j < matches.Count; j++)
                 {
                     var j1 = j;
-                    template = template.Replace(matches[j1].Value, ParseTag(matches[j1].Value, dict, i, count));
+                    template = template.Replace(matches[j1].Value, ParseTag(matches[j1].Value, dict, i, count[0]));
                 }
 
 
@@ -112,7 +114,7 @@ namespace EasyFast.Core.HtmlGenreate
         /// <returns></returns>
         private string ParseTag(string tag, Dictionary<string, string> dict, int? page = null, int? totalCount = null)
         {
-            var trimStart = tag.Trim('$');
+            var trimStart = tag.Trim('#');
             var dto = JsonConvert.DeserializeObject<ParseTag>(trimStart);
             //根据action与type拿到对应的模板
             var tagPath = $@"{EasyFastConsts.TagPath}\{dto.Type}\{dto.Action}{EasyFastConsts.TemplateType}";
@@ -160,12 +162,14 @@ namespace EasyFast.Core.HtmlGenreate
             if (!string.IsNullOrWhiteSpace(dto.Sorting))
                 sql += $" {dto.Sorting}";
 
-            var model = AsyncHelper.RunSync(() => _sqlExecuter.SqlQuery(modelType, sql, parameters.ToArray()));
+            var model = _sqlExecuter.SqlQuery(modelType, sql, 0, parameters.ToArray());
 
             itemTemplate = itemTemplate.Replace(modelStr.Replace("<t>", ""), "");
             itemTemplate = Regex.Replace(itemTemplate, EasyFastConsts.SqlRegex, "");
             //parseHtml  
             return page != null && !string.IsNullOrWhiteSpace(dto.TagType) && dto.TagType == "list" ? RazorHelper.Parsecshtml(itemTemplate, lastModifyTime, new { List = model, Page = page, TotalCount = totalCount }) : RazorHelper.Parsecshtml(itemTemplate, lastModifyTime, model);
+
+
 
         }
 
@@ -201,5 +205,190 @@ namespace EasyFast.Core.HtmlGenreate
             return sql += $" {sqlParameters}";
         }
 
+
+        public void CleanStaticFile(CleanStaticFileOutput dto)
+        {
+            var taskList = new List<Task>();
+            if (!string.IsNullOrWhiteSpace(dto.IndexHtmlRule))
+            {
+                 CleanIndexFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.IndexHtmlRule);
+            }
+            if (!string.IsNullOrWhiteSpace(dto.ListHtmlRule))
+            {
+
+                taskList.Add(Task.Factory.StartNew(
+                     () =>
+                         CleanListFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.ListHtmlRule, dto.ModelTableName,
+                             dto.Id)));
+            }
+            if (!string.IsNullOrWhiteSpace(dto.ContentHtmlRule))
+            {
+
+                taskList.Add(Task.Factory.StartNew(
+                    () =>
+                        CleanContentFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.ContentHtmlRule,
+                            dto.Id)));
+            }
+
+            Task.WaitAll(taskList.ToArray());
+        }
+
+        /// <summary>
+        /// 清理首页
+        /// </summary>
+        /// <param name="indexPath"></param>
+        private void CleanIndexFile(string indexPath)
+        {
+            try
+            {
+                var fullPath = indexPath;
+                var dirPath = Path.GetDirectoryName(fullPath);
+                if ((dirPath + "\\").Equals(EasyFastConsts.BaseDirectory))
+                    return;
+                var allFile = Directory.EnumerateFiles(dirPath);
+                foreach (var filePath in allFile)
+                {
+                    if (!filePath.Equals(indexPath))
+                        File.Delete(filePath);
+                }
+                allFile = Directory.EnumerateFiles(dirPath);
+                //清理后目录下没有文件删除目录
+                if (!allFile.Any())
+                    Directory.Delete(dirPath);
+            }
+            catch (Exception e)
+            {
+                //一般都是文件不存在的错误,不影响 
+                Logger.Warn(e.Message);
+            }
+
+        }
+
+        /// <summary>
+        /// 清理列表文件
+        /// </summary>
+        /// <param name="listPathRule"></param>
+        /// <param name="tableName"></param>
+        /// <param name="columnId"></param>
+        /// <returns></returns>
+        private void CleanListFile(string listPathRule, string tableName, int columnId)
+        {
+            try
+            {
+                //文件目录
+                var dirPath = Path.GetDirectoryName(listPathRule);
+                if ((dirPath + "\\").Equals(EasyFastConsts.BaseDirectory))
+                    return;
+                //总条数 
+                var count = _sqlExecuter.SqlQuery<int>(
+                $"select count(tleft.Id) from {tableName} as tleft join Common_Model as tright on tleft.Id=tright.Id left join [column] as c on c.Id=tright.ColumnId where IsDeleted=0  and c.Id = {columnId} ");
+                //每页显示条数
+                var size = 10;
+                //拿到总页数
+                int totalPage = Math.Max((int)Math.Ceiling((count[0] * 1.0) / size), 1);
+
+                //目录及子目录下所有文件
+
+                var allfile = Directory.EnumerateFiles(dirPath, "*", SearchOption.AllDirectories);
+                var listPaths = new List<string>();
+                for (int i = 0; i < totalPage; i++)
+                {
+                    //真实有用的文件
+                    listPaths.Add(listPathRule.Replace("{Page}", (i + 1).ToString()));
+                }
+                foreach (var file in allfile)
+                {
+                    if (!listPaths.Contains(file))
+                        File.Delete(file);
+                }
+                allfile = Directory.EnumerateFiles(dirPath, "*", SearchOption.AllDirectories);
+                //清理后目录下没有文件删除目录
+                if (!allfile.Any())
+                    Directory.Delete(dirPath);
+            }
+            catch (Exception e)
+            {
+                if (e is DirectoryNotFoundException)
+                {
+                    //一般都是文件不存在的错误,不影响 
+                    Logger.Warn(e.Message);
+                }
+                else
+                {
+                    Logger.Error(e.Message);
+                }
+
+            }
+
+
+
+        }
+
+
+        /// <summary>
+        /// 清理内容文件
+        /// </summary>
+        /// <param name="contentPathRule"></param>
+        /// <param name="columnId"></param>
+        private void CleanContentFile(string contentPathRule, int columnId)
+        {
+            try
+            {
+                var dirPath = Path.GetDirectoryName(contentPathRule.Replace("{Year}", "").Replace("{Month}", "").Replace("{Day}", "").TrimEnd('\\'));
+                if ((dirPath + "\\").Equals(EasyFastConsts.BaseDirectory))
+                    return;
+
+                var conentList = _sqlExecuter.SqlQuery<CleanContentFileOutput>
+                          ($"select title,id,LastModificationTime from Common_Model where ColumnId={columnId} and IsDeleted=0");
+
+                var files = new List<string>();
+                foreach (var content in conentList)
+                {
+                    files.Add(RuleParseHelper.Parse(new StringBuilder(contentPathRule), content.Id.ToString(), content.Title, content.LastModificationTime));
+                }
+
+
+                //目录及子目录下所有文件
+
+                var allfile = Directory.EnumerateFiles(dirPath, "*", SearchOption.AllDirectories);
+
+                foreach (var file in allfile)
+                {
+                    if (!files.Contains(file))
+                        File.Delete(file);
+                }
+
+                var allDir = Directory.EnumerateDirectories(dirPath, "*", SearchOption.AllDirectories).OrderByDescending(d => d);
+                //删除空目录
+                foreach (var dir in allDir)
+                {
+                    try
+                    {
+                        //尝试删除
+                        Directory.Delete(dir);
+                    }
+                    catch (Exception e)
+                    {
+                        //不为空跳出本次循环
+                        continue;
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                if (e is DirectoryNotFoundException)
+                {
+                    //一般都是文件不存在的错误,不影响 
+                    Logger.Warn(e.Message);
+                }
+                else
+                {
+                    Logger.Error(e.Message);
+                }
+
+            }
+
+        }
     }
 }

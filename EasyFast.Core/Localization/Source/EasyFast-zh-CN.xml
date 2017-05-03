@@ -36,6 +36,7 @@
     <text name="IndexGenerate" value="生成首页及栏目首页" />
     <text name="ContentGenerate" value="生成内容页" />
     <text name="ColumnListGenerate" value="生成栏目列表页" />
+    <text name="CleanStaticFile" value="请理无用静态文件" />
 
     <text name="ColumnRelatedManager" value="栏目相关管理" />
     <text name="ColumnManager" value="栏目管理" />

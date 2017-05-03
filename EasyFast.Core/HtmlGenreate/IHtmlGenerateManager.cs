@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Abp.Domain.Services;
+using EasyFast.Core.DomainDto;
 
 namespace EasyFast.Core.HtmlGenreate
 {
@@ -12,7 +9,6 @@ namespace EasyFast.Core.HtmlGenreate
     /// </summary>
     public interface IHtmlGenerateManager : IDomainService
     {
-
         /// <summary>
         /// 通用的生成静态文件服务
         /// </summary>
@@ -20,6 +16,13 @@ namespace EasyFast.Core.HtmlGenreate
         /// <param name="savePath">保存路径 Article_id_index.html</param>
         /// <param name="dict">方法调用附加参数</param>
         /// <returns></returns>
-        Task GenerateHtml(string template, string savePath, Dictionary<string, string> dict);
+        void GenerateHtml(string template, string savePath, Dictionary<string, string> dict);
+
+        /// <summary>
+        /// 清理无用静态文件领域服务
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        void CleanStaticFile(CleanStaticFileOutput dto);
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System.Reflection;
+using Abp.BackgroundJobs;
 using Abp.Localization.Dictionaries;
 using Abp.Localization.Dictionaries.Xml;
 using Abp.Modules;
 using Abp.Zero;
 using Abp.Zero.Configuration;
+using EasyFast.Common.Extend.Job;
 using EasyFast.Core.Authorization;
 using EasyFast.Core.Authorization.Roles;
+using EasyFast.Core.HtmlGenreate;
 using EasyFast.Core.MultiTenancy;
 using EasyFast.Core.Users;
 
@@ -45,6 +48,15 @@ namespace EasyFast.Core
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(Assembly.GetExecutingAssembly());
+        }
+
+        public override void PostInitialize()
+        {
+            var jobManager = IocManager.Resolve<IBackgroundJobManager>();
+            //每天凌晨两点进行文件清理
+            jobManager.AddOrUpdate<CleanStaticFileJob, int?>(null, PeriodicCorn.Daily(2));
+
+            base.PostInitialize();
         }
     }
 }

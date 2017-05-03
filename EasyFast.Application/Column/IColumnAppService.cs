@@ -1,12 +1,7 @@
 ﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
 using EasyFast.Application.Column.Dto;
 using EasyFast.Application.Common.Dto;
-using EasyFast.Application.Dto;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Abp.Specifications;
@@ -18,14 +13,6 @@ namespace EasyFast.Application.Column
     /// </summary>
     public interface IColumnAppService : IApplicationService
     {
-     
-
-        /// <summary>
-        /// 分页获取栏目用于表格展示
-        /// </summary>
-        /// <returns></returns>
-        Task<PagedResultDto<ColumnGridOutput>> GetColumnGridAsync(PagedSortedAndFilteredInputDto input);
-
 
         /// <summary>
         /// 获取栏目列表
@@ -34,7 +21,7 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         Task<EasyUIGridOutput<TreeGridOutput>> GetTreeGrid(TreeGridInput search);
 
-     
+
 
         /// <summary>
         /// 删除栏目
@@ -43,6 +30,11 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         Task DeleteAsync(int id);
 
+        /// <summary>
+        /// 获取全站栏目
+        /// </summary>
+        /// <returns></returns>
+        Task<List<SiteColumnModel>> GetSiteColumns();
 
         /// <summary>
         /// 获取树形结构的栏目名称
@@ -78,7 +70,7 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isSingleColumn);
+        Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isModel, bool isContentHtml, bool isListHtml);
 
 
         /// <summary>
@@ -87,5 +79,7 @@ namespace EasyFast.Application.Column
         /// <param name="spec">规约</param>
         /// <returns></returns>
         Task<List<T>> GetGenerateColumn<T>(ISpecification<Core.Entities.Column> spec);
+
+
     }
 }

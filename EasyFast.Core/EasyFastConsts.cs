@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Reflection;
-using System.Web;
+
 
 namespace EasyFast.Core
 {
     public static class EasyFastConsts
     {
-        static EasyFastConsts()
-        {
-
-        }
 
         public const string LocalizationSourceName = "EasyFastCMS";
 
@@ -33,18 +28,12 @@ namespace EasyFast.Core
         /// <summary>
         /// 标签匹配正则表达式
         /// </summary>
-        public const string TagRegex = @"\$.*?\$";
-
-
-        /// <summary>
-        /// 域名+端口
-        /// </summary>
-        public static string HostUrl = $"http://{HttpContext.Current.Request.Url.Host}:{HttpContext.Current.Request.Url.Port}/";
+        public const string TagRegex = @"\#.*?\#";
 
         /// <summary>
         /// 地址
         /// </summary>
-        public static string BaseDirectory = HttpContext.Current.Server.MapPath("~");
+        public static string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         /// <summary>
         /// 标签路径
