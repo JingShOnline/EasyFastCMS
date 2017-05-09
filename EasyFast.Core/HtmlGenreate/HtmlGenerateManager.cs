@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -211,26 +210,22 @@ namespace EasyFast.Core.HtmlGenreate
             var taskList = new List<Task>();
             if (!string.IsNullOrWhiteSpace(dto.IndexHtmlRule))
             {
-                 CleanIndexFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.IndexHtmlRule);
+                taskList.Add(Task.Factory.StartNew(() => CleanIndexFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.IndexHtmlRule)));
             }
             if (!string.IsNullOrWhiteSpace(dto.ListHtmlRule))
             {
-
-                taskList.Add(Task.Factory.StartNew(
-                     () =>
-                         CleanListFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.ListHtmlRule, dto.ModelTableName,
-                             dto.Id)));
+                taskList.Add(Task.Factory.StartNew(() => CleanListFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.ListHtmlRule, dto.ModelTableName,
+                    dto.Id)));
             }
             if (!string.IsNullOrWhiteSpace(dto.ContentHtmlRule))
             {
-
-                taskList.Add(Task.Factory.StartNew(
-                    () =>
-                        CleanContentFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.ContentHtmlRule,
-                            dto.Id)));
+                taskList.Add(Task.Factory.StartNew(() => CleanContentFile(EasyFastConsts.BaseDirectory + dto.HTMLDir + dto.ContentHtmlRule,
+                    dto.Id)));
             }
 
             Task.WaitAll(taskList.ToArray());
+
+
         }
 
         /// <summary>
@@ -309,14 +304,14 @@ namespace EasyFast.Core.HtmlGenreate
             catch (Exception e)
             {
                 if (e is DirectoryNotFoundException)
-                {
+
                     //一般都是文件不存在的错误,不影响 
                     Logger.Warn(e.Message);
-                }
+
                 else
-                {
+
                     Logger.Error(e.Message);
-                }
+
 
             }
 
@@ -370,7 +365,6 @@ namespace EasyFast.Core.HtmlGenreate
                     catch (Exception e)
                     {
                         //不为空跳出本次循环
-                        continue;
                     }
 
                 }
@@ -378,14 +372,14 @@ namespace EasyFast.Core.HtmlGenreate
             catch (Exception e)
             {
                 if (e is DirectoryNotFoundException)
-                {
+
                     //一般都是文件不存在的错误,不影响 
                     Logger.Warn(e.Message);
-                }
+
                 else
-                {
+
                     Logger.Error(e.Message);
-                }
+
 
             }
 

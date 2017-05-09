@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Threading.Tasks;
+using EasyFast.Application.Authorization.Users;
+using EasyFast.Application.Authorization.Users.Dto;
 using Shouldly;
 using Xunit;
-using EasyFast.Application.Users;
-using EasyFast.Application.Users.Dto;
 
 namespace EasyFast.Tests.Users
 {

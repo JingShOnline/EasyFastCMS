@@ -45,17 +45,44 @@ namespace EasyFast.Web
                         "~/Scripts/sweetalert/sweet-alert.min.js",
                         "~/Scripts/others/spinjs/spin.js",
                         "~/Scripts/others/spinjs/jquery.spin.js",
-
                         "~/Abp/Framework/scripts/abp.js",
                         "~/Abp/Framework/scripts/libs/abp.jquery.js",
                         "~/Abp/Framework/scripts/libs/abp.toastr.js",
                         "~/Abp/Framework/scripts/libs/abp.blockUI.js",
                         "~/Abp/Framework/scripts/libs/abp.spin.js",
                         "~/Abp/Framework/scripts/libs/abp.sweet-alert.js",
-
                         "~/Scripts/jquery.signalR-2.2.1.min.js"
                     )
                 );
+
+            bundles.Add(
+               new ScriptBundle("~/Bundles/vendor/admin/js/bottom")
+                   .Include(
+                       "~/Scripts/jquery-2.2.0.min.js",
+                       "~/Scripts/json2.min.js",
+                       "~/Scripts/jquery-ui-1.11.4.min.js",
+                       "~/Scripts/bootstrap.min.js",
+                       "~/Scripts/moment-with-locales.min.js",
+                       "~/Scripts/jquery.validate.min.js",
+                       "~/Scripts/jquery.blockUI.js",
+                       "~/Scripts/toastr.min.js",
+                       "~/Scripts/sweetalert/sweet-alert.min.js",
+                       "~/Scripts/others/spinjs/spin.js",
+                       "~/Scripts/others/spinjs/jquery.spin.js",
+                       "~/Scripts/underscore.min.js",
+                       "~/Scripts/jstree/jstree.min.js",
+                       "~/Abp/Framework/scripts/abp.js",
+                       "~/Abp/Framework/scripts/libs/abp.jquery.js",
+                       "~/Abp/Framework/scripts/libs/abp.toastr.js",
+                       "~/Abp/Framework/scripts/libs/abp.blockUI.js",
+                       "~/Abp/Framework/scripts/libs/abp.spin.js",
+                       "~/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+                       "~/Scripts/ModalManager.js",
+                       "~/Scripts/helpers.js",
+                       "~/Scripts/jquery-custom.js",
+                       "~/Scripts/jquery.signalR-2.2.1.min.js"
+                   )
+               );
 
             //APPLICATION RESOURCES
 

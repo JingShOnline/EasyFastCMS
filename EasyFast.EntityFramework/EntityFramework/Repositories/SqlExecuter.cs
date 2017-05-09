@@ -30,12 +30,13 @@ namespace EasyFast.EntityFramework.EntityFramework.Repositories
         {
             try
             {
-                if (count >= 5)
-                    throw new UserFriendlyException("生成失败,请重试");
+
                 return _dbContextProvider.GetDbContext().Database.ExecuteSqlCommand(sql, parameters);
             }
             catch (Exception e)
             {
+                if (count >= 5)
+                    throw e;
                 return Execute(sql, count + 1, parameters);
             }
 
@@ -54,6 +55,8 @@ namespace EasyFast.EntityFramework.EntityFramework.Repositories
             }
             catch (Exception e)
             {
+                if (count >= 5)
+                    throw e;
                 return SqlQuery(type, sql, count + 1, parameters);
             }
 
@@ -64,12 +67,13 @@ namespace EasyFast.EntityFramework.EntityFramework.Repositories
         {
             try
             {
-                if (count >= 5)
-                    throw new UserFriendlyException("生成失败,请重试");
+
                 return _dbContextProvider.GetDbContext().Database.SqlQuery<T>(sql, parameters).ToList();
             }
             catch (Exception e)
             {
+                if (count >= 5)
+                    throw e;
                 return SqlQuery<T>(sql, count + 1, parameters);
             }
         }

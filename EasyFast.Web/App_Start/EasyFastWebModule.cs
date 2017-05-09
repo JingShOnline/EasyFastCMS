@@ -12,7 +12,6 @@ using Abp.Web.SignalR;
 using EasyFast.Api;
 using Hangfire;
 using EasyFast.Application;
-using EasyFast.Web.App_Start;
 
 namespace EasyFast.Web
 {

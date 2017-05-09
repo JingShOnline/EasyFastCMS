@@ -17,8 +17,8 @@
     <text name="UserNameOrEmail" value="用户名或邮箱地址" />
     <text name="Password" value="密码" />
     <text name="RememberMe" value="记住我" />
-    <text name="LogIn" value="登录" />
-
+    <text name="LogIn" value="登录" /> 
+   
     <text name="LoginFailed" value="登录失败!" />
     <text name="Admin" value="后台管理" />
     <text name="EasyFastCmsAdminManager" value="易迅CM后台管理" />
@@ -45,5 +45,34 @@
     <text name="SiteManager" value="系统设置" />
     <text name="SiteInfo" value="网络信息配置" />
     <text name="SiteOption" value="	网站参数配置" />
+
+
+    <text name="Roles" value="角色" />
+    <text name="Refresh" value="刷新" />
+    <text name="RoleName" value="角色名称" />
+    <text name="CreationTime" value="创建时间" /> 
+    <text name="RoleDeleteWarningMessage" value="真的要删除此角色吗?" /> 
+    <text name="SuccessfullyDeleted" value="删除成功!" />  
+    <text name="FilterByPermission" value="根据权限过滤" />
+    <text name="EditRole" value="修改角色" />
+    <text name="CreateNewRole" value="添加角色" />
+    <text name="RoleProperties" value="角色属性" />
+    <text name="Permissions" value="权限" />
+    <text name="Save" value="保存" />
+    <text name="Cancel" value="取消" />
+    <text name="RolesHeaderInfo" value="使用角色进行权限分组." />
+    <text name="Static" value="系统" />
+    <text name="Actions" value="操作" />
+    <text name="Delete" value="删除" />
+    <text name="SavedSuccessfully" value="保存成功." />
+    <text name="Default" value="默认" />
+    <text name="DefaultRole_Description" value="新用户将默认拥有此角色." />
+    
+    <!--权限-->
+    <text name="Pages" value="页面" />
+    <text name="Pages_Role" value="角色" />
+    <text name="Pages_Role_Create" value="添加角色" />+
+    <text name="Pages_Role_Edit" value="修改角色" />
+    <text name="Pages_Role_Delete" value="删除角色" />
   </texts>
 </localizationDictionary>

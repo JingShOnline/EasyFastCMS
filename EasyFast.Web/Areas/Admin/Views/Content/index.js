@@ -1,12 +1,12 @@
-﻿
+﻿var _contentService;
 $(function () {
-
+    _contentService = abp.services.app.content;
     initTreeData();
 });
 
 
 var nodetemp;
-var _contentService = abp.services.app.content;
+
 function initTreeData() {
     $("#tree").tree({
         url: "/api/services/app/column/GetColumnEasyTree",
@@ -79,7 +79,6 @@ function deleteContent(id) {
 
 
 function addContent() {
-    //后期换成易于SEO路由
     var url = "/Admin/Content/AddContent?modelId=" + nodetemp.attributes.modelId + "&ctrl=" + nodetemp.attributes.controller + "&columnId=" + nodetemp.id + "&columnName=" + nodetemp.text + "";
     url = encodeURI(url);
     window.location.href = url;

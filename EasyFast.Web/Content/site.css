@@ -149,3 +149,24 @@ ul, li, h1, h2, h3, h4, h5, h6 {
   .opt button, .opt input[type=button] {
     margin-right: 7px; }
 
+/******/
+label.error{
+    margin-top: 30px;
+    color: red !important; 
+}
+
+label.error + label{
+    color: red !important;
+}
+
+
+input.form-control.valid + label +label {
+    color: gray !important;
+}
+
+input.form-control.edited.valid + label + label {
+    color: gray !important;
+}
+input.error {
+    border-color: red !important;
+}

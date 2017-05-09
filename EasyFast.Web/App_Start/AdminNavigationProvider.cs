@@ -1,12 +1,8 @@
 ﻿using Abp.Application.Navigation;
 using Abp.Localization;
 using EasyFast.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace EasyFast.Web.App_Start
+namespace EasyFast.Web
 {
     public class AdminNavigationProvider : NavigationProvider
     {
@@ -41,7 +37,7 @@ namespace EasyFast.Web.App_Start
                             new MenuItemDefinition(
                                 "UserRoleManager",
                                 L("UserRoleManager"),
-                                url: "/Admin/User/UserRoleList"
+                                url: "/Admin/User/RoleList"
                            ))
                  ).AddItem(new MenuItemDefinition(
                         "ContentManager",

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Abp.BackgroundJobs;
 using Abp.Dependency;
 using Abp.Domain.Repositories;
@@ -31,11 +32,13 @@ namespace EasyFast.Core.HtmlGenreate
                 columns = _columnRepository.GetAll().Where(o => o.Id == args).AsNoTracking().ProjectTo<CleanStaticFileOutput>().ToList();
             else
                 columns = _columnRepository.GetAll().Where(c => c.IsIndexHtml || c.IsListHtml || c.IsContentHtml).AsNoTracking().ProjectTo<CleanStaticFileOutput>().ToList();
+            var taskArray = new Task[columns.Count];
             for (var i = 0; i < columns.Count; i++)
             {
                 var i1 = i;
-                _htmlGenerateManager.CleanStaticFile(columns[i1]);
+                taskArray[i1] = Task.Factory.StartNew(() => _htmlGenerateManager.CleanStaticFile(columns[i1]));
             }
+            Task.WaitAll(taskArray);
         }
     }
 }

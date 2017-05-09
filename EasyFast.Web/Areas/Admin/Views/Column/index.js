@@ -1,4 +1,9 @@
-﻿var _columnnService = abp.services.app.column;
+﻿var _columnnService;
+
+$(function() {
+    _columnnService = abp.services.app.column;
+})
+
 function deleteColumn(id) {
 
     abp.message.confirm(
@@ -14,7 +19,6 @@ function deleteColumn(id) {
         }
     );
 }
-
 function formatOper(val, row, index) {
 
     return "<a href='/Admin/Column/UpdateColumn?id=" +

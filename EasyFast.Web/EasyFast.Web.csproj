@@ -317,6 +317,7 @@
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
     <Content Include="Areas\Admin\Views\Article\addOrEdit.js" />
     <Content Include="Areas\Admin\Views\Column\uploadImg.js" />
+    <Content Include="Areas\Admin\Views\Common\_PermissionTree.js" />
     <Content Include="Areas\Admin\Views\Content\add.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\contentGenrate.js" />
     <Content Include="Areas\Admin\Views\HtmlGenerate\common.js" />
@@ -324,6 +325,9 @@
     <Content Include="Areas\Admin\Views\HtmlGenerate\indexGenrate.js" />
     <Content Include="Areas\Admin\Views\Lawyer\addOrEdit.js" />
     <Content Include="Areas\Admin\Views\SiteConfig\uploadImg.js" />
+    <Content Include="Areas\Admin\Views\User\RoleIndex.min.css" />
+    <Content Include="Areas\Admin\Views\User\RoleIndex.js" />
+    <Content Include="Areas\Admin\Views\User\_CreateOrEditRoleModal.js" />
     <Content Include="Content\Uploader.swf" />
     <Content Include="Areas\Admin\Views\Content\index.js" />
     <Content Include="Common\Scripts\appUserNotificationHelper.js" />
@@ -342,7 +346,23 @@
     <Content Include="Content\bootstrap-rtl.min.css" />
     <Content Include="Content\wangEditor.min.css" />
     <Content Include="fonts\icomoon.svg" />
+    <Content Include="Scripts\helpers.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-custom.js" />
+    <Content Include="Scripts\jstree\jstree.js" />
+    <Content Include="Scripts\jstree\jstree.min.js" />
+    <Content Include="Scripts\jstree\themes\default-dark\32px.png" />
+    <Content Include="Scripts\jstree\themes\default-dark\40px.png" />
+    <Content Include="Scripts\jstree\themes\default-dark\style.css" />
+    <Content Include="Scripts\jstree\themes\default-dark\style.min.css" />
+    <Content Include="Scripts\jstree\themes\default-dark\throbber.gif" />
+    <Content Include="Scripts\jstree\themes\default\32px.png" />
+    <Content Include="Scripts\jstree\themes\default\32px_line.png" />
+    <Content Include="Scripts\jstree\themes\default\32px_original.png" />
+    <Content Include="Scripts\jstree\themes\default\40px.png" />
+    <Content Include="Scripts\jstree\themes\default\style.css" />
+    <Content Include="Scripts\jstree\themes\default\throbber.gif" />
+    <Content Include="Scripts\ModalManager.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\jquery.treegrid.bootstrap3.js" />
     <Content Include="Scripts\jquery.treegrid.min.js" />
@@ -432,7 +452,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Breadcrumb.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Iframe.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SiteConfig\SiteInfo.cshtml" />
     <Content Include="Areas\Admin\Views\SiteConfig\SiteOption.cshtml" />
@@ -465,6 +484,10 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css.map" />
     <Content Include="Abp\Framework\styles\abp.less" />
     <Content Include="Abp\Framework\styles\abp.css.map" />
+    <Content Include="Areas\Admin\Views\User\RoleList.cshtml" />
+    <Content Include="Areas\Admin\Views\User\AdminList.cshtml" />
+    <Content Include="Areas\Admin\Views\Common\_PermissionTree.cshtml" />
+    <Content Include="Areas\Admin\Views\User\_CreateOrEditRoleModal.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -500,28 +523,6 @@
     <Content Include="Scripts\jtable\external\json2.min.js" />
     <Content Include="Scripts\jtable\jquery.jtable.js" />
     <Content Include="Scripts\jtable\jquery.jtable.min.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.bd.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.ca.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.cz.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.de.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.es.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.fa.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.fr.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.hr.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.hu.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.id.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.it.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.lt.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.nl-NL.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.no.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.pl.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.pt-BR.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.pt-PT.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.ro.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.ru.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.se.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.tr.js" />
-    <Content Include="Scripts\jtable\localization\jquery.jtable.vi.js" />
     <Content Include="Scripts\jtable\localization\jquery.jtable.zh-CN.js" />
     <Content Include="Scripts\jtable\themes\basic\close.png" />
     <Content Include="Scripts\jtable\themes\basic\column-asc.png" />
@@ -663,6 +664,10 @@
     <Compile Include="Areas\Admin\Controllers\HTMLGenerateController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Models\Common\IPermissionsEditViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Common\ModalHeaderViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Roles\CreateOrEditRoleModalViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Roles\RoleListViewModel.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -753,9 +758,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\ContentInfo\" />
-    <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Template\Code\" />
     <Folder Include="Template\Page\" />
   </ItemGroup>
