@@ -3,7 +3,6 @@
 @{
     ViewBag.CurrentPageName = "ContentManager";
 }
-
 <div class="portlet box blue ">
     <div class="portlet-title">
         <div class="caption">
@@ -27,7 +26,6 @@
             <div class="form-body">
                 <!--具体内容-->
                 @{Html.RenderAction((string)ViewBag.action, (string)ViewBag.ctrl);}
-
                 <div class="form-group">
                     <label class="control-label col-md-2">浏览量</label>
                     <div class="col-md-10">
@@ -76,11 +74,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </form>
         <!-- END FORM-->
     </div>
 </div>
-
-@Html.IncludeScript("/Areas/Admin/Views/Content/add.js");
+@Html.IncludeScript("/Areas/Admin/Views/Content/add.js")

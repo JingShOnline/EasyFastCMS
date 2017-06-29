@@ -4,13 +4,11 @@ using System.Threading.Tasks;
 using EasyFast.Application.Content.Dto;
 using Abp.Domain.Repositories;
 using EasyFast.Core.Entities;
-using Abp.Collections.Extensions;
 using System.Linq.Dynamic;
 using System.Data.Entity;
 using Abp.Linq.Extensions;
 using EasyFast.Application.Common.Dto;
 using AutoMapper.QueryableExtensions;
-using System;
 using System.Collections.Generic;
 using Abp.AutoMapper;
 using Abp.Web.Models;
@@ -33,11 +31,11 @@ namespace EasyFast.Application.Content
         /// <summary>
         /// 删除内容
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ids"></param>
         /// <returns></returns>
-        public async Task DeleteContent(int id)
+        public async Task DeleteContent(int[] ids)
         {
-            await _commonModelRepository.DeleteAsync(id);
+            await _commonModelRepository.DeleteAsync(o => ids.Contains(o.Id));
         }
 
         /// <summary>
@@ -49,8 +47,8 @@ namespace EasyFast.Application.Content
         public async Task<EasyUIGridOutput<GridContentOutput>> GetGridContents(DataGridInput input)
         {
             var query = _commonModelRepository.GetAll()
-                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), o => o.Title.Contains(input.Filter) || o.Info.Contains(input.Filter) || o.Guide.Contains(input.Filter))
-                .WhereIf(input.ColumnId.HasValue, o => o.ColumnId == (int)input.ColumnId);
+                .WhereIf(!string.IsNullOrWhiteSpace(input.Filter), o => o.Title.Contains(input.Filter) || o.Info.Contains(input.Filter))
+                .WhereIf(input.ColumnId.HasValue, o => o.ColumnId == input.ColumnId);
             var count = await query.CountAsync();
             var list = await query.OrderBy($"{input.Sort} {input.Order}").Skip((input.Page - 1) * input.Rows).Take(input.Rows).ProjectTo<GridContentOutput>().ToListAsync();
             return new EasyUIGridOutput<GridContentOutput> { total = count, rows = list };

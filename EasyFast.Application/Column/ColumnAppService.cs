@@ -11,12 +11,14 @@ using System.Data.Entity;
 using Abp.AutoMapper;
 using Abp.UI;
 using System.Web.Http;
+using Abp.Domain.Uow;
 using Abp.Runtime.Caching;
 using Abp.Specifications;
 using EasyFast.Application.Config;
 using EasyFast.Application.Config.Dto;
 using EasyFast.Core;
 using LinqKit;
+using System;
 
 namespace EasyFast.Application.Column
 {
@@ -100,19 +102,6 @@ namespace EasyFast.Application.Column
             return column.MapTo<T>();
         }
 
-
-        public async Task<List<SiteColumnModel>> GetSiteColumns()
-        {
-            var list =
-                await _columnRepository.GetAll()
-                    .Where(o => o.ParentId == null || o.ParentId == 0)
-                    .Include(o => o.Children)
-                    .OrderByDescending(o => o.OrderId)
-                    .ToListAsync();
-
-            return list.MapTo<List<SiteColumnModel>>();
-        }
-
         /// <summary>
         /// 添加或修改单页
         /// </summary>
@@ -122,10 +111,10 @@ namespace EasyFast.Application.Column
         {
             //拿到网站配置
             var siteOption =
-              await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
+                await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
                     .GetAsync("siteOptionCache", () => _siteConfigAppService.GetSiteOption());
             if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
-                model.IndexHtmlRule = $"{model.Dir}index.shtml";
+                model.IndexHtmlRule = $"{model.Dir}index.html";
 
             if (model.IsIndexHtml && !string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.IndexHtmlRule.Contains(siteOption.HTMLDir))
                 model.IndexHtmlRule = siteOption.HTMLDir + model.IndexHtmlRule;
@@ -141,29 +130,29 @@ namespace EasyFast.Application.Column
         {
             //拿到网站配置
             var siteOption =
-              await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
+                await _cacheManager.GetCache<string, SiteOptionDto>(EasyFastConsts.TemplateCacheKey)
                     .GetAsync("siteOptionCache", () => _siteConfigAppService.GetSiteOption());
 
             if (string.IsNullOrWhiteSpace(model.IndexHtmlRule))
                 model.IndexHtmlRule = "#";
-            else if (!model.IndexHtmlRule.Contains("#") && model.IndexHtmlRule.Contains("shtml"))
+            else if (!model.IndexHtmlRule.Contains("#") && model.IndexHtmlRule.Contains("html"))
             {
                 if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.IndexHtmlRule.Contains(siteOption.HTMLDir))
                     model.IndexHtmlRule = siteOption.HTMLDir + model.IndexHtmlRule;
             }
 
             if (string.IsNullOrWhiteSpace(model.ListHtmlRule))
-                model.ListHtmlRule = $@"{model.Dir}List\list_{{Page}}.shtml";
+                model.ListHtmlRule = $@"{model.Dir}List\list_{{Page}}.html";
 
             if (string.IsNullOrWhiteSpace(model.ContentHtmlRule))
-                model.ContentHtmlRule = $@"{model.Dir}Content\{{Year}}\{{Month}}\{{Day}}\{model.Name}_{{Id}}.shtml";
-            else if (!model.ContentHtmlRule.Contains(".shtml"))
-                model.ContentHtmlRule += ".shtml";
+                model.ContentHtmlRule = $@"{model.Dir}Content\{{Year}}\{{Month}}\{{Day}}\{model.Name}_{{Id}}.html";
+            else if (!model.ContentHtmlRule.Contains(".html"))
+                model.ContentHtmlRule += ".html";
 
-            if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.ListHtmlRule.Contains(siteOption.HTMLDir) && model.ListHtmlRule.Contains("shtml"))
+            if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.ListHtmlRule.Contains(siteOption.HTMLDir) && model.ListHtmlRule.Contains("html"))
                 model.ListHtmlRule = siteOption.HTMLDir + model.ListHtmlRule;
 
-            if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.ContentHtmlRule.Contains(siteOption.HTMLDir) && model.ContentHtmlRule.Contains("shtml"))
+            if (!string.IsNullOrWhiteSpace(siteOption.HTMLDir) && !model.ContentHtmlRule.Contains(siteOption.HTMLDir) && model.ContentHtmlRule.Contains("html"))
                 model.ContentHtmlRule = siteOption.HTMLDir + model.ContentHtmlRule;
             await _columnRepository.InsertOrUpdateAsync(model.MapTo<Core.Entities.Column>());
 
@@ -175,9 +164,11 @@ namespace EasyFast.Application.Column
         /// </summary>
         /// <param name="isIndexHtml">是否获取仅生成首页的栏目</param>
         /// <param name="isModel">是否获取具有模型的栏目</param>
+        /// <param name="isContentHtml"></param>
         /// <param name="isListHtml"></param>
         /// <returns></returns>
         [HttpGet]
+        [UnitOfWork(false)]
         public async Task<List<ColumnTreeMenuOutput>> GetColumnEasyTree(bool isIndexHtml, bool isModel, bool isContentHtml, bool isListHtml)
         {
             var conditions = PredicateBuilder.New<Core.Entities.Column>();
@@ -186,21 +177,18 @@ namespace EasyFast.Application.Column
                 conditions = conditions.Or(o => o.IsIndexHtml);
             if (isListHtml)
                 conditions = conditions.Or(o => o.IsListHtml);
-            if (isModel || isContentHtml)
-                conditions = conditions.Or(o => o.ModelId != null && o.IsContentHtml);
+            if (isModel)
+                conditions = conditions.Or(o => o.ModelId != null);
+            if (isContentHtml)
+                conditions = conditions.Or(o => o.IsContentHtml);
+            var result = await _columnRepository.GetAllListAsync(conditions);
 
-            var query = _columnRepository.GetAll().Where(conditions);
-            var result = await query.AsNoTracking().OrderByDescending(o => o.OrderId).ToListAsync();
-            foreach (var column in result)
-            {
-                column.Children =
-                    column.Children.Where(conditions)
-                        .ToList();
-            }
             var list = result.MapTo<List<ColumnTreeMenuOutput>>();
+
             ToEasyUiTree(list);
             return list;
         }
+
 
 
         private void ToEasyUiTree(List<ColumnTreeMenuOutput> list)
@@ -237,7 +225,6 @@ namespace EasyFast.Application.Column
             return await _columnRepository.GetAll().Where(spec.ToExpression()).ProjectTo<T>().ToListAsync();
 
         }
-
 
     }
 }

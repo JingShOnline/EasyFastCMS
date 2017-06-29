@@ -1,10 +1,6 @@
 ﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
 using EasyFast.Application.Content.Dto;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Abp.Web.Models;
 using EasyFast.Application.Common.Dto;
@@ -27,9 +23,9 @@ namespace EasyFast.Application.Content
         /// <summary>
         /// 删除内容
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="ids"></param>
         /// <returns></returns>
-        Task DeleteContent(int id);
+        Task DeleteContent(int[] ids);
 
 
         /// <summary>

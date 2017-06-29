@@ -1,9 +1,27 @@
 ﻿(function () {
     $(function () {
 
+        var clear;
+        $(function () {
+            var i = 0;
+            clear = setInterval(function () {
+                    if (i <= 10) {
+                        clearInterval(clear);
+                    }
+                    if ($(".panel")[0]) {
+                        $(".panel").remove();
+                        $(".window-shadow").remove();
+                        $(".window-mask").remove();
+                        clearInterval(clear);
+                    }
+                    i++;
+                },
+                5);
+
+        });
         var _$rolesTable = $('#RolesTable');
         var _roleService = abp.services.app.role;
-       
+
         var _permissions = {
             create: abp.auth.hasPermission('Pages_Role_Create'),
             edit: abp.auth.hasPermission('Pages_Role_Edit'),
@@ -37,19 +55,19 @@
                         var $span = $('<span></span>');
 
                         //if (_permissions.edit) {
-                            $('<button class="btn btn-default btn-xs" title="' + app.localize('Edit') + '"><i class="fa fa-edit"></i></button>&nbsp;')
-                                .appendTo($span)
-                                .click(function () {
-                                    _createOrEditModal.open({ id: data.record.id });
-                                });
+                        $('<button class="btn btn-default btn-xs" title="' + app.localize('Edit') + '"><i class="fa fa-edit"></i></button>&nbsp;')
+                            .appendTo($span)
+                            .click(function () {
+                                _createOrEditModal.open({ id: data.record.id });
+                            });
                         //}
 
                         //if (!data.record.isStatic && _permissions.delete) {
-                            $('<button class="btn btn-default btn-xs" title="' + app.localize('Delete') + '"><i class="fa fa-trash-o"></i></button>&nbsp;')
-                                .appendTo($span)
-                                .click(function () {
-                                    deleteRole(data.record);
-                                });
+                        $('<button class="btn btn-default btn-xs" title="' + app.localize('Delete') + '"><i class="fa fa-trash-o"></i></button>&nbsp;')
+                            .appendTo($span)
+                            .click(function () {
+                                deleteRole(data.record);
+                            });
                         //}
 
                         return $span;

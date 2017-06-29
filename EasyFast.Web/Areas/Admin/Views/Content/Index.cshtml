@@ -1,5 +1,4 @@
 ﻿@using Abp.Web.Mvc.Extensions
-
 @{
     ViewBag.CurrentPageName = "ContentManager";
 }
@@ -26,38 +25,35 @@
         </div>
     </div>
     <div class="col-md-10">
+        <button class="btn default" onclick="bulkDelete()">删除选中的内容</button>
         <div class="input-group">
-            <input id="filter" class="form-control" placeholder="请输入搜索关键词"
-                   type="text" />
+            <input id="filter" type="text" class="form-control" placeholder="请输入搜索关键词">
             <span class="input-group-btn">
                 <button class="btn default" onclick="doSearch()"><i class="icon-magnifier"></i></button>
             </span>
         </div>
         <table id="easyui-datagrid" class="easyui-datagrid" data-options="
-              url:'/api/services/app/content/GetGridContents',
+               url:'/api/services/app/content/GetGridContents',
                method: 'post',
                pagination: true,
-               rownumbers:true,
                pageSize: 20,
-               sortName:'LastModificationTime',
+               sortName:'CreationTime',
                sortOrder:'desc',
-               singleSelect:true
+               rownumbers:true
                ">
             <thead>
-                <tr>
-                    <th data-options="field:'id',width:100,sortable: true">ID</th>
-                    <th data-options="field:'title',width:300,sortable: true">标题</th>
-                    <th data-options="field:'columnName',width:150">所属栏目</th>
-                    <th data-options="field:'modelRecordModelName',width:200">所属模型</th>
-                    <th data-options="field:'hits',width:100,sortable: true">总点击量</th>
-                    <th data-options="field:'lastModificationTime',width:200,sortable: true">最后修改时间</th>
-                    <th data-options="field:'action',width:300,align:'center',formatter:formatOper"></th>
-                </tr>
+            <tr>
+                <th data-options="field:'ck',checkbox:true"></th>
+                <th data-options="field:'title',width:300,sortable: true">标题</th>
+                <th data-options="field:'columnName',width:150">所属栏目</th>
+                <th data-options="field:'modelRecordModelName',width:150">所属模型</th>
+                <th data-options="field:'hits',width:50,sortable: true">点击量</th>
+                <th data-options="field:'creationTime',width:200,sortable: true">发布时间</th>
+                <th data-options="field:'lastModificationTime',width:200,sortable: true">最后修改时间</th>
+                <th data-options="field:'action',width:300,align:'center',formatter:formatOper"></th>
+            </tr>
             </thead>
         </table>
     </div>
 </div>
-
-
-
 @Html.IncludeScript("/Areas/Admin/Views/Content/index.js")

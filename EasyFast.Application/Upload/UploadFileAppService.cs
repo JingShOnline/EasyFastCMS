@@ -1,13 +1,10 @@
-﻿using Abp.Application.Services;
+﻿using System;
+using Abp.Application.Services;
 using Abp.UI;
 using EasyFast.Common;
 using EasyFast.Core;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -22,7 +19,7 @@ namespace EasyFast.Application.Upload
         /// 上传图片
         /// </summary>
         /// <returns></returns>
-        public async Task<string> UploadImg(string ext, string columnName, string dir, HttpPostedFileBase file)
+        public async Task<string> UploadImg(string ext, string columnName, string width, string height, string dir, HttpPostedFileBase file)
         {
             if (file == null)
                 throw new UserFriendlyException("错误", "请选择上要传的图片");
@@ -42,13 +39,22 @@ namespace EasyFast.Application.Upload
 
             var fullName = $"{fullDirectory}{newName}";
             await Task.Factory.StartNew(() =>
-             {
-                 using (Image img = Image.FromStream(file.InputStream))
-                 {
-                     img.Save(fullName);
-                 }
-             });
-            Logger.Debug(EasyFastConsts.TagPath);
+            {
+                using (Image img = Image.FromStream(file.InputStream))
+                {
+                    if (!string.IsNullOrWhiteSpace(width))
+                    {
+                        if (img.Width > Int32.Parse(width))
+                            throw new UserFriendlyException($"请上传宽固定为{width}px的图片");
+                    }
+                    if (!string.IsNullOrWhiteSpace(height))
+                    {
+                        if (img.Width > Int32.Parse(height))
+                            throw new UserFriendlyException($"请上传高固定为{height}px的图片");
+                    }
+                    img.Save(fullName);
+                }
+            });
             return $"/{EasyFastConsts.UploadFilePath}/{columnName}/{dir}/{newName}";
 
         }

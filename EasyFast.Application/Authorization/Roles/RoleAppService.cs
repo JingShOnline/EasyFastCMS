@@ -12,11 +12,10 @@ using Abp.Linq.Extensions;
 using EasyFast.Application.Authorization.Permissions.Dto;
 using System.Diagnostics;
 using EasyFast.Application.Authorization.Permissions;
-using EasyFast.Core.Authorization;
 
 namespace EasyFast.Application.Authorization.Roles
 {
-  
+
     /// <summary>
     /// 角色应用服务
     /// </summary>
@@ -89,7 +88,7 @@ namespace EasyFast.Application.Authorization.Roles
         {
             var role = new Role(AbpSession.TenantId, input.Role.DisplayName) { IsDefault = input.Role.IsDefault };
             CheckErrors(await _roleManager.CreateAsync(role));
-            await CurrentUnitOfWork.SaveChangesAsync(); //It's done to get Id of the role.
+            await CurrentUnitOfWork.SaveChangesAsync(); 
             await UpdateGrantedPermissionsAsync(role, input.GrantedPermissionNames);
         }
 

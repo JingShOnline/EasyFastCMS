@@ -1,12 +1,8 @@
 ﻿using Abp.Web.Security.AntiForgery;
 using EasyFast.Application.Content.Dto;
 using EasyFast.Application.Upload;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Abp.Web.Mvc.Authorization;
 using EasyFast.Application.Content;
@@ -69,7 +65,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
         [DisableAbpAntiForgeryTokenValidation]
         public async Task<ActionResult> UploadFile(WebUploadDto dto)
         {
-            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(dto.File.FileName), dto.ColumnName, dto.Dir, dto.File);
+            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(dto.File.FileName), dto.ColumnName, dto.Width, dto.Height, dto.Dir, dto.File);
 
             return Json(path);
         }
@@ -84,7 +80,7 @@ namespace EasyFast.Web.Areas.Admin.Controllers
             var file = Request.Files;
             var dir = Request["dir"];
             var columnName = Request["columnName"];
-            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(file[0].FileName), columnName, dir, file[0]);
+            var path = await _uploadFlieAppService.UploadImg(Path.GetExtension(file[0].FileName), columnName, null, null, dir, file[0]);
             return Content(path);
         }
     }

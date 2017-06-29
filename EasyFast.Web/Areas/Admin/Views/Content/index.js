@@ -62,13 +62,19 @@ function doSearch(columnId) {
     });
 }
 
-function deleteContent(id) {
+function bulkDelete() {
+    var ids = GetDataGridChecked();
+
+    if (ids.length <= 0) {
+        abp.message.error("请勾选要删除的内容");
+        return;
+    }
     abp.message.confirm(
         '这将会删除此内容',
         '确定吗',
         function (isConfirmed) {
             if (isConfirmed) {
-                _contentService.deleteContent(id).done(function () {
+                _contentService.deleteContent(ids).done(function () {
                     abp.notify.success("已经删除该内容", "操作成功");
                     doSearch(cId);
                 });

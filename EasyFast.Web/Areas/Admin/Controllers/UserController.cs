@@ -6,6 +6,7 @@ using Abp.Application.Services.Dto;
 using Abp.Web.Mvc.Authorization;
 using EasyFast.Application.Authorization.Permissions;
 using EasyFast.Application.Authorization.Roles;
+using EasyFast.Core.Authorization;
 using EasyFast.Web.Areas.Admin.Models.Roles;
 
 namespace EasyFast.Web.Areas.Admin.Controllers

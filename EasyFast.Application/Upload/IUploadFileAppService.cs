@@ -1,8 +1,4 @@
 ﻿using Abp.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -17,6 +13,6 @@ namespace EasyFast.Application.Upload
         /// 上传图片
         /// </summary>
         /// <returns></returns>
-        Task<string> UploadImg(string ext, string columnName, string dir, HttpPostedFileBase file);
+        Task<string> UploadImg(string ext, string columnName, string width, string height, string dir, HttpPostedFileBase file);
     }
 }

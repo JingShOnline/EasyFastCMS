@@ -13,14 +13,12 @@ namespace EasyFast.Application.Column
     /// </summary>
     public interface IColumnAppService : IApplicationService
     {
-
         /// <summary>
         /// 获取栏目列表
         /// </summary>
         /// <param name="search">搜索条件及分页设定</param>
         /// <returns></returns>
         Task<EasyUIGridOutput<TreeGridOutput>> GetTreeGrid(TreeGridInput search);
-
 
 
         /// <summary>
@@ -30,11 +28,6 @@ namespace EasyFast.Application.Column
         /// <returns></returns>
         Task DeleteAsync(int id);
 
-        /// <summary>
-        /// 获取全站栏目
-        /// </summary>
-        /// <returns></returns>
-        Task<List<SiteColumnModel>> GetSiteColumns();
 
         /// <summary>
         /// 获取树形结构的栏目名称
@@ -79,7 +72,6 @@ namespace EasyFast.Application.Column
         /// <param name="spec">规约</param>
         /// <returns></returns>
         Task<List<T>> GetGenerateColumn<T>(ISpecification<Core.Entities.Column> spec);
-
 
     }
 }
